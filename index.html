@@ -10,7 +10,7 @@
 
         <title>AhorrADAs</title>
     </head>
-    <body>
+    <body class="bg-info">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">AhorrADAs</a>
@@ -36,10 +36,101 @@
                 </div>
             </div>
         </nav>
-        <main>
-            <div class="container">
-            
-                
+        <main class="mt-5">
+            <div class="container d-flex">
+                <aside class="me-3 width-aside">
+                    <!-- BALANCE -->
+                    <table class="table table-borderless bg-white rounded-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ganancia</td>
+                                <td class="text-end">+$0</td>
+                            </tr>
+                            <tr>
+                                <td>Gastos</td>
+                                <td class="text-end">-$0</td>
+                            </tr>
+                            <tr>
+                                <th>Total</th>
+                                <td class="text-end">$0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- FILTROS -->
+                    <form class="bg-white rounded-3">
+                        <fieldset >
+                            <p class="d-flex">
+                                <legend class="ps-2">Filtros</legend>
+                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Ocultar filtros
+                                </button>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body border-0">
+                            
+                                <div class="mb-3">
+                                    <label  class="form-label">Tipo</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Todos</option>
+                                        <option value="1">Gasto</option>
+                                        <option value="2">Ganancia</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label  class="form-label">Categoría</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Todas</option>
+                                        <option value="1">Comida</option>
+                                        <option value="2">Servicios</option>
+                                        <option value="3">Salidas</option>
+                                        <option value="4">Educación</option>
+                                        <option value="5">Transporte</option>
+                                        <option value="6">Trabajo</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Desde</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Ordenar por</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Más reciente</option>
+                                        <option value="1">Menos reciente</option>
+                                        <option value="2">Mayor monto</option>
+                                        <option value="3">Menor monto</option>
+                                        <option value="4">A/Z</option>
+                                        <option value="5">Z/A</option>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </aside>
+            <!-- CARD OPERACIONES -->
+                <div class="card" style="width: 58rem;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-title">Operaciones</h3>
+                            <button type="button" class="btn btn-primary">Go somewhere</button>
+                        </div>
+                        <img src="./assets/img/savings.svg" class="card-img-top" alt="saving-img">
+                        <h5 class="card-text">Sin resultados</h5>
+                        <p class="card-text">Cambia los filtros o agrega operaciones</p>
+                    </div>
+                </div>
             </div>
         </main>
         <footer></footer>
