@@ -1,3 +1,34 @@
+body.format {
+    --background-color-navbar:#e94974ff;
+    --background-color: rgb(250, 233, 237);
+  
+}
+body{
+    background-color: var( --background-color);
+}
+
+/*-------NAV BAR--------*/
+.img-logo{
+    width: 40px;
+    margin: 0px 15px 0px 15px;
+}
+
+.navbar-background{
+    background-color: var(--background-color-navbar);
+}
+
+/*-------ASIDE--------*/
+
 .width-aside{
     width:25rem;
 }
+
+/*-------OPERATIONS CARD--------*/
+
+.operations-img-format{
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+
+}
+

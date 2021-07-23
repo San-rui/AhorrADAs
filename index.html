@@ -10,33 +10,37 @@
 
         <title>AhorrADAs</title>
     </head>
-    <body class="bg-info">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <body class=" format">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-background sticky-top text-white">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">AhorrADAs</a>
+                
+                <a class="navbar-brand d-flex" href="#">
+                    <img src="./assets/img/wallet.svg" class="img-logo" alt=""> 
+                    <p class="fs-1 d-flex align-items-end m-0 text-white">AhorrADAs</p> 
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         
-                        <li class="nav-item d-flex">
+                        <li class="nav-item d-flex ms-4">
                             <i class="fas fa-chart-line d-flex align-items-center"></i>
-                            <a class="nav-link" href="#">Balance</a>
+                            <a class="nav-link ms-1 text-white" href="#">Balance</a>
                         </li>
-                        <li class="nav-item d-flex">
+                        <li class="nav-item d-flex ms-4">
                             <i class="fas fa-tag d-flex align-items-center"></i>
-                            <a class="nav-link" href="#">Categorías</a>
+                            <a class="nav-link ms-1 text-white" href="#">Categorías</a>
                         </li>
-                        <li class="nav-item d-flex">
+                        <li class="nav-item d-flex ms-4">
                             <i class="fas fa-chart-pie d-flex align-items-center"></i>
-                            <a class="nav-link" href="#">Reportes</a>
+                            <a class="nav-link ms-1 text-white" href="#">Reportes</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <main class="mt-5">
+        <main class="mt-5 mb-5">
             <div class="container d-flex">
                 <aside class="me-3 width-aside">
                     <!-- BALANCE -->
@@ -61,7 +65,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- FILTROS -->
+                    <!-- FILTERS -->
                     <form class="bg-white rounded-3">
                         <fieldset >
                             <p class="d-flex">
@@ -72,7 +76,6 @@
                             </p>
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body border-0">
-                            
                                 <div class="mb-3">
                                     <label  class="form-label">Tipo</label>
                                     <select class="form-select" aria-label="Default select example">
@@ -119,16 +122,16 @@
                         </fieldset>
                     </form>
                 </aside>
-            <!-- CARD OPERACIONES -->
+                <!-- OPERATIONS CARD-->
                 <div class="card" style="width: 58rem;">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Operaciones</h3>
                             <button type="button" class="btn btn-primary">Go somewhere</button>
                         </div>
-                        <img src="./assets/img/savings.svg" class="card-img-top" alt="saving-img">
-                        <h5 class="card-text">Sin resultados</h5>
-                        <p class="card-text">Cambia los filtros o agrega operaciones</p>
+                        <img src="./assets/img/savings.svg" class="card-img-top operations-img-format mx-auto" alt="saving-img">
+                        <h5 class="card-text text-center mt-3">Sin resultados</h5>
+                        <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
                     </div>
                 </div>
             </div>
