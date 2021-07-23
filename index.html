@@ -40,8 +40,8 @@
                 </div>
             </div>
         </nav>
-        <main class="mt-5 mb-5">
-            <div class="container d-flex">
+        <main class="mt-5 mb-5 ">
+            <div class="container d-flex hidden">
                 <aside class="me-3 width-aside">
                     <!-- BALANCE -->
                     <table class="table table-borderless bg-white rounded-3">
@@ -70,11 +70,10 @@
                         <fieldset >
                             <p class="d-flex">
                                 <legend class="ps-2">Filtros</legend>
-                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Ocultar filtros
-                                </button>
+                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="width: 15rem;">
+                                Ocultar filtros</button>
                             </p>
-                            <div class="collapse" id="collapseExample">
+                            <div class="show" id="collapseExample">
                                 <div class="card card-body border-0">
                                 <div class="mb-3">
                                     <label  class="form-label">Tipo</label>
@@ -99,12 +98,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Desde</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <input type="date" class="form-control" id="formGroupExampleInput">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Ordenar por</label>
@@ -127,7 +121,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Operaciones</h3>
-                            <button type="button" class="btn btn-primary">Go somewhere</button>
+                            <button type="button" class="btn btn-primary">+ Nueva Operación</button>
                         </div>
                         <img src="./assets/img/savings.svg" class="card-img-top operations-img-format mx-auto" alt="saving-img">
                         <h5 class="card-text text-center mt-3">Sin resultados</h5>
@@ -135,7 +129,50 @@
                     </div>
                 </div>
             </div>
+            <!-- NEW OPERATION -->
         </main>
+        <div class="container bg-white mt-5 pt-3 rounded-3 hidden" style="width: 58rem;height: 42rem;">
+            <h2>Nueva Operación</h2>
+
+            <div class="pt-5">
+                <label for="formGroupExampleInput" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="formGroupExampleInput">
+            </div>
+
+            <div class="pt-4">
+                <label for="formGroupExampleInput" class="form-label">Monto</label>
+                <input type="number" class="form-control" id="formGroupExampleInput">
+            </div>
+
+            <div class="pt-4">
+                <label for="formGroupExampleInput" class="form-label">Tipo</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="1">Gasto</option>
+                    <option value="2">Ganancia</option>
+                </select>
+            </div>
+
+            <div class="pt-4">
+                <label for="formGroupExampleInput" class="form-label">Categoría</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="1">Comida</option>
+                    <option value="2">Servicios</option>
+                    <option value="3">Salidas</option>
+                    <option value="4">Educación</option>
+                    <option value="5">Transporte</option>
+                    <option value="6">Trabajo</option>
+                </select>
+            </div>
+
+            <div class="pt-4">
+                <label for="formGroupExampleInput" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="formGroupExampleInput">
+            </div>
+            <div class="pt-5 d-flex justify-content-end">
+            <button class="btn btn-primary me-3 btn-light" type="reset">Cancelar</button>
+            <button class="btn" style="background-color:#e94974ff; color: white;" type="submit">Agregar</button>
+            </div>
+        </div>
         <footer></footer>
 
         <script src="./assets/js/bootstrap.min.js"></script>
