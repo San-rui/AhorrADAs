@@ -1,5 +1,5 @@
 body.format {
-    --background-color-navbar:#e94974ff;
+    --background-color-dar-pink:#e94974ff;
     --background-color: rgb(250, 233, 237);
   
 }
@@ -14,7 +14,7 @@ body{
 }
 
 .navbar-background{
-    background-color: var(--background-color-navbar);
+    background-color: var(--background-color-dar-pink);
 }
 
 /*-------ASIDE--------*/
@@ -32,7 +32,14 @@ body{
 
 }
 
-.hidden{
-    display:none;
+/*-------BG-COLOR--------*/
+
+.dark-pink-color{
+    background-color: var(--background-color-dar-pink);
 }
+
+.hidden{
+    display: none;
+}
+
 
