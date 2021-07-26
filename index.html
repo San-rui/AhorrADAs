@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        
         <link rel="stylesheet" href="./assets/css/styles.css">
 
         <title>AhorrADAs</title>
@@ -53,15 +54,15 @@
                         <tbody>
                             <tr>
                                 <td>Ganancia</td>
-                                <td class="text-end">+$0</td>
+                                <td class="text-end text-success">+$0</td>
                             </tr>
                             <tr>
                                 <td>Gastos</td>
-                                <td class="text-end">-$0</td>
+                                <td class="text-end text-danger">-$0</td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td class="text-end">$0</td>
+                                <td class="text-end text-success"> <strong>$0</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -117,65 +118,53 @@
                     </form>
                 </section>
                 <!-- OPERATIONS CARD-->
-                <div class="card" style="width: 58rem;">
+                <div class="card" style="width: 58rem;" id="op-card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Operaciones</h3>
-                            <button type="button" class="btn btn-primary">+ Nueva Operación</button>
+                            <button type="button" class="btn"> <a href="new-operation.html" class="btn stretched-link text-white dark-pink-color">+ Nueva Operación</a></button>
                         </div>
                         <img src="./assets/img/savings.svg" class="card-img-top operations-img-format mx-auto" alt="saving-img">
                         <h5 class="card-text text-center mt-3">Sin resultados</h5>
                         <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
+                        </div>
+                        <!-- OPERATIONS LIST  -->
+                        <div id="op-table">
+                            <table class="table table-borderless" id="list">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Categoría</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>description</td>
+                                        </tr>
+                                        <tr>
+                                            <td>category</td>
+                                        </tr>
+                                        <tr>
+                                            <td>date</td>
+                                        </tr>
+                                        <tr>
+                                            <td>amount</td>
+                                        </tr>
+                                        <tr>
+                                            <td>actions</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
                     </div>
+                
                 </div>
-            </div>
-            <!-- NEW OPERATION -->
         </main>
-        <div class="container bg-white mt-5 pt-3 rounded-3 hidden" style="width: 58rem;height: 42rem;">
-            <h2>Nueva Operación</h2>
-
-            <div class="pt-5">
-                <label for="formGroupExampleInput" class="form-label">Descripción</label>
-                <input type="text" class="form-control" id="formGroupExampleInput">
-            </div>
-
-            <div class="pt-4">
-                <label for="formGroupExampleInput" class="form-label">Monto</label>
-                <input type="number" class="form-control" id="formGroupExampleInput">
-            </div>
-
-            <div class="pt-4">
-                <label for="formGroupExampleInput" class="form-label">Tipo</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="1">Gasto</option>
-                    <option value="2">Ganancia</option>
-                </select>
-            </div>
-
-            <div class="pt-4">
-                <label for="formGroupExampleInput" class="form-label">Categoría</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="1">Comida</option>
-                    <option value="2">Servicios</option>
-                    <option value="3">Salidas</option>
-                    <option value="4">Educación</option>
-                    <option value="5">Transporte</option>
-                    <option value="6">Trabajo</option>
-                </select>
-            </div>
-
-            <div class="pt-4">
-                <label for="formGroupExampleInput" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="formGroupExampleInput">
-            </div>
-            <div class="pt-5 d-flex justify-content-end">
-            <button class="btn btn-primary me-3 btn-light" type="reset">Cancelar</button>
-            <button class="btn" style="background-color:#e94974ff; color: white;" type="submit">Agregar</button>
-            </div>
-        </div>
         <footer></footer>
-
         <script src="./assets/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     </body>
-</html>
+</html> 
