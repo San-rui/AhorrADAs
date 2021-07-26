@@ -12,7 +12,7 @@
         <title>AhorrADAs</title>
     </head>
     <body class="format">
-        <nav class="navbar navbar-expand-lg navbar-light navbar-background sticky-top text-white">
+        <nav class="navbar navbar-expand-lg navbar-background sticky-top text-white">
             <div class="container-fluid">
                 
                 <a class="navbar-brand d-flex" href="#">
@@ -41,9 +41,9 @@
                 </div>
             </div>
         </nav>
-            <main class="mt-5 mb-5">
-            <div class="container d-flex hidden">
-                <aside class="me-3 width-aside">
+        <main class="mt-5 mb-5">
+            <div class="container d-flex">
+                <section class="me-3 width-section">
                     <!-- BALANCE -->
                     <table class="table table-borderless bg-white rounded-3">
                         <thead>
@@ -116,7 +116,7 @@
                             </div>
                         </fieldset>
                     </form>
-                </aside>
+                </section>
                 <!-- OPERATIONS CARD-->
                 <div class="card" style="width: 58rem;" id="op-card">
                     <div class="card-body">
@@ -128,45 +128,43 @@
                         <h5 class="card-text text-center mt-3">Sin resultados</h5>
                         <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
                         </div>
+                        <!-- OPERATIONS LIST  -->
+                        <div id="op-table">
+                            <table class="table table-borderless" id="list">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Categoría</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>description</td>
+                                        </tr>
+                                        <tr>
+                                            <td>category</td>
+                                        </tr>
+                                        <tr>
+                                            <td>date</td>
+                                        </tr>
+                                        <tr>
+                                            <td>amount</td>
+                                        </tr>
+                                        <tr>
+                                            <td>actions</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <!-- OPERATIONS LIST -->
-                    <div id="op-table">
-                        <h3 class="card-title">Operaciones</h3>
-                        <button type="button" class="btn"> <a href="new-operation.html" class="btn stretched-link text-white dark-pink-color">+ Nueva Operación</a></button>
-                        <table class="table table-borderless" id="list">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Categoría</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Monto</th>
-                                    <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>description</td>
-                                    </tr>
-                                    <tr>
-                                        <td>category</td>
-                                    </tr>
-                                    <tr>
-                                        <td>date</td>
-                                    </tr>
-                                    <tr>
-                                        <td>amount</td>
-                                    </tr>
-                                    <tr>
-                                        <td>actions</td>
-                                    </tr>
-                                </tbody>
-                        </table>
-                    </div>
+                
                 </div>
-
         </main>
         <footer></footer>
         <script src="./assets/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     </body>
-</html>
+</html> 
