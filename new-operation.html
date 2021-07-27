@@ -10,7 +10,7 @@
     
 </head>
 <body class="format">
-    <nav class="navbar navbar-expand-lg navbar-light navbar-background sticky-top text-white">
+    <nav class="navbar navbar-expand-lg navbar-background sticky-top text-white">
         <div class="container-fluid">
             
             <a class="navbar-brand d-flex" href="#">
@@ -21,21 +21,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
-                    <li class="nav-item d-flex ms-4">
-                        <i class="fas fa-chart-line d-flex align-items-center"></i>
-                        <a class="nav-link ms-1 text-white" href="#">Balance</a>
-                    </li>
-                    <li class="nav-item d-flex ms-4">
-                        <i class="fas fa-tag d-flex align-items-center"></i>
-                        <a class="nav-link ms-1 text-white" href="#">Categorías</a>
-                    </li>
-                    <li class="nav-item d-flex ms-4">
-                        <i class="fas fa-chart-pie d-flex align-items-center"></i>
-                        <a class="nav-link ms-1 text-white" href="#">Reportes</a>
-                    </li>
-                </ul>
+                <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <button type="button" class="btn d-flex align-items-center ms-4 nav-button rounded-3 text-white" id="balance" value="balance">
+                        <i class="fas fa-chart-line text-white"></i>Balance
+                        <!-- <a class="nav-link ms-1 text-white" href="#">Balance</a> -->
+                    </button>
+                    <button type="button" class="btn d-flex align-items-center ms-4 nav-button rounded-3 text-white" id="categories" value="categories">
+                        <i class="fas fa-tag text-white"></i>Categorías
+                        <!-- <a class="nav-link ms-1 text-white" href="#">Categorías</a> -->
+                    </button>
+                    <button type="button" class="btn d-flex align-items-center ms-4 nav-button rounded-3 text-white" id="reports" value="reports">
+                        <i class="fas fa-chart-pie text-white"></i>Categorías
+                        <!-- <a class="nav-link ms-1 text-white" href="#">Categorías</a> -->
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -87,6 +86,7 @@
         </form>
     </main>
 
+    <script src="script.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     </body>

@@ -1,7 +1,7 @@
 body.format {
     --background-color-dark-pink:#e94974ff;
     --background-color: #fae9ed;
-    --background-color-hover-button: #f382a0;
+    --background-color-hover-button: #f86089;
 }
 
 body{
@@ -43,14 +43,19 @@ body{
 
 }
 
+.new-op-button:hover{
+    background-color:var(--background-color-hover-button);
+    transition-duration: 0.2s;
+}
+
 /*-------BG-COLOR--------*/
 
 .dark-pink-color{
     background-color: var(--background-color-dark-pink);
 }
 
-.hidden{
-    display: none;
-}
+    /* .hidden{
+        display: none;
+    } */
 
 
