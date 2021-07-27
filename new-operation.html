@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <title>AhorrADAs</title>
+    
+</head>
+<body class="format">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-background sticky-top text-white">
+        <div class="container-fluid">
+            
+            <a class="navbar-brand d-flex" href="#">
+                <img src="./assets/img/wallet.svg" class="img-logo" alt=""> 
+                <p class="fs-1 d-flex align-items-end m-0 text-white">AhorrADAs</p> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item d-flex ms-4">
+                        <i class="fas fa-chart-line d-flex align-items-center"></i>
+                        <a class="nav-link ms-1 text-white" href="#">Balance</a>
+                    </li>
+                    <li class="nav-item d-flex ms-4">
+                        <i class="fas fa-tag d-flex align-items-center"></i>
+                        <a class="nav-link ms-1 text-white" href="#">Categorías</a>
+                    </li>
+                    <li class="nav-item d-flex ms-4">
+                        <i class="fas fa-chart-pie d-flex align-items-center"></i>
+                        <a class="nav-link ms-1 text-white" href="#">Reportes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="mt-5 mb-5">
+        <form action="" id="form-new-op">
+            <div class="container bg-white mt-5 pt-3 rounded-3" style="width: 58rem;height: 42rem;">
+                <h2>Nueva Operación</h2>
+    
+                <div class="pt-5">
+                    <label for="formGroupExampleInput" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" id="descrption">
+                </div>
+
+                <div class="pt-4">
+                    <label for="formGroupExampleInput" class="form-label">Monto</label>
+                    <input type="number" class="form-control" id="formGroupExampleInput" id="amount">
+                </div>
+
+                <div class="pt-4">
+                    <label for="formGroupExampleInput" class="form-label">Tipo</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="1">Gasto</option>
+                        <option value="2">Ganancia</option>
+                    </select>
+                </div>
+
+                <div class="pt-4">
+                    <label for="formGroupExampleInput" class="form-label">Categoría</label>
+                    <select class="form-select" aria-label="Default select example" id="category">
+                        <option selected value="1">Comida</option>
+                        <option value="2">Servicios</option>
+                        <option value="3">Salidas</option>
+                        <option value="4">Educación</option>
+                        <option value="5">Transporte</option>
+                        <option value="6">Trabajo</option>
+                    </select>
+                </div>
+
+                <div class="pt-4">
+                    <label for="formGroupExampleInput" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="formGroupExampleInput" id="date">
+                </div>
+
+                <div class="pt-5 d-flex justify-content-end">
+                    <button class="btn btn-primary me-3 btn-light" type="reset" id="btn-cnl-op">Cancelar</button>
+                    <button class="btn dark-pink-color text-white" type="submit" id="btn-add-op">Agregar</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
+    </body>
+</html>

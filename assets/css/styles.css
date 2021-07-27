@@ -1,7 +1,7 @@
 body.format {
-    --background-color-navbar:#e94974ff;
-    --background-color-navbar-button:rgb(240, 114, 148);
-    --background-color: rgb(250, 233, 237);
+    --background-color-dark-pink:#e94974ff;
+    --background-color: #fae9ed;
+    --background-color-hover-button: #f382a0;
 }
 
 body{
@@ -15,7 +15,7 @@ body{
 }
 
 .navbar-background{
-    background-color: var(--background-color-navbar);
+    background-color: var(--background-color-dark-pink);
 }
 
 .nav-button{
@@ -24,7 +24,7 @@ body{
 }
 
 .nav-button:hover{
-    background-color:var(--background-color-navbar-button);
+    background-color:var(--background-color-hover-button);
     transition-duration: 0.3s;
 }
 
@@ -43,7 +43,14 @@ body{
 
 }
 
-.hidden{
-    display:none;
+/*-------BG-COLOR--------*/
+
+.dark-pink-color{
+    background-color: var(--background-color-dark-pink);
 }
+
+.hidden{
+    display: none;
+}
+
 
