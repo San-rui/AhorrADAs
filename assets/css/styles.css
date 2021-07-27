@@ -1,8 +1,9 @@
 body.format {
-    --background-color-dar-pink:#e94974ff;
-    --background-color: rgb(250, 233, 237);
-  
+    --background-color-dark-pink:#e94974ff;
+    --background-color: #fae9ed;
+    --background-color-hover-button: #f382a0;
 }
+
 body{
     background-color: var( --background-color);
 }
@@ -14,10 +15,20 @@ body{
 }
 
 .navbar-background{
-    background-color: var(--background-color-dar-pink);
+    background-color: var(--background-color-dark-pink);
 }
 
-/*-------ASIDE--------*/
+.nav-button{
+    padding: 7px;
+    transition-duration: 0.3s;
+}
+
+.nav-button:hover{
+    background-color:var(--background-color-hover-button);
+    transition-duration: 0.3s;
+}
+
+/*-------SECTION--------*/
 
 .width-section{
     width:25rem;
@@ -35,7 +46,7 @@ body{
 /*-------BG-COLOR--------*/
 
 .dark-pink-color{
-    background-color: var(--background-color-dar-pink);
+    background-color: var(--background-color-dark-pink);
 }
 
 .hidden{
