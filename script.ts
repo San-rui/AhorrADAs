@@ -30,3 +30,16 @@ const goToPage=(event)=>{
 balanceButton.addEventListener('click', goToPage);
 categoriesButton.addEventListener('click', goToPage);
 reportsButton.addEventListener('click', goToPage);
+
+
+//--------- NEW OPERATION BUTTON--------------------
+
+const newOperationButton=document.querySelector('#new-operation-button');
+
+const goToNewOp=(event)=>{
+    const buttonClicked= event.target.value;
+    window.location.href='./new-operation.html';
+};
+newOperationButton.addEventListener('click', goToNewOp);
+
+
