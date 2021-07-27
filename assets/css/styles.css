@@ -1,8 +1,9 @@
 body.format {
     --background-color-navbar:#e94974ff;
+    --background-color-navbar-button:rgb(240, 114, 148);
     --background-color: rgb(250, 233, 237);
-  
 }
+
 body{
     background-color: var( --background-color);
 }
@@ -17,7 +18,17 @@ body{
     background-color: var(--background-color-navbar);
 }
 
-/*-------ASIDE--------*/
+.nav-button{
+    padding: 7px;
+    transition-duration: 0.3s;
+}
+
+.nav-button:hover{
+    background-color:var(--background-color-navbar-button);
+    transition-duration: 0.3s;
+}
+
+/*-------SECTION--------*/
 
 .width-section{
     width:25rem;
