@@ -37,7 +37,7 @@ reportsButton.addEventListener('click', goToPage);
 const newOperationButton=document.querySelector('#new-operation-button');
 
 const goToNewOp=(event)=>{
-    const buttonClicked= event.target.value;
+
     window.location.href='./new-operation.html';
 };
 newOperationButton.addEventListener('click', goToNewOp);

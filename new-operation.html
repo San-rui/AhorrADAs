@@ -45,37 +45,31 @@
     
                 <div class="pt-5">
                     <label for="formGroupExampleInput" class="form-label">Descripción</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" id="descrption">
+                    <input type="text" class="form-control" id="description">
                 </div>
 
                 <div class="pt-4">
                     <label for="formGroupExampleInput" class="form-label">Monto</label>
-                    <input type="number" class="form-control" id="formGroupExampleInput" id="amount">
+                    <input type="number" class="form-control" id="amount" min=1>
                 </div>
 
                 <div class="pt-4">
                     <label for="formGroupExampleInput" class="form-label">Tipo</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="1">Gasto</option>
-                        <option value="2">Ganancia</option>
+                    <select class="form-select" aria-label="Default select example" id="kind">
+                        <option selected value="gasto">Gasto</option>
+                        <option value="ganancia">Ganancia</option>
                     </select>
                 </div>
 
                 <div class="pt-4">
                     <label for="formGroupExampleInput" class="form-label">Categoría</label>
                     <select class="form-select" aria-label="Default select example" id="category">
-                        <option selected value="1">Comida</option>
-                        <option value="2">Servicios</option>
-                        <option value="3">Salidas</option>
-                        <option value="4">Educación</option>
-                        <option value="5">Transporte</option>
-                        <option value="6">Trabajo</option>
                     </select>
                 </div>
 
                 <div class="pt-4">
                     <label for="formGroupExampleInput" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="formGroupExampleInput" id="date">
+                    <input type="date" class="form-control" id="date">
                 </div>
 
                 <div class="pt-5 d-flex justify-content-end">
@@ -86,8 +80,10 @@
         </form>
     </main>
 
-    <script src="script.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
+    <script src="./assets/new-operation.js"></script>
+    <script src="./assets/script.js"></script>
+    
     </body>
 </html>

@@ -27,7 +27,6 @@ reportsButton.addEventListener('click', goToPage);
 //--------- NEW OPERATION BUTTON--------------------
 var newOperationButton = document.querySelector('#new-operation-button');
 var goToNewOp = function (event) {
-    var buttonClicked = event.target.value;
     window.location.href = './new-operation.html';
 };
 newOperationButton.addEventListener('click', goToNewOp);
