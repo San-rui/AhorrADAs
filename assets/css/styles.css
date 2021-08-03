@@ -40,7 +40,10 @@ body{
     width: 25rem;
     display: flex;
     justify-content: center;
+}
 
+.new-op-button{
+    background-color: var(--background-color-dark-pink);
 }
 
 .new-op-button:hover{
@@ -48,14 +51,24 @@ body{
     transition-duration: 0.2s;
 }
 
-/*-------BG-COLOR--------*/
+/*-------TABLE--------*/
 
-.dark-pink-color{
-    background-color: var(--background-color-dark-pink);
+.action-class{
+    color:#f86089;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 0px 0px 10px 10px;
 }
 
-    /* .hidden{
-        display: none;
-    } */
+.negative-number{
+    color: #ff0000;
+}
 
+.positive-number{
+    color: #008000;
+}
 
+.category-style{
+    color: var(--background-color-dark-pink);
+    background: yellow;
+}

@@ -114,7 +114,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Operaciones</h3>
-                            <button type="button" class="btn text-white dark-pink-color new-op-button" id="new-operation-button">+ Nueva Operación</button> 
+                            <button type="button" class="btn text-white new-op-button" id="new-operation-button">+ Nueva Operación</button> 
                         </div>
                         <img src="./assets/img/savings.svg" class="card-img-top operations-img-format mx-auto" alt="saving-img">
                         <h5 class="card-text text-center mt-3">Sin resultados</h5>
@@ -123,7 +123,7 @@
 
                     <!-- OPERATIONS LIST  -->
                     <div id="op-table">
-                        <table class="table table-borderless" id="list">
+                        <table class="table table-borderless" >
                             <thead>
                                 <tr>
                                     <th scope="col">Descripción</th>
@@ -133,14 +133,7 @@
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>description</td>
-                                    <td>category</td>
-                                    <td>date</td>
-                                    <td>amount</td>
-                                    <td>actions</td>
-                                </tr>
+                            <tbody id="op-list">
                             </tbody>
                         </table>
                     </div>
@@ -152,5 +145,6 @@
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
         <script src="./assets/script.js"></script>
         <script src="./assets/navbar.js"></script>
+        
     </body>
 </html> 
