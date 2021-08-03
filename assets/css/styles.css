@@ -51,6 +51,12 @@ body{
     transition-duration: 0.2s;
 }
 
+/*-------ADD BUTTON--------*/
+
+.dark-pink-color{
+    background-color: var(--background-color-dark-pink);
+}
+
 /*-------TABLE--------*/
 
 .action-class{
