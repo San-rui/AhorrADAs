@@ -24,9 +24,3 @@ var goToPage = function (event) {
 balanceButton.addEventListener('click', goToPage);
 categoriesButton.addEventListener('click', goToPage);
 reportsButton.addEventListener('click', goToPage);
-//--------- NEW OPERATION BUTTON--------------------
-var newOperationButton = document.getElementById('new-operation-button');
-var goToNewOp = function (event) {
-    window.location.href = './new-operation.html';
-};
-newOperationButton.addEventListener('click', goToNewOp);
