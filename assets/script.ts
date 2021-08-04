@@ -6,7 +6,13 @@ type NewOp = {
     dateLine: Date,
 };
 
+type NewCategory={
+    name: string,
+    slug: ()=> string,
+}
+
 type LocalStorage = {
+    categories?:NewCategory[],
     newoperation: NewOp[],
 };
 
@@ -15,6 +21,7 @@ const goOnStorage = (): LocalStorage =>{
 
     if(!fullLocalStorage) {
         fullLocalStorage = {
+            categories:[],
             newoperation:[]
         } 
     }
