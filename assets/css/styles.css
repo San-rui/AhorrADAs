@@ -1,6 +1,7 @@
 body.format {
     --background-color-dark-pink:#e94974ff;
     --background-color: #fae9ed;
+    --background-color-cards: #FAFAFA;
     --background-color-hover-button: #f86089;
 }
 
@@ -35,6 +36,9 @@ body{
 }
 
 /*-------OPERATIONS CARD--------*/
+.cards-background{
+    background-color: var(--background-color-cards);
+}
 
 .operations-img-format{
     width: 25rem;
@@ -77,4 +81,11 @@ body{
 .category-style{
     color: var(--background-color-dark-pink);
     background: yellow;
+}
+
+/*-------ANIMATION-------*/
+#anim{
+    width: 100%;
+    display:flex;
+    justify-self: center;
 }

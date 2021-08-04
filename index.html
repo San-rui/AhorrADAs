@@ -4,6 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-AU-compatible" content="ie=edge">
 
         <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
         
@@ -19,7 +20,7 @@
                     <img src="./assets/img/wallet.svg" class="img-logo" alt=""> 
                     <p class="fs-1 d-flex align-items-end m-0 text-white">AhorrADAs</p> 
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
@@ -42,9 +43,9 @@
         </nav>
         <main class="mt-5 mb-5">
             <div class="container d-flex">
-                <section class="me-3 width-section">
+                <section class="me-3 width-section ">
                     <!-- BALANCE -->
-                    <table class="table table-borderless bg-white rounded-3">
+                    <table class="table table-borderless cards-background rounded-3">
                         <thead>
                             <tr>
                                 <th scope="col">Balance</th>
@@ -66,7 +67,7 @@
                         </tbody>
                     </table>
                     <!-- FILTERS -->
-                    <form class="bg-white rounded-3">
+                    <form class="cards-background rounded-3">
                         <fieldset >
                             <p class="d-flex">
                                 <legend class="ps-2">Filtros</legend>
@@ -74,7 +75,7 @@
                                 Ocultar filtros</button>
                             </p>
                             <div class="show" id="collapseExample">
-                                <div class="card card-body border-0">
+                                <div class="cards-background card-body card border-0">
                                 <div class="mb-3">
                                     <label  class="form-label">Tipo</label>
                                     <select class="form-select" aria-label="Default select example">
@@ -110,20 +111,20 @@
                     </form>
                 </section>
                 <!-- OPERATIONS CARD-->
-                <div class="card" style="width: 58rem;" id="op-card">
+                <div class="card cards-background" style="width: 58rem;" id="op-card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Operaciones</h3>
                             <button type="button" class="btn text-white new-op-button" id="new-operation-button">+ Nueva Operación</button> 
                         </div>
-                        <img src="./assets/img/savings.svg" class="card-img-top operations-img-format mx-auto" alt="saving-img">
+                        <div id="anim"></div>
                         <h5 class="card-text text-center mt-3">Sin resultados</h5>
                         <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
                     </div>
 
                     <!-- OPERATIONS LIST  -->
                     <div id="op-table">
-                        <table class="table table-borderless" >
+                        <table class="table table-borderless cards-background" >
                             <thead>
                                 <tr>
                                     <th scope="col">Descripción</th>
@@ -145,6 +146,8 @@
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
         <script src="./assets/script.js"></script>
         <script src="./assets/navbar.js"></script>
+        <script src="./assets/lf20_yfdj8maj.js"></script>
+        <script src="./assets/animation.js"></script>
         
     </body>
 </html> 
