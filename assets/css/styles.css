@@ -89,3 +89,9 @@ body{
     display:flex;
     justify-self: center;
 }
+
+/*-------CATEGORIES-------*/
+
+.input-categories{
+    width: 40rem;
+}
