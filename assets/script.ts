@@ -8,7 +8,7 @@ type NewOp = {
 
 type NewCategory={
     name: string,
-    slug: ()=> string,
+    slug: string,
 }
 
 type LocalStorage = {
@@ -21,7 +21,7 @@ const goOnStorage = (): LocalStorage =>{
 
     if(!fullLocalStorage) {
         fullLocalStorage = {
-            categories:[],
+            categories:[]
             newoperation:[]
         } 
     }
