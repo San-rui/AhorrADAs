@@ -9,8 +9,10 @@ var addCategory = function (e) {
         name: newCategoryName,
         slug: slugify(newCategoryName)
     };
+    console.log(newCategoryAdded);
     storage.categories.push(newCategoryAdded);
     localStorage.setItem('full-storage', JSON.stringify(storage));
+    location.reload();
 };
 formAddCategory.addEventListener('submit', addCategory);
 //------------SHOW CATEGORY ADDED-------------

@@ -3,8 +3,6 @@
 let storage: LocalStorage = goOnStorage();
 const formAddCategory=document.getElementById('form-add-category');
 
-
-
 const addCategory =(e)=>{
     e.preventDefault();
 
@@ -16,16 +14,15 @@ const addCategory =(e)=>{
             name: newCategoryName,
             slug: slugify(newCategoryName), 
     }
+    console.log(newCategoryAdded);
 
     storage.categories.push(newCategoryAdded);
 
     localStorage.setItem('full-storage', JSON.stringify(storage));
+    location.reload();
 
-    
 };
 formAddCategory.addEventListener('submit', addCategory);
-
-
 
 //------------SHOW CATEGORY ADDED-------------
 
@@ -62,7 +59,7 @@ const updateTableCategory = ()=> {
         newRow.appendChild(newRowAction);
         
         tableCategory.appendChild(newRow);
-                
+        
     }
 
 };
