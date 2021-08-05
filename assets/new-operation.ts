@@ -1,6 +1,12 @@
-
+//---------VARIABLES--------------------------------
 let storage: LocalStorage = goOnStorage();
 const newOperationForm = document.getElementById('form-new-op');
+
+//--------- FILTERS: SELECT CATEGORY-------------------
+
+loadFilterCategory();
+
+//--------- CREATE NEW OPERATION-------------------
 
 const createNewOp = (e) =>{
     e.preventDefault();

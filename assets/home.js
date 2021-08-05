@@ -1,3 +1,5 @@
+//--------- FILTERS: SELECT CATEGORY-------------------
+loadFilterCategory();
 //--------- NEW OPERATION BUTTON--------------------
 var newOperationButton = document.getElementById('new-operation-button');
 var goToNewOp = function (event) {
@@ -40,6 +42,7 @@ var updateTableOp = function () {
             newRowAmount.setAttribute('class', 'positive-number');
             newRowAmount.innerHTML = "+" + element.amount;
         }
+        ;
         newRow.appendChild(newRowDescription);
         newRow.appendChild(newRowCategory);
         newRow.appendChild(newRowDate);
@@ -47,5 +50,6 @@ var updateTableOp = function () {
         newRow.appendChild(newRowAction);
         table.appendChild(newRow);
     }
+    ;
 };
 updateTableOp();

@@ -1,14 +1,9 @@
-var goOnStorage = function () {
-    var fullLocalStorage = JSON.parse(localStorage.getItem('full-storage'));
-    if (!fullLocalStorage) {
-        fullLocalStorage = {
-            newoperation: []
-        };
-    }
-    return fullLocalStorage;
-};
+//---------VARIABLES--------------------------------
 var storage = goOnStorage();
 var newOperationForm = document.getElementById('form-new-op');
+//--------- FILTERS: SELECT CATEGORY-------------------
+loadFilterCategory();
+//--------- CREATE NEW OPERATION-------------------
 var createNewOp = function (e) {
     e.preventDefault();
     var formNewOp = e.target;
