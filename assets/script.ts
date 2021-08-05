@@ -1,3 +1,5 @@
+//--------------TYPES---------------
+
 type NewOp = {
     description?: string | number,
     amount: number,
@@ -16,6 +18,10 @@ type LocalStorage = {
     newoperation: NewOp[],
 };
 
+//--------------FUNCTIONS---------------
+
+//--------------LOCAL STORAGE FUNCTION-------
+
 const goOnStorage = (): LocalStorage =>{
     let fullLocalStorage : LocalStorage = JSON.parse(localStorage.getItem('full-storage'));
 
@@ -30,4 +36,21 @@ const goOnStorage = (): LocalStorage =>{
     };
 
     return fullLocalStorage;
+};
+
+//--------- FILTERS: SELECT CATEGORY-------------------
+
+const loadFilterCategory = () => {
+
+    const storage: LocalStorage = goOnStorage();
+
+    const selectCategories = document.getElementById('category');
+
+    for(const category of storage.categories) {
+
+        const elem = document.createElement('option');
+        elem.innerText = category.name;
+        elem.value = category.slug;
+        selectCategories.appendChild(elem);
+    };
 };

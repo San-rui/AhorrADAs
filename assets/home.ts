@@ -1,3 +1,6 @@
+//--------- FILTERS: SELECT CATEGORY-------------------
+
+loadFilterCategory();
 
 //--------- NEW OPERATION BUTTON--------------------
 
@@ -12,10 +15,10 @@ newOperationButton.addEventListener('click', goToNewOp);
 //------------Complete op table-------------
 const table = document.getElementById('op-list');
 
-const updateTableOp = ()=> {
+const updateTableOp = () => {
 
     const storage: LocalStorage = goOnStorage();
-    console.log(storage);
+    console.log (storage);
 
     for(const element of storage.newoperation){
         console.log(element);
@@ -47,14 +50,13 @@ const updateTableOp = ()=> {
         newRowCategory.innerHTML = element.category;
         newRowDate.innerHTML = element.dateLine;
         
-
         if(element.kind === "gasto"){
             newRowAmount.setAttribute('class','negative-number');
             newRowAmount.innerHTML = "-" + element.amount;
         } else if(element.kind === "ganancia"){
             newRowAmount.setAttribute('class','positive-number');
             newRowAmount.innerHTML = "+" + element.amount;
-        }
+        };
 
         newRow.appendChild(newRowDescription);
         newRow.appendChild(newRowCategory);
@@ -63,10 +65,7 @@ const updateTableOp = ()=> {
         newRow.appendChild(newRowAction);
         
         table.appendChild(newRow);
-
-
-    }
-
+    };
 };
 
-updateTableOp()
+updateTableOp();
