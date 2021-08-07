@@ -12,7 +12,7 @@ var addCategory = function (e) {
     console.log(newCategoryAdded);
     storage.categories.push(newCategoryAdded);
     localStorage.setItem('full-storage', JSON.stringify(storage));
-    location.reload();
+    updateTableCategory();
 };
 formAddCategory.addEventListener('submit', addCategory);
 //------------SHOW CATEGORY ADDED-------------
@@ -20,6 +20,7 @@ var tableCategory = document.getElementById('category-table');
 var updateTableCategory = function () {
     var storage = goOnStorage();
     console.log(storage);
+    tableCategory.innerHTML = "";
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var element = _a[_i];
         console.log(element);
