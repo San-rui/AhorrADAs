@@ -31,7 +31,7 @@ const createNewOp = (e) =>{
     storage.newoperation.push(newOperationAdded);
 
     localStorage.setItem('full-storage', JSON.stringify(storage));
-    window.location.href='./index.html';
+    window.location.href='../index.html';
 
 }
 newOperationForm.addEventListener('submit', createNewOp);

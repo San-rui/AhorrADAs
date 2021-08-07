@@ -3,8 +3,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 
     <title>AhorrADAs</title>
     
@@ -14,7 +14,7 @@
         <div class="container-fluid">
             
             <a class="navbar-brand d-flex" href="#">
-                <img src="./assets/img/wallet.svg" class="img-logo" alt=""> 
+                <img src="../assets/img/wallet.svg" class="img-logo" alt=""> 
                 <p class="fs-1 d-flex align-items-end m-0 text-white">AhorrADAs</p> 
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,20 +22,17 @@
             </button>
             <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
                 <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <button type="button" class="btn d-flex align-items-center ms-4 nav-button rounded-3 text-white" id="balance" value="balance">
+                    <a class="d-flex align-items-center ms-4 nav-link rounded-3 text-white" id="balance" value="balance" href="../index.html">
                         <i class="fas fa-chart-line text-white"></i>Balance
-                        <!-- <a class="nav-link ms-1 text-white" href="#">Balance</a> -->
-                    </button>
-                    <button type="button" class="btn d-flex align-items-center ms-4 nav-button rounded-3 text-white" id="categories" value="categories">
+                    </a>
+                    <a class="d-flex align-items-center ms-4 nav-link rounded-3 text-white" id="categories" value="categories" href="./categories.html">
                         <i class="fas fa-tag text-white"></i>Categorías
-                        <!-- <a class="nav-link ms-1 text-white" href="#">Categorías</a> -->
-                    </button>
-                    <button type="button" class="btn d-flex align-items-center ms-4 nav-button rounded-3 text-white" id="reports" value="reports">
+                    </a>
+                    <a class="d-flex align-items-center ms-4 nav-link rounded-3 text-white" id="reports" value="reports" href="./reports.html">
                         <i class="fas fa-chart-pie text-white"></i>Reportes
-                        <!-- <a class="nav-link ms-1 text-white" href="#">Categorías</a> -->
-                    </button>
+                    </a>
                 </div>
-            </div>
+            </div>  
         </div>
     </nav>
     <main class="mt-5 mb-5">
@@ -80,11 +77,11 @@
         </form>
     </main>
 
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
-    <script src="./assets/script.js"></script>
-    <script src="./assets/new-operation.js"></script>
-    <script src="./assets/navbar.js"></script>
+    <script src="../assets/script.js"></script>
+    <script src="../assets/new-operation.js"></script>
+    <script src="../assets/navbar.js"></script>
     
     </body>
 </html>

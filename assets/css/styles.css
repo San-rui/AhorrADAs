@@ -19,14 +19,18 @@ body{
     background-color: var(--background-color-dark-pink);
 }
 
-.nav-button{
+.nav-link{
     padding: 7px;
     transition-duration: 0.3s;
+    text-decoration: none;
 }
 
-.nav-button:hover{
+.nav-link:hover{
     background-color:var(--background-color-hover-button);
     transition-duration: 0.3s;
+}
+a i{
+    margin-right: 7px;
 }
 
 /*-------SECTION--------*/
@@ -90,5 +94,8 @@ body{
     justify-self: center;
 }
 
-/*-------CATEGORIES-------*/
+/*-------CARDS WIDTH-------*/
 
+.main-cards-width{
+    
+}

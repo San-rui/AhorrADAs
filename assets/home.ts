@@ -8,7 +8,7 @@ const newOperationButton=document.getElementById('new-operation-button');
 
 const goToNewOp=(event)=>{
 
-    window.location.href='./new-operation.html';
+    window.location.href='./pages/new-operation.html';
 };
 newOperationButton.addEventListener('click', goToNewOp);
 

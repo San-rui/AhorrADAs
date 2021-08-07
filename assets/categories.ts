@@ -19,7 +19,7 @@ const addCategory =(e)=>{
     storage.categories.push(newCategoryAdded);
 
     localStorage.setItem('full-storage', JSON.stringify(storage));
-    location.reload();
+    updateTableCategory();
 
 };
 formAddCategory.addEventListener('submit', addCategory);
@@ -32,7 +32,7 @@ const updateTableCategory = ()=> {
 
     const storage: LocalStorage = goOnStorage();
     console.log(storage);
-
+    tableCategory.innerHTML="";
     for(const element of storage.categories){
         console.log(element);
 

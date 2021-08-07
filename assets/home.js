@@ -3,7 +3,7 @@ loadFilterCategory();
 //--------- NEW OPERATION BUTTON--------------------
 var newOperationButton = document.getElementById('new-operation-button');
 var goToNewOp = function (event) {
-    window.location.href = './new-operation.html';
+    window.location.href = './pages/new-operation.html';
 };
 newOperationButton.addEventListener('click', goToNewOp);
 //------------Complete op table-------------
