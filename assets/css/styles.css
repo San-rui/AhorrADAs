@@ -94,8 +94,8 @@ a i{
     justify-self: center;
 }
 
-/*-------CARDS WIDTH-------*/
+/*-------HIDDEN-------*/
 
-.main-cards-width{
-    
+.hidden{
+    display: none; 
 }
