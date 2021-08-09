@@ -37,7 +37,7 @@
             </div>
         </nav>
         <main class="mt-5 mb-5">
-            <div class="container cards-background pb-5">
+            <div class="container cards-background pb-5" id="add-category-container">
                 <form action="" id="form-add-category">
                     <div>
                         <h2>Categorías</h2>
@@ -58,6 +58,22 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="container cards-background pb-5 hidden" id="edit-form-container">
+                <form action="" id="form-edit-category">
+                    <div>
+                        <h2>Editar categoría</h2>
+                            <div class="mt-5">
+                                <label for="formGroupExampleInput" class="form-label fw-bold">Nombre</label>
+                                <div class="d-flex justify-content-between">
+                                    <input type="text" id="name-category" class="form-control me-3">
+                                    <button class="btn btn-primary me-3 btn-light" type="reset" id="btn-cnl-edit-cat">Cancelar</button>
+                                    <button class="btn dark-pink-color text-white" type="submit" id="btn-edit-cat">Editar</button>
+                                    
+                                </div>
+                            </div>
+                    </div>
+                </form>
             </div>
         </main>
 

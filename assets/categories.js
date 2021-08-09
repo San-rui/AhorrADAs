@@ -17,6 +17,10 @@ var addCategory = function (e) {
 formAddCategory.addEventListener('submit', addCategory);
 //------------SHOW CATEGORY ADDED-------------
 var tableCategory = document.getElementById('category-table');
+var addCategoryContainer = document.getElementById('add-category-container');
+var editFormContainer = document.getElementById('edit-form-container');
+var nameCategory = document.querySelector('#name-category');
+var btnEditCat = document.querySelector('#btn-edit-cat');
 var updateTableCategory = function () {
     var storage = goOnStorage();
     console.log(storage);
@@ -25,9 +29,9 @@ var updateTableCategory = function () {
         var newRow = document.createElement('tr');
         var newCategoryNameAdded = document.createElement('td');
         var newRowAction = document.createElement('td');
-        var editAction = document.createElement('a');
+        var editAction = document.createElement('button');
         var deleteAction = document.createElement('button');
-        editAction.setAttribute('href', 'https://www.youtube.com/');
+        editAction.setAttribute('value', element.name);
         editAction.setAttribute('class', 'action-class');
         deleteAction.setAttribute('class', 'action-class');
         editAction.innerHTML = "Editar";
@@ -45,6 +49,23 @@ var updateTableCategory = function () {
             updateTableCategory();
         };
         deleteAction.addEventListener('click', deleteCategory);
+        var goToEditCategory = function (e) {
+            var nameCategorySelected = e.target.value;
+            addCategoryContainer.classList.add('hidden');
+            editFormContainer.classList.remove('hidden');
+            nameCategory.value = nameCategorySelected;
+        };
+        editAction.addEventListener('click', goToEditCategory);
+        var editedCategoryName = function (e) {
+            e.preventDefault();
+            var newCategoryName = nameCategory.value;
+            newCategoryNameAdded.innerHTML = newCategoryName;
+            console.log(newCategoryNameAdded.innerHTML);
+            storage.categories.name = newCategoryName;
+            localStorage.setItem('full-storage', JSON.stringify(storage));
+            updateTableCategory();
+        };
+        btnEditCat.addEventListener('click', editedCategoryName);
     };
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var element = _a[_i];
@@ -55,3 +76,9 @@ var init = function () {
     updateTableCategory();
 };
 init();
+var btnCnlEditCat = document.querySelector('#btn-cnl-edit-cat');
+var goBackToAddCategory = function () {
+    addCategoryContainer.classList.remove('hidden');
+    editFormContainer.classList.add('hidden');
+};
+btnCnlEditCat.addEventListener('click', goBackToAddCategory);
