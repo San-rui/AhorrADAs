@@ -34,18 +34,15 @@ const updateTableCategory = ()=> {
     console.log(storage);
     tableCategory.innerHTML="";
     for(const element of storage.categories){
-        console.log(element);
 
         const newRow= document.createElement('tr');
         const newCategoryNameAdded= document.createElement('td');
         const newRowAction= document.createElement('td');
         
-
         const editAction =document.createElement('a');
-        const deleteAction =document.createElement('a');
+        const deleteAction =document.createElement('button');
         
         editAction.setAttribute('href','https://www.youtube.com/');
-        deleteAction.setAttribute('href','https://www.youtube.com/');
         editAction.setAttribute('class','action-class');
         deleteAction.setAttribute('class','action-class');
 
@@ -60,7 +57,17 @@ const updateTableCategory = ()=> {
         
         tableCategory.appendChild(newRow);
         
+        const deleteCategory = () => {
+            const newArray= storage.categories.filter(elemento => element.name !== elemento.name);
+            storage.categories=newArray;
+
+            localStorage.setItem('full-storage', JSON.stringify(storage));
+
+            updateTableCategory();
+        }
+        deleteAction.addEventListener('click', deleteCategory)
     }
+    
 
 };
 
