@@ -3,6 +3,7 @@ body.format {
     --background-color: #fae9ed;
     --background-color-cards: #FAFAFA;
     --background-color-hover-button: #f86089;
+    --font-color-hover: rgb(182, 19, 62);
 }
 
 body{
@@ -68,10 +69,15 @@ a i{
 /*-------TABLE--------*/
 
 .action-class{
-    color:#f86089;
+    color:var(--background-color-dark-pink);
     font-size: 14px;
     text-decoration: none;
     margin: 0px 0px 10px 10px;
+    border: none;
+}
+
+.action-class:hover{
+    color: var(--font-color-hover);
 }
 
 .negative-number{
