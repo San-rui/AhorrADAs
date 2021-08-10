@@ -35,18 +35,20 @@ const btnEditCat = document.querySelector('#btn-edit-cat');
 const updateTableCategory = ()=> {
 
     const storage: LocalStorage = goOnStorage();
-    console.log(storage);
+
     tableCategory.innerHTML="";
     for(const element of storage.categories){
 
         const newRow= document.createElement('tr');
         const newCategoryNameAdded= document.createElement('td');
         const newRowAction= document.createElement('td');
+
+        newCategoryNameAdded.setAttribute('id', element.slug)
         
         const editAction =document.createElement('button');
         const deleteAction =document.createElement('button');
         
-        editAction.setAttribute('value', element.name);
+        editAction.setAttribute('value', element.slug);
         editAction.setAttribute('class','action-class');
         deleteAction.setAttribute('class','action-class');
 
@@ -70,25 +72,45 @@ const updateTableCategory = ()=> {
             updateTableCategory();
         };
 
-        deleteAction.addEventListener('click', deleteCategory)
+        deleteAction.addEventListener('click', deleteCategory);
+
+        
 
         const goToEditCategory = (e) => {
+            console.log("el value", e.target.value);
+            let nameCategorySelected= e.target.value;
 
-            const nameCategorySelected= e.target.value;
+            let selectedElement= document.querySelector(`#${nameCategorySelected}`) ;
+
             addCategoryContainer.classList.add('hidden');
             editFormContainer.classList.remove('hidden');
+
             nameCategory.value= nameCategorySelected;
 
+            localStorage.setItem('editedElement', selectedElement.innerHTML);
+            
         };
 
         editAction.addEventListener('click', goToEditCategory);
 
+
         const editedCategoryName = (e) => {
-            e.preventDefault()
-            const newCategoryName = nameCategory.value;
-            newCategoryNameAdded.innerHTML =newCategoryName;
-            console.log(newCategoryNameAdded.innerHTML);
-            storage.categories.name= newCategoryName;
+            e.preventDefault();
+            let selectedElement= localStorage.getItem('editedElement');
+            console.log("name" nameCategory.value);
+            
+            const newArray = storage.categories.map (item =>{
+                console.log("item", item.name);
+                if(item.name === selectedElement){
+                    return {...item, name: nameCategory.value, slug: slugify(nameCategory.value)}
+                }else{
+                    return item;
+                }
+            });
+
+            console.log("este es el nuevo array", newArray);
+            storage.categories= newArray;
+            
             localStorage.setItem('full-storage', JSON.stringify(storage));
 
             updateTableCategory();

@@ -1,4 +1,15 @@
 //------------ ADD CATEGORY-------------
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var storage = goOnStorage();
 var formAddCategory = document.getElementById('form-add-category');
 var addCategory = function (e) {
@@ -23,15 +34,15 @@ var nameCategory = document.querySelector('#name-category');
 var btnEditCat = document.querySelector('#btn-edit-cat');
 var updateTableCategory = function () {
     var storage = goOnStorage();
-    console.log(storage);
     tableCategory.innerHTML = "";
     var _loop_1 = function (element) {
         var newRow = document.createElement('tr');
         var newCategoryNameAdded = document.createElement('td');
         var newRowAction = document.createElement('td');
+        newCategoryNameAdded.setAttribute('id', element.slug);
         var editAction = document.createElement('button');
         var deleteAction = document.createElement('button');
-        editAction.setAttribute('value', element.name);
+        editAction.setAttribute('value', element.slug);
         editAction.setAttribute('class', 'action-class');
         deleteAction.setAttribute('class', 'action-class');
         editAction.innerHTML = "Editar";
@@ -50,18 +61,30 @@ var updateTableCategory = function () {
         };
         deleteAction.addEventListener('click', deleteCategory);
         var goToEditCategory = function (e) {
+            console.log("el value", e.target.value);
             var nameCategorySelected = e.target.value;
+            var selectedElement = document.querySelector("#" + nameCategorySelected);
             addCategoryContainer.classList.add('hidden');
             editFormContainer.classList.remove('hidden');
             nameCategory.value = nameCategorySelected;
+            localStorage.setItem('editedElement', selectedElement.innerHTML);
         };
         editAction.addEventListener('click', goToEditCategory);
         var editedCategoryName = function (e) {
             e.preventDefault();
-            var newCategoryName = nameCategory.value;
-            newCategoryNameAdded.innerHTML = newCategoryName;
-            console.log(newCategoryNameAdded.innerHTML);
-            storage.categories.name = newCategoryName;
+            var selectedElement = localStorage.getItem('editedElement');
+            console.log("name", nameCategory.value);
+            var newArray = storage.categories.map(function (item) {
+                console.log("item", item.name);
+                if (item.name === selectedElement) {
+                    return __assign(__assign({}, item), { name: nameCategory.value, slug: slugify(nameCategory.value) });
+                }
+                else {
+                    return item;
+                }
+            });
+            console.log("este es el nuevo array", newArray);
+            storage.categories = newArray;
             localStorage.setItem('full-storage', JSON.stringify(storage));
             updateTableCategory();
         };
