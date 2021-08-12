@@ -3,9 +3,12 @@
 let storage: LocalStorage = goOnStorage();
 const formAddCategory=document.getElementById('form-add-category');
 
+
 const addCategory =(e)=>{
     e.preventDefault();
 
+    const storage: LocalStorage = goOnStorage();
+    
     const formNewCategory = e.target;
 
     const newCategoryName: string = formNewCategory.name.value;
@@ -14,7 +17,6 @@ const addCategory =(e)=>{
             name: newCategoryName,
             slug: slugify(newCategoryName), 
     }
-    console.log(newCategoryAdded);
 
     storage.categories.push(newCategoryAdded);
 
@@ -64,7 +66,9 @@ const updateTableCategory = ()=> {
         tableCategory.appendChild(newRow);
         
         const deleteCategory = () => {
-            const newArray= storage.categories.filter(elemento => element.name !== elemento.name);
+            const newArray= storage.categories.filter(item => element.name !== item.name);
+
+            console.log(newArray);
             storage.categories=newArray;
 
             localStorage.setItem('full-storage', JSON.stringify(storage));
@@ -74,10 +78,9 @@ const updateTableCategory = ()=> {
 
         deleteAction.addEventListener('click', deleteCategory);
 
-        
 
         const goToEditCategory = (e) => {
-            console.log("el value", e.target.value);
+            
             let nameCategorySelected= e.target.value;
 
             let selectedElement= document.querySelector(`#${nameCategorySelected}`) ;
@@ -96,11 +99,14 @@ const updateTableCategory = ()=> {
 
         const editedCategoryName = (e) => {
             e.preventDefault();
+
+            addCategoryContainer.classList.remove('hidden');
+            editFormContainer.classList.add('hidden');
+
             let selectedElement= localStorage.getItem('editedElement');
-            console.log("name" nameCategory.value);
             
             const newArray = storage.categories.map (item =>{
-                console.log("item", item.name);
+                
                 if(item.name === selectedElement){
                     return {...item, name: nameCategory.value, slug: slugify(nameCategory.value)}
                 }else{
@@ -108,18 +114,13 @@ const updateTableCategory = ()=> {
                 }
             });
 
-            console.log("este es el nuevo array", newArray);
             storage.categories= newArray;
-            
             localStorage.setItem('full-storage', JSON.stringify(storage));
 
             updateTableCategory();
-
         }
-
         btnEditCat.addEventListener('click', editedCategoryName);
     }
-
 };
 
 const init = () => {
@@ -131,10 +132,9 @@ init();
 const btnCnlEditCat = document.querySelector('#btn-cnl-edit-cat');
 
 const goBackToAddCategory = () => {
+
     addCategoryContainer.classList.remove('hidden');
     editFormContainer.classList.add('hidden');
-
-
 }
 
 btnCnlEditCat.addEventListener('click', goBackToAddCategory);
