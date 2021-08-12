@@ -73,6 +73,12 @@ var balanceFunction = function () {
     total = resultProfit + resultExpense;
     profit.innerHTML = resultProfit;
     expense.innerHTML = -resultExpense;
-    totalResult.innerHTML = total;
+    if (total < 0) {
+        totalResult.innerHTML = "-$ " + -total;
+        totalResult.setAttribute('class', 'negative-value');
+    }
+    else {
+        totalResult.innerHTML = "$ " + total;
+    }
 };
 balanceFunction();
