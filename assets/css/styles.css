@@ -105,3 +105,9 @@ a i{
 .hidden{
     display: none; 
 }
+
+/*------ COLORS VALUE-----*/
+
+.negative-value{
+    color:#ff0000;
+}

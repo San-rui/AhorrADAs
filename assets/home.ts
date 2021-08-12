@@ -73,7 +73,7 @@ updateTableOp();
 //-----------BALANCE FUNCTION----------
 const expense = document.querySelector('#expense');
 const profit = document.querySelector('#profit');
-const totalResult = document.querySelector('#total-result');
+let totalResult = document.querySelector('#total-result');
 
 const balanceFunction = () =>{
 
@@ -84,6 +84,7 @@ const balanceFunction = () =>{
 
     let total=0;
 
+
     for(const item of storage.newoperation){
 
         if( item.kind === "ganancia"){
@@ -92,12 +93,19 @@ const balanceFunction = () =>{
             resultExpense= resultExpense - Number(item.amount); 
         }
     }
-    
-    total = resultProfit + resultExpense; 
 
+    total = resultProfit + resultExpense;
     profit.innerHTML = resultProfit;
     expense.innerHTML = -resultExpense;
-    totalResult.innerHTML = total;
+
+    if(total<0){
+
+        totalResult.innerHTML =`-$ ${-total}`;
+        totalResult.setAttribute('class', 'negative-value')
+        
+    }else{
+        totalResult.innerHTML = `$ ${total}`;
+    }
 
 };
 
