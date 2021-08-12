@@ -111,20 +111,22 @@
                     </form>
                 </section>
                 <!-- OPERATIONS CARD-->
-                <div class="card cards-background" style="width: 58rem;" id="op-card">
+                <div class="card cards-background op-card-width" id="op-card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Operaciones</h3>
                             <button type="button" class="btn text-white new-op-button" id="new-operation-button">+ Nueva Operación</button> 
                         </div>
-                        <div id="anim"></div>
-                        <h5 class="card-text text-center mt-3">Sin resultados</h5>
-                        <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
+                        <div id="no-results-card">
+                            <div id="anim"></div>
+                            <h5 class="card-text text-center mt-3">Sin resultados</h5>
+                            <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
+                        </div>
                     </div>
 
                     <!-- OPERATIONS LIST  -->
-                    <div id="op-table">
-                        <table class="table table-borderless cards-background" >
+                    <div id="op-table" class="hidden">
+                        <table class="table table-borderless cards-background">
                             <thead>
                                 <tr>
                                     <th scope="col">Descripción</th>

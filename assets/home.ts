@@ -111,3 +111,27 @@ const balanceFunction = () =>{
 
 balanceFunction ();
 
+//---------HIDE NO RESULTS CARD------------
+
+const opTable = document.querySelector('#op-table')
+
+const noResultsCard = document.querySelector('#no-results-card')
+
+const hideCard = () =>{
+
+    const storage: LocalStorage = goOnStorage();
+
+    if(storage.newoperation.length == 0){
+
+        opTable.classList.add('hidden');
+        noResultsCard.classList.remove('hidden');
+
+    }else {
+        opTable.classList.remove('hidden');
+        noResultsCard.classList.add('hidden');
+    }
+
+};
+
+hideCard ();
+
