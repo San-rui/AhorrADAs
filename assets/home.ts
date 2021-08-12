@@ -18,7 +18,6 @@ const table = document.getElementById('op-list');
 const updateTableOp = () => {
 
     const storage: LocalStorage = goOnStorage();
-    console.log (storage);
 
     for(const element of storage.newoperation){
         console.log(element);
@@ -69,3 +68,38 @@ const updateTableOp = () => {
 };
 
 updateTableOp();
+
+
+//-----------BALANCE FUNCTION----------
+const expense = document.querySelector('#expense');
+const profit = document.querySelector('#profit');
+const totalResult = document.querySelector('#total-result');
+
+const balanceFunction = () =>{
+
+    const storage: LocalStorage = goOnStorage();
+
+    let resultProfit = 0;
+    let resultExpense =0; 
+
+    let total=0;
+
+    for(const item of storage.newoperation){
+
+        if( item.kind === "ganancia"){
+            resultProfit= resultProfit + Number(item.amount); 
+        } else if( item.kind === "gasto"){
+            resultExpense= resultExpense - Number(item.amount); 
+        }
+    }
+    
+    total = resultProfit + resultExpense; 
+
+    profit.innerHTML = resultProfit;
+    expense.innerHTML = -resultExpense;
+    totalResult.innerHTML = total;
+
+};
+
+balanceFunction ();
+
