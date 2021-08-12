@@ -60,6 +60,11 @@ a i{
     transition-duration: 0.2s;
 }
 
+.op-card-width{
+    width: 58rem;
+    height: 100%;
+}
+
 /*-------ADD BUTTON--------*/
 
 .dark-pink-color{

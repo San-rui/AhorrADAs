@@ -82,3 +82,18 @@ var balanceFunction = function () {
     }
 };
 balanceFunction();
+//---------HIDE NO RESULTS CARD------------
+var opTable = document.querySelector('#op-table');
+var noResultsCard = document.querySelector('#no-results-card');
+var hideCard = function () {
+    var storage = goOnStorage();
+    if (storage.newoperation.length == 0) {
+        opTable.classList.add('hidden');
+        noResultsCard.classList.remove('hidden');
+    }
+    else {
+        opTable.classList.remove('hidden');
+        noResultsCard.classList.add('hidden');
+    }
+};
+hideCard();
