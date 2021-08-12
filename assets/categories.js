@@ -14,13 +14,13 @@ var storage = goOnStorage();
 var formAddCategory = document.getElementById('form-add-category');
 var addCategory = function (e) {
     e.preventDefault();
+    var storage = goOnStorage();
     var formNewCategory = e.target;
     var newCategoryName = formNewCategory.name.value;
     var newCategoryAdded = {
         name: newCategoryName,
         slug: slugify(newCategoryName)
     };
-    console.log(newCategoryAdded);
     storage.categories.push(newCategoryAdded);
     localStorage.setItem('full-storage', JSON.stringify(storage));
     updateTableCategory();
@@ -54,14 +54,14 @@ var updateTableCategory = function () {
         newRow.appendChild(newRowAction);
         tableCategory.appendChild(newRow);
         var deleteCategory = function () {
-            var newArray = storage.categories.filter(function (elemento) { return element.name !== elemento.name; });
+            var newArray = storage.categories.filter(function (item) { return element.name !== item.name; });
+            console.log(newArray);
             storage.categories = newArray;
             localStorage.setItem('full-storage', JSON.stringify(storage));
             updateTableCategory();
         };
         deleteAction.addEventListener('click', deleteCategory);
         var goToEditCategory = function (e) {
-            console.log("el value", e.target.value);
             var nameCategorySelected = e.target.value;
             var selectedElement = document.querySelector("#" + nameCategorySelected);
             addCategoryContainer.classList.add('hidden');
@@ -72,10 +72,10 @@ var updateTableCategory = function () {
         editAction.addEventListener('click', goToEditCategory);
         var editedCategoryName = function (e) {
             e.preventDefault();
+            addCategoryContainer.classList.remove('hidden');
+            editFormContainer.classList.add('hidden');
             var selectedElement = localStorage.getItem('editedElement');
-            console.log("name", nameCategory.value);
             var newArray = storage.categories.map(function (item) {
-                console.log("item", item.name);
                 if (item.name === selectedElement) {
                     return __assign(__assign({}, item), { name: nameCategory.value, slug: slugify(nameCategory.value) });
                 }
@@ -83,7 +83,6 @@ var updateTableCategory = function () {
                     return item;
                 }
             });
-            console.log("este es el nuevo array", newArray);
             storage.categories = newArray;
             localStorage.setItem('full-storage', JSON.stringify(storage));
             updateTableCategory();
