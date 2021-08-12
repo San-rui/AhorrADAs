@@ -10,7 +10,6 @@ newOperationButton.addEventListener('click', goToNewOp);
 var table = document.getElementById('op-list');
 var updateTableOp = function () {
     var storage = goOnStorage();
-    console.log(storage);
     for (var _i = 0, _a = storage.newoperation; _i < _a.length; _i++) {
         var element = _a[_i];
         console.log(element);
@@ -53,3 +52,27 @@ var updateTableOp = function () {
     ;
 };
 updateTableOp();
+//-----------BALANCE FUNCTION----------
+var expense = document.querySelector('#expense');
+var profit = document.querySelector('#profit');
+var totalResult = document.querySelector('#total-result');
+var balanceFunction = function () {
+    var storage = goOnStorage();
+    var resultProfit = 0;
+    var resultExpense = 0;
+    var total = 0;
+    for (var _i = 0, _a = storage.newoperation; _i < _a.length; _i++) {
+        var item = _a[_i];
+        if (item.kind === "ganancia") {
+            resultProfit = resultProfit + Number(item.amount);
+        }
+        else if (item.kind === "gasto") {
+            resultExpense = resultExpense - Number(item.amount);
+        }
+    }
+    total = resultProfit + resultExpense;
+    profit.innerHTML = resultProfit;
+    expense.innerHTML = -resultExpense;
+    totalResult.innerHTML = total;
+};
+balanceFunction();
