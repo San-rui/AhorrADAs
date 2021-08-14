@@ -18,6 +18,7 @@ var addCategory = function (e) {
     var formNewCategory = e.target;
     var newCategoryName = formNewCategory.name.value;
     var newCategoryAdded = {
+        id: getIdCat(),
         name: newCategoryName,
         slug: slugify(newCategoryName)
     };
@@ -54,7 +55,7 @@ var updateTableCategory = function () {
         newRow.appendChild(newRowAction);
         tableCategory.appendChild(newRow);
         var deleteCategory = function () {
-            var newArray = storage.categories.filter(function (item) { return element.name !== item.name; });
+            var newArray = storage.categories.filter(function (item) { return element.id !== item.id; });
             console.log(newArray);
             storage.categories = newArray;
             localStorage.setItem('full-storage', JSON.stringify(storage));
@@ -104,3 +105,11 @@ var goBackToAddCategory = function () {
     editFormContainer.classList.add('hidden');
 };
 btnCnlEditCat.addEventListener('click', goBackToAddCategory);
+var getIdCat = function () {
+    var storage = goOnStorage();
+    if (storage.categories.length > 0) {
+        var lastItem = storage.categories[storage.categories.length - 1];
+        return lastItem.id + 1;
+    }
+    return 1;
+};
