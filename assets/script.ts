@@ -1,6 +1,7 @@
 //--------------TYPES---------------
 
 type NewOp = {
+    id: number
     description?: string | number,
     amount: number,
     kind: string,
@@ -9,6 +10,7 @@ type NewOp = {
 };
 
 type NewCategory={
+    id:number
     name: string,
     slug: string,
 }
@@ -27,10 +29,10 @@ const goOnStorage = (): LocalStorage =>{
 
     if(!fullLocalStorage) {
         fullLocalStorage = {
-            categories:[{ name: "Comida", slug: "comida"}, { name: "Servicios", slug: "servicios"},
-            { name: "Salidas", slug: "salidas" },
-            { name: "Educación", slug: "educación" }, { name: "Transporte", slug: "transporte" },
-            { name: "Trabajo", slug: "trabajo" }],
+            categories:[{ id:1 , name: "Comida", slug: "comida"}, {id:2,  name: "Servicios", slug: "servicios"},
+            {id:3, name: "Salidas", slug: "salidas" },
+            {id:4, name: "Educación", slug: "educación" }, {id:5, name: "Transporte", slug: "transporte" },
+            {id:6, name: "Trabajo", slug: "trabajo" }],
             newoperation:[],
         } 
     };
