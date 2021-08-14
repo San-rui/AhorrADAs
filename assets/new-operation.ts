@@ -21,6 +21,7 @@ const createNewOp = (e) =>{
 
     
     const newOperationAdded: NewOp = {
+        id: getIdOp(),
         description: newDescriptionName,
         amount: newAmountName,
         kind: newKindName,
@@ -37,6 +38,19 @@ const createNewOp = (e) =>{
 newOperationForm.addEventListener('submit', createNewOp);
 
 
+
+
+const getIdOp = () => {
+
+    let storage: LocalStorage = goOnStorage();
+
+    if(storage.newoperation.length > 0) {
+    const lastItem = storage.newoperation[storage.newoperation.length -1];
+    return lastItem.id + 1;
+    } 
+
+    return 1;
+}
 
 
 

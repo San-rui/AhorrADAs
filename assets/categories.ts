@@ -14,6 +14,7 @@ const addCategory =(e)=>{
     const newCategoryName: string = formNewCategory.name.value;
 
     const newCategoryAdded: NewCategory = {
+            id: getIdCat(),
             name: newCategoryName,
             slug: slugify(newCategoryName), 
     }
@@ -66,7 +67,7 @@ const updateTableCategory = ()=> {
         tableCategory.appendChild(newRow);
         
         const deleteCategory = () => {
-            const newArray= storage.categories.filter(item => element.name !== item.name);
+            const newArray= storage.categories.filter(item => element.id !== item.id);
 
             console.log(newArray);
             storage.categories=newArray;
@@ -138,3 +139,15 @@ const goBackToAddCategory = () => {
 }
 
 btnCnlEditCat.addEventListener('click', goBackToAddCategory);
+
+const getIdCat = () => {
+
+    const storage: LocalStorage = goOnStorage();
+
+    if(storage.categories.length > 0) {
+    const lastItem = storage.categories[storage.categories.length -1];
+    return lastItem.id + 1;
+    } 
+
+    return 1;
+}

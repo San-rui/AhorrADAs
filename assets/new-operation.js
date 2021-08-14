@@ -13,6 +13,7 @@ var createNewOp = function (e) {
     var newcategoryName = formNewOp.category.value;
     var newDateName = formNewOp.date.value;
     var newOperationAdded = {
+        id: getIdOp(),
         description: newDescriptionName,
         amount: newAmountName,
         kind: newKindName,
@@ -24,3 +25,11 @@ var createNewOp = function (e) {
     window.location.href = '../index.html';
 };
 newOperationForm.addEventListener('submit', createNewOp);
+var getIdOp = function () {
+    var storage = goOnStorage();
+    if (storage.newoperation.length > 0) {
+        var lastItem = storage.newoperation[storage.newoperation.length - 1];
+        return lastItem.id + 1;
+    }
+    return 1;
+};
