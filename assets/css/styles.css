@@ -1,5 +1,7 @@
 body.format {
     --background-color-dark-pink:#e94974ff;
+    --font-color-dark-pink:#e94974ff;
+    --font-background-color:#f7cbd7;
     --background-color: #fae9ed;
     --background-color-cards: #FAFAFA;
     --background-color-hover-button: #f86089;
@@ -116,3 +118,16 @@ a i{
 .negative-value{
     color:#ff0000;
 }
+
+.positive-value{
+    color:#10923b;
+}
+
+.style-text-dark-color{
+    color: var(--font-color-dark-pink);
+    background-color: var(--font-background-color);
+    border-radius: 5px;
+    padding: 2px;
+    text-align: center; 
+}
+
