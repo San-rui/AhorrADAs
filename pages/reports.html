@@ -37,12 +37,77 @@
             </div>
         </nav>
         <main class="mt-5 mb-5">
-            
+            <div class="container cards-background pb-5" id="add-category-container">
+                <h2>Categorías</h2>
+                <!-- REPORTS LIST  -->
+                <div class="mt-5 ms-2">
+                    
+                    <table class="table table-borderless">
+                        <h3>Resumen</h3>
+                        <tbody>
+                            <tr>
+                                <td>Categoría con mayor ganancia</td>
+                                <td class="style-text-dark-color" id="summary-category-profit">Categoria</td>
+                                <td class="positive-value">$<span id="summary-category-profit-amount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Categoría con mayor gasto</td>
+                                <td class="style-text-dark-color" id="summary-category-expense">Categoria</td>
+                                <td class="negative-value">-$<span id="summary-category-expense-amount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Categoría con mayor balance</td>
+                                <td class="style-text-dark-color" id="category-balance">Categoria</td>
+                                <td>$<span id="category-balance-amount">Monto</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mes con mayor ganancia</td>
+                                <td class="style-text-dark-color" id="summary-month-profit">Fecha</td>
+                                <td class="positive-value">$<span id="summary-month-profit-amount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Mes con mayor gasto</td>
+                                <td class="style-text-dark-color" id="summary-month-expense">Fecha</td>
+                                <td class="negative-value">-$<span id="summary-month-expense-amount"></span></td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+
+                    <table class="table table-borderless">
+                        <h3>Totales por categorías</h3>
+                        <thead>
+                            <tr>
+                                <td scope="col">Categoría</td>
+                                <td scope="col">Ganancia</td>
+                                <td scope="col">Gasto</td>
+                                <td scope="col">Balance</td>
+                            </tr>
+                        </thead>
+                        <tbody id="total-by-category-table"></tbody>
+                    </table>
+
+                    <table class="table table-borderless" id="total-by-month-table">
+                        <h3>Totales por mes</h3>
+                        <thead>
+                            <tr>
+                                <td scope="col">Mes</td>
+                                <td scope="col">Ganancia</td>
+                                <td scope="col">Gasto</td>
+                                <td scope="col">Balance</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    
+                </div>
+            </div>
         </main>
-        <h1>ACA VA LA PANTALLA DE REPORTE</h1>
+
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
         <script src="../assets/script.js"></script>
+        <script src="../assets/reports.js"></script>
         <script src="../assets/navbar.js"></script>
     </body>
 </html>
