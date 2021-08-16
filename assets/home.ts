@@ -92,14 +92,65 @@ const editedCategory= document.getElementById('edited-category');
 const editedDate= document.getElementById('edited-date');
 
 
+const filterExpense = document.querySelector('#filter-expense');
+const filterProfit = document.querySelector('#filter-profit');
+const kindFilter = document.querySelector('#kind-filter');
+
+const storage: LocalStorage = goOnStorage();
+const filters = storage.filters;
+
+
+
+
+const filterOperations =(newoperation, filter)=>{
+
+    console.log(newoperation);
+    console.log("KINDS", filters.kind);
+    console.log(filters.kind[1]);
+    //console.log(filters.kind[filter]);
+
+    const filterbyKind = (event)=>{
+        event.preventDefault();
+        const kindValue= event.target.value;
+
+        console.log(kindValue);
+
+        let newArrayKind=[]
+
+        switch(kindValue){
+            case "1": newArray3= newoperation.filter(item => "gasto" == item.kind);
+    
+        }
+        console.log(newArrayKind)
+        return newArrayKind
+    }
+    
+    kindFilter.addEventListener('change', filterbyKind);
+
+    //const newArrayFilterKind= newoperation.filter(item => filter == item.kind);
+
+    //console.log("hola", newArrayFilterKind);
+
+    
+
+    return newoperation;
+
+    
+}
+
+//kindFilter.addEventListener('change', filterOperations(storage.newoperation, "gasto"));
+//filterProfit.addEventListener('click', filterOperations)
+
+
+
 const updateTableOp = () => {
 
-    const storage: LocalStorage = goOnStorage();
+    const operations = filterOperations(storage.newoperation, filters) 
 
     table.innerHTML="";
 
 
-    for(const element of storage.newoperation){
+    for(const element of operations){
 
 
         const newRow= document.createElement('tr');

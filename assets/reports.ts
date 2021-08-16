@@ -202,8 +202,11 @@ balanceByCategory();
 
 let totalsByMonth = {};
 
+
+
 storage.newoperation.forEach((op) =>{
     const date = new Date(op.dateLine);
+    
 
     if(!totalsByMonth[date.getFullYear()]){
         totalsByMonth[date.getFullYear()] ={};
