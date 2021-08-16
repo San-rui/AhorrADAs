@@ -1,5 +1,14 @@
 //--------------TYPES---------------
 //--------------FUNCTIONS---------------
+var date = new Date();
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
+var functionDate = function () {
+    var newDate = year.toString() + '-' + ('0' + month).slice(-2).toString() + '-' + ('0' + day).slice(-2).toString();
+    return newDate;
+};
+functionDate();
 //--------------LOCAL STORAGE FUNCTION-------
 var goOnStorage = function () {
     var fullLocalStorage = JSON.parse(localStorage.getItem('full-storage'));
@@ -9,7 +18,16 @@ var goOnStorage = function () {
                 { id: 3, name: "Salidas", slug: "salidas" },
                 { id: 4, name: "Educación", slug: "educación" }, { id: 5, name: "Transporte", slug: "transporte" },
                 { id: 6, name: "Trabajo", slug: "trabajo" }],
-            newoperation: []
+            newoperation: [],
+            filters: {
+                kind: ["Todos", "gasto", "ganancia"],
+                categories: [{ id: 1, name: "Comida", slug: "comida" }, { id: 2, name: "Servicios", slug: "servicios" },
+                    { id: 3, name: "Salidas", slug: "salidas" },
+                    { id: 4, name: "Educación", slug: "educación" }, { id: 5, name: "Transporte", slug: "transporte" },
+                    { id: 6, name: "Trabajo", slug: "trabajo" }],
+                from: functionDate(),
+                orderBy: ["Más reciente", "Menos reciente", "Mayor monto", "Menor monto", "A/Z", "Z/A"]
+            }
         };
     }
     ;

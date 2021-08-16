@@ -63,8 +63,36 @@ var editedAmount = document.getElementById('edited-amount');
 var editedKind = document.getElementById('edited-kind');
 var editedCategory = document.getElementById('edited-category');
 var editedDate = document.getElementById('edited-date');
+var filterExpense = document.querySelector('#filter-expense');
+var filterProfit = document.querySelector('#filter-profit');
+var kindFilter = document.querySelector('#kind-filter');
+var storage = goOnStorage();
+var filters = storage.filters;
+var filterOperations = function (newoperation, filter) {
+    console.log(newoperation);
+    console.log("KINDS", filters.kind);
+    console.log(filters.kind[1]);
+    //console.log(filters.kind[filter]);
+    var filterbyKind = function (event) {
+        event.preventDefault();
+        var kindValue = event.target.value;
+        console.log(kindValue);
+        var newArrayKind = [];
+        switch (kindValue) {
+            case "1": newArray3 = newoperation.filter(function (item) { return "gasto" == item.kind; });
+        }
+        console.log(newArrayKind);
+        return newArrayKind;
+    };
+    kindFilter.addEventListener('change', filterbyKind);
+    //const newArrayFilterKind= newoperation.filter(item => filter == item.kind);
+    //console.log("hola", newArrayFilterKind);
+    return newoperation;
+};
+//kindFilter.addEventListener('change', filterOperations(storage.newoperation, "gasto"));
+//filterProfit.addEventListener('click', filterOperations)
 var updateTableOp = function () {
-    var storage = goOnStorage();
+    var operations = filterOperations(storage.newoperation, filters);
     table.innerHTML = "";
     var _loop_1 = function (element) {
         var newRow = document.createElement('tr');
@@ -111,8 +139,8 @@ var updateTableOp = function () {
         };
         deleteAction.addEventListener('click', deleteOp);
     };
-    for (var _i = 0, _a = storage.newoperation; _i < _a.length; _i++) {
-        var element = _a[_i];
+    for (var _i = 0, operations_1 = operations; _i < operations_1.length; _i++) {
+        var element = operations_1[_i];
         _loop_1(element);
     }
     ;
