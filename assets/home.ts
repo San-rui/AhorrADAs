@@ -83,13 +83,7 @@ const table = document.getElementById('op-list');
 const formEditOp = document.getElementById('form-edit-op');
 const balanceFiltersSection = document.getElementById('balance-filters-section');
 const opNewOp = document.getElementById('op-newOp');
-const btnEditedOp= document.getElementById('btn-edited-op');
 const opCard= document.getElementById('op-card');
-const editedDescription= document.getElementById('edited-description');
-const editedAmount= document.getElementById('edited-amount');
-const editedKind= document.getElementById('edited-kind');
-const editedCategory= document.getElementById('edited-category');
-const editedDate= document.getElementById('edited-date');
 
 
 const filterExpense = document.querySelector('#filter-expense');
@@ -104,16 +98,16 @@ const filters = storage.filters;
 
 const filterOperations =(newoperation, filter)=>{
 
-    console.log(newoperation);
-    console.log("KINDS", filters.kind);
-    console.log(filters.kind[1]);
+    // console.log(newoperation);
+    // console.log("KINDS", filters.kind);
+    // console.log(filters.kind[1]);
     //console.log(filters.kind[filter]);
 
     const filterbyKind = (event)=>{
         event.preventDefault();
         const kindValue= event.target.value;
 
-        console.log(kindValue);
+        // console.log(kindValue);
 
         let newArrayKind=[]
 
@@ -121,7 +115,7 @@ const filterOperations =(newoperation, filter)=>{
             case "1": newArray3= newoperation.filter(item => "gasto" == item.kind);
     
         }
-        console.log(newArrayKind)
+        // console.log(newArrayKind)
         return newArrayKind
     }
     
@@ -161,7 +155,7 @@ const updateTableOp = () => {
         const newRowAction= document.createElement('td');
 
 
-        const editAction =document.createElement('button');
+        const editAction =document.createElement('a');
         const deleteAction =document.createElement('button');
         
         editAction.setAttribute('value', element.description);
@@ -169,7 +163,7 @@ const updateTableOp = () => {
         deleteAction.setAttribute('class','action-class');
 
         newRowCategory.setAttribute('class','category-style');
-        editAction.dataset.id = element.id
+        editAction.dataset.id = element.id;
 
         editAction.innerHTML="Editar";
         deleteAction.innerHTML="Eliminar";
@@ -214,6 +208,23 @@ const updateTableOp = () => {
         };
     
         deleteAction.addEventListener('click', deleteOp);
+        
+        const goToEditOp = (e) => {
+
+            editAction.dataset.id = element.id
+
+            const opToEdit= storage.newoperation.filter(item => element.id === item.id);
+
+            localStorage.setItem('editedOp', JSON.stringify(opToEdit));
+
+            
+            const params= new URLSearchParams(window.location.search);
+            editAction.setAttribute('href',`./edit-op.html?opId=${element.id}`)
+
+        };
+        editAction.addEventListener('click', goToEditOp);
+
+        };
         
     };
 
