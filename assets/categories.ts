@@ -1,3 +1,17 @@
+//------------ ADD ID-------------
+
+const getIdCat = () => {
+
+    const storage: LocalStorage = goOnStorage();
+
+    if(storage.categories.length > 0) {
+    const lastItem = storage.categories[storage.categories.length -1];
+    return lastItem.id + 1;
+    } 
+
+    return 1;
+}
+
 //------------ ADD CATEGORY-------------
 
 let storage: LocalStorage = goOnStorage();
@@ -31,9 +45,7 @@ formAddCategory.addEventListener('submit', addCategory);
 
 const tableCategory = document.getElementById('category-table');
 const addCategoryContainer = document.getElementById('add-category-container');
-const editFormContainer = document.getElementById('edit-form-container');
-const nameCategory = document.querySelector('#name-category');
-const btnEditCat = document.querySelector('#btn-edit-cat');
+const nameCat = document.querySelector('#name');
 
 const updateTableCategory = ()=> {
 
@@ -48,7 +60,8 @@ const updateTableCategory = ()=> {
 
         newCategoryNameAdded.setAttribute('id', element.slug)
         
-        const editAction =document.createElement('button');
+        const editAction =document.createElement('a');
+
         const deleteAction =document.createElement('button');
         
         editAction.setAttribute('value', element.slug);
@@ -65,11 +78,11 @@ const updateTableCategory = ()=> {
         newRow.appendChild(newRowAction);
         
         tableCategory.appendChild(newRow);
+
         
         const deleteCategory = () => {
             const newArray= storage.categories.filter(item => element.id !== item.id);
 
-            console.log(newArray);
             storage.categories=newArray;
 
             localStorage.setItem('full-storage', JSON.stringify(storage));
@@ -81,47 +94,38 @@ const updateTableCategory = ()=> {
 
 
         const goToEditCategory = (e) => {
+
+
+            const catToEdit= storage.categories.filter(item => element.name === item.name);
+
+            localStorage.setItem('editedElement', JSON.stringify(catToEdit));
+
+            // nameCategory.values = element.name;
+
+            // console.log(nameCategory)
+            // console.log(element.name)
             
-            let nameCategorySelected= e.target.value;
+            // let nameCategorySelected= e.target.value;
 
-            let selectedElement= document.querySelector(`#${nameCategorySelected}`) ;
+            // let selectedElement= document.querySelector(`#${nameCategorySelected}`) ;
 
-            addCategoryContainer.classList.add('hidden');
-            editFormContainer.classList.remove('hidden');
+            // nameCategory.value= nameCategorySelected;
 
-            nameCategory.value= nameCategorySelected;
+            // console.log(nameCategorySelected)
 
-            localStorage.setItem('editedElement', selectedElement.innerHTML);
-            
+            // localStorage.setItem('editedElement', selectedElement.innerHTML);
+
+            // console.log(selectedElement)
+
+            const params= new URLSearchParams(window.location.search);
+            editAction.setAttribute('href', `./edit-category.html?catId=${element.id}`)
+
         };
 
         editAction.addEventListener('click', goToEditCategory);
 
-
-        const editedCategoryName = (e) => {
-            e.preventDefault();
-
-            addCategoryContainer.classList.remove('hidden');
-            editFormContainer.classList.add('hidden');
-
-            let selectedElement= localStorage.getItem('editedElement');
-            
-            const newArray = storage.categories.map (item =>{
-                
-                if(item.name === selectedElement){
-                    return {...item, name: nameCategory.value, slug: slugify(nameCategory.value)}
-                }else{
-                    return item;
-                }
-            });
-
-            storage.categories= newArray;
-            localStorage.setItem('full-storage', JSON.stringify(storage));
-
-            updateTableCategory();
-        }
-        btnEditCat.addEventListener('click', editedCategoryName);
     }
+
 };
 
 const init = () => {
@@ -130,24 +134,3 @@ const init = () => {
 
 init();
 
-const btnCnlEditCat = document.querySelector('#btn-cnl-edit-cat');
-
-const goBackToAddCategory = () => {
-
-    addCategoryContainer.classList.remove('hidden');
-    editFormContainer.classList.add('hidden');
-}
-
-btnCnlEditCat.addEventListener('click', goBackToAddCategory);
-
-const getIdCat = () => {
-
-    const storage: LocalStorage = goOnStorage();
-
-    if(storage.categories.length > 0) {
-    const lastItem = storage.categories[storage.categories.length -1];
-    return lastItem.id + 1;
-    } 
-
-    return 1;
-}

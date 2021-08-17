@@ -36,39 +36,31 @@
                 </div>
             </div>
         </nav>
-        <!-- ADD CATEGORY FORM -->
         <main class="mt-5 mb-5">
-            <div class="container cards-background pb-5" id="add-category-container">
-                <form action="" id="form-add-category">
+            <!-- EDIT CATEGORY FORM -->
+            <div class="container cards-background pb-5" id="edit-form-container">
+                <form action="" id="form-edit-category">
                     <div>
-                        <h2>Categorías</h2>
+                        <h2>Editar categoría</h2>
                             <div class="mt-5">
                                 <label for="formGroupExampleInput" class="form-label fw-bold">Nombre</label>
                                 <div class="d-flex justify-content-between">
-                                    <input type="text" id="name" class="form-control me-3">
-                                    <button class="btn dark-pink-color text-white" type="submit">Agregar</button>
+                                    <input type="text" id="name-category" class="form-control me-3">
+                                    <button class="btn btn-primary me-3 btn-light" type="reset" id="btn-cnl-edit-cat">Cancelar</button>
+                                    <button class="btn dark-pink-color text-white" type="submit" id="btn-edit-cat">Editar</button>
                                 </div>
                             </div>
                     </div>
                 </form>
-                <!-- CATEGORIES LIST  -->
-                <div class="mt-5 ms-2">
-                    <table class="table table-borderless cards-background" id="category-table" >
-                        <tbody id="category-list">
-            
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </main>
+        
 
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
         <script src="../assets/script.js"></script>
-        <script src="../assets/categories.js"></script>
+        <script src="../assets/edit-category.js"></script>
         <script src="../helpers/functios.js"></script>
         <script src="../assets/navbar.js"></script>
-
-    
     </body>
 </html>
