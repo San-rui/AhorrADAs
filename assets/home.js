@@ -56,32 +56,26 @@ var table = document.getElementById('op-list');
 var formEditOp = document.getElementById('form-edit-op');
 var balanceFiltersSection = document.getElementById('balance-filters-section');
 var opNewOp = document.getElementById('op-newOp');
-var btnEditedOp = document.getElementById('btn-edited-op');
 var opCard = document.getElementById('op-card');
-var editedDescription = document.getElementById('edited-description');
-var editedAmount = document.getElementById('edited-amount');
-var editedKind = document.getElementById('edited-kind');
-var editedCategory = document.getElementById('edited-category');
-var editedDate = document.getElementById('edited-date');
 var filterExpense = document.querySelector('#filter-expense');
 var filterProfit = document.querySelector('#filter-profit');
 var kindFilter = document.querySelector('#kind-filter');
 var storage = goOnStorage();
 var filters = storage.filters;
 var filterOperations = function (newoperation, filter) {
-    console.log(newoperation);
-    console.log("KINDS", filters.kind);
-    console.log(filters.kind[1]);
+    // console.log(newoperation);
+    // console.log("KINDS", filters.kind);
+    // console.log(filters.kind[1]);
     //console.log(filters.kind[filter]);
     var filterbyKind = function (event) {
         event.preventDefault();
         var kindValue = event.target.value;
-        console.log(kindValue);
+        // console.log(kindValue);
         var newArrayKind = [];
         switch (kindValue) {
             case "1": newArray3 = newoperation.filter(function (item) { return "gasto" == item.kind; });
         }
-        console.log(newArrayKind);
+        // console.log(newArrayKind)
         return newArrayKind;
     };
     kindFilter.addEventListener('change', filterbyKind);
@@ -101,7 +95,7 @@ var updateTableOp = function () {
         var newRowDate = document.createElement('td');
         var newRowAmount = document.createElement('td');
         var newRowAction = document.createElement('td');
-        var editAction = document.createElement('button');
+        var editAction = document.createElement('a');
         var deleteAction = document.createElement('button');
         editAction.setAttribute('value', element.description);
         editAction.setAttribute('class', 'action-class');
@@ -138,12 +132,21 @@ var updateTableOp = function () {
             balanceFunction();
         };
         deleteAction.addEventListener('click', deleteOp);
+        var goToEditOp = function (e) {
+            editAction.dataset.id = element.id;
+            var opToEdit = storage.newoperation.filter(function (item) { return element.id === item.id; });
+            localStorage.setItem('editedOp', JSON.stringify(opToEdit));
+            var params = new URLSearchParams(window.location.search);
+            editAction.setAttribute('href', "./edit-op.html?opId=" + element.id);
+        };
+        editAction.addEventListener('click', goToEditOp);
     };
     for (var _i = 0, operations_1 = operations; _i < operations_1.length; _i++) {
         var element = operations_1[_i];
         _loop_1(element);
     }
     ;
-    hideCard();
 };
+hideCard();
+;
 updateTableOp();
