@@ -12,7 +12,7 @@
 
         <title>AhorrADAs</title>
     </head>
-    <body class="format">
+    <body class="format"  onload="onloadPage()">
         <nav class="navbar navbar-expand-lg navbar-background sticky-top text-white">
             <div class="container-fluid">
 
@@ -79,30 +79,30 @@
                                     <div class="mb-3">
                                         <label  class="form-label">Tipo</label>
                                         <select class="form-select" aria-label="Default select example" id="kind-filter"> 
-                                            <option selected>Todos</option>
-                                            <option value="1" id="filter-expense">Gasto</option>
-                                            <option value="2" id="filter-profit">Ganancia</option>
+                                            <option value="Todos" selected>Todos</option>
+                                            <option value="gasto" id="filter-expense">Gasto</option>
+                                            <option value="ganancia" id="filter-profit">Ganancia</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label  class="form-label">Categoría</label>
                                         <select class="form-select" aria-label="Default select example" id="category">
-                                            <option selected>Todas</option>
+                                            <option selected value="todas">Todas</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Desde</label>
-                                        <input type="date" class="form-control">
+                                        <input type="date" class="form-control" id="filter-date" value="2018-07-22">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Ordenar por</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Más reciente</option>
-                                            <option value="1">Menos reciente</option>
-                                            <option value="2">Mayor monto</option>
-                                            <option value="3">Menor monto</option>
-                                            <option value="4">A/Z</option>
-                                            <option value="5">Z/A</option>
+                                        <select class="form-select" aria-label="Default select example" id="order-filter">
+                                            <option selected value="mas-reciente">Más reciente</option>
+                                            <option value="menos-reciente">Menos reciente</option>
+                                            <option value="mayor-monto">Mayor monto</option>
+                                            <option value="menor-monto">Menor monto</option>
+                                            <option value="a-z">A/Z</option>
+                                            <option value="z-a">Z/A</option>
                                         </select>
                                     </div>
                                 </div>

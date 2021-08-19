@@ -18,16 +18,7 @@ var goOnStorage = function () {
                 { id: 3, name: "Salidas", slug: "salidas" },
                 { id: 4, name: "Educación", slug: "educación" }, { id: 5, name: "Transporte", slug: "transporte" },
                 { id: 6, name: "Trabajo", slug: "trabajo" }],
-            newoperation: [],
-            filters: {
-                kind: ["Todos", "gasto", "ganancia"],
-                categories: [{ id: 1, name: "Comida", slug: "comida" }, { id: 2, name: "Servicios", slug: "servicios" },
-                    { id: 3, name: "Salidas", slug: "salidas" },
-                    { id: 4, name: "Educación", slug: "educación" }, { id: 5, name: "Transporte", slug: "transporte" },
-                    { id: 6, name: "Trabajo", slug: "trabajo" }],
-                from: functionDate(),
-                orderBy: ["Más reciente", "Menos reciente", "Mayor monto", "Menor monto", "A/Z", "Z/A"]
-            }
+            newoperation: []
         };
     }
     ;
@@ -46,3 +37,11 @@ var loadFilterCategory = function () {
     }
     ;
 };
+var storage = goOnStorage();
+var myFilters = {
+    kind: ["Todos", "gasto", "ganancia"],
+    categories: storage.categories,
+    from: functionDate(),
+    orderBy: ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-z", "z-a"]
+};
+localStorage.setItem('storage-filters', JSON.stringify(myFilters));
