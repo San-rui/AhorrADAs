@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/styles.css">
+
+        <title>AhorrADAs</title>
+    </head>
+    <body class="format">
+        <nav class="navbar navbar-expand-lg navbar-background sticky-top text-white">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand d-flex" href="#">
+                    <img src="../assets/img/wallet.svg" class="img-logo" alt=""> 
+                    <p class="fs-1 d-flex align-items-end m-0 text-white">AhorrADAs</p> 
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
+                    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a class="d-flex align-items-center ms-4 nav-link rounded-3 text-white" id="balance" value="balance" href="../index.html">
+                            <i class="fas fa-chart-line text-white"></i>Balance
+                        </a>
+                        <a class="d-flex align-items-center ms-4 nav-link rounded-3 text-white" id="categories" value="categories" href="./categories.html">
+                            <i class="fas fa-tag text-white"></i>Categorías
+                        </a>
+                        <a class="d-flex align-items-center ms-4 nav-link rounded-3 text-white" id="reports" value="reports" href="./reports.html">
+                            <i class="fas fa-chart-pie text-white"></i>Reportes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <form action="" id="form-edit-op">
+                <div class="container cards-background mt-5 pt-3 rounded-3" style="width: 58rem;height: 42rem;">
+                    <h2>Editar Operación</h2>
+            
+                    <div class="pt-5">
+                            <label for="edited-description" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="edited-description">
+                    </div>
+        
+                    <div class="pt-4">
+                            <label for="edited-amount" class="form-label">Monto</label>
+                            <input type="number" class="form-control" id="edited-amount" min=1>
+                    </div>
+        
+                    <div class="pt-4">
+                        <label for="edited-kind" class="form-label">Tipo</label>
+                        <select class="form-select" aria-label="Default select example" id="edited-kind">
+                            <option selected value="gasto">Gasto</option>
+                            <option value="ganancia">Ganancia</option>
+                        </select>
+                    </div>
+        
+                    <div class="pt-4">
+                        <label for="edited-category" class="form-label">Categoría</label>
+                        <select class="form-select" aria-label="Default select example" id="edited-category">
+                        </select>
+                    </div>
+        
+                    <div class="pt-4">
+                        <label for="edited-date" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="edited-date">
+                    </div>
+        
+                    <div class="pt-5 d-flex justify-content-end">
+                        <button class="btn btn-primary me-3 btn-light" type="reset" id="btn-cnl-edit-op">Cancelar</button>
+                        <button class="btn dark-pink-color text-white" type="button" id="btn-edited-op">Editar</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
+        <script src="../assets/script.js"></script>
+        <script src="../assets/edit-op.js"></script>
+        <script src="../helpers/functios.js"></script>
+        <script src="../assets/navbar.js"></script>
+    </body>
+</html>

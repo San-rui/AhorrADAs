@@ -20,11 +20,10 @@ var kindFilter = document.querySelector('#kind-filter');
 var category = document.querySelector('#category');
 var filterDate = document.querySelector('input[type="date"]');
 filterDate.value = functionDate();
+var orderFilter = document.querySelector('#order-filter');
 var storage = goOnStorage();
 var operationsFiltered = JSON.parse(localStorage.getItem('filteredOperations'));
-//console.log("Este es mi array seteado en el LS", operationsFiltered);
 var filters = JSON.parse(localStorage.getItem('storage-filters'));
-console.log("Estos son mis filtros", filters);
 //--------- FILTERS: SELECT CATEGORY-------------------
 loadFilterCategory();
 //-----------BALANCE FUNCTION----------
@@ -72,14 +71,13 @@ var goToNewOp = function (event) {
     window.location.href = './pages/new-operation.html';
 };
 newOperationButton.addEventListener('click', goToNewOp);
-//------------FILTER TABLE-------------
+//------------FILTERS FUNCTION-------------
 var myCategory = [];
 for (var _i = 0, _a = filters.categories; _i < _a.length; _i++) {
     var element = _a[_i];
     myCategory.push(element.slug);
 }
 ;
-console.log(myCategory);
 var newArray = [];
 var applyFilters = function (event) {
     var newParam = event.target.value;
@@ -89,18 +87,54 @@ var applyFilters = function (event) {
             newArray = operationsFiltered;
         }
         else {
-            console.log('mi parametro es:', newParam);
             newArray = operationsFiltered.filter(function (item) { return newParam == item.kind; });
         }
     }
     else if (myCategory.includes(newParam)) {
         if (newParam == "todas") {
-            console.log('mi parametro es todas:', newParam);
             newArray = operationsFiltered;
         }
         else {
-            console.log('mi parametro es:', newParam);
             newArray = operationsFiltered.filter(function (item) { return newParam == item.category; });
+        }
+    }
+    else if (filters.orderBy.includes(newParam)) {
+        switch (newParam) {
+            case 'mas-reciente':
+                newArray = operationsFiltered.sort(function (a, b) { return new Date(a.dateLine).getTime() - new Date(b.dateLine).getTime(); });
+                break;
+            case 'menos-reciente':
+                newArray = operationsFiltered.sort(function (a, b) { return new Date(b.dateLine).getTime() - new Date(a.dateLine).getTime(); });
+                break;
+            case 'mayor-monto':
+                newArray = operationsFiltered.sort(function (b, a) { return a.amount - b.amount; });
+                break;
+            case 'menor-monto':
+                newArray = operationsFiltered.sort(function (b, a) { return b.amount - a.amount; });
+                break;
+            case 'a-z':
+                newArray = operationsFiltered.sort(function (a, b) {
+                    if (a.description > b.description) {
+                        return 1;
+                    }
+                    if (a.description < b.description) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                break;
+            case 'z-a':
+                newArray = operationsFiltered.sort(function (b, a) {
+                    if (a.description > b.description) {
+                        return 1;
+                    }
+                    if (a.description < b.description) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                break;
+            default:
         }
     }
     else {
@@ -117,13 +151,14 @@ var applyFilters = function (event) {
 var updateTableOp = function (paramm) {
     if (paramm === void 0) { paramm = storage.newoperation; }
     var operations = paramm;
+    console.log("que entra aca", operations);
     if (operations == []) {
         localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
     }
     else {
-        localStorage.setItem('filteredOperations', JSON.stringify(operations));
+        localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
+        console.log("este en mi array filtrado", operations);
     }
-    console.log("este en mi array filtrado", operations);
     table.innerHTML = "";
     var _loop_1 = function (element) {
         var newRow = document.createElement('tr');
@@ -132,7 +167,7 @@ var updateTableOp = function (paramm) {
         var newRowDate = document.createElement('td');
         var newRowAmount = document.createElement('td');
         var newRowAction = document.createElement('td');
-        var editAction = document.createElement('button');
+        var editAction = document.createElement('a');
         var deleteAction = document.createElement('button');
         editAction.setAttribute('value', element.description);
         editAction.setAttribute('class', 'action-class');
@@ -169,6 +204,14 @@ var updateTableOp = function (paramm) {
             balanceFunction();
         };
         deleteAction.addEventListener('click', deleteOp);
+        var goToEditOp = function (e) {
+            editAction.dataset.id = element.id;
+            var opToEdit = storage.newoperation.filter(function (item) { return element.id === item.id; });
+            localStorage.setItem('editedOp', JSON.stringify(opToEdit));
+            var params = new URLSearchParams(window.location.search);
+            editAction.setAttribute('href', "./edit-op.html?opId=" + element.id);
+        };
+        editAction.addEventListener('click', goToEditOp);
     };
     for (var _i = 0, operations_1 = operations; _i < operations_1.length; _i++) {
         var element = operations_1[_i];
@@ -176,8 +219,8 @@ var updateTableOp = function (paramm) {
     }
     ;
     hideCard();
+    balanceFunction();
 };
-updateTableOp();
 var onloadPage = function () {
     kindFilter.addEventListener('change', function (event) {
         applyFilters(event);
@@ -188,37 +231,8 @@ var onloadPage = function () {
     filterDate.addEventListener('change', function (event) {
         applyFilters(event);
     });
+    orderFilter.addEventListener('change', function (event) {
+        applyFilters(event);
+    });
 };
-// const filterbyKind = (event, newoperation)=>{
-//     event.preventDefault();
-//     const kindValue= event.target.value;
-//     let newArrayKind=[];
-//     if(kindValue==="todos"){
-//         newArrayKind= newoperation;
-//     }else{
-//         let newArrayKind=[];
-//     }
-//     return newArrayKind
-// };
-// const filterbyCategory = (event, newoperation)=>{
-//     event.preventDefault();
-//     const catValue= event.target.value
-//     let newArrayCategory=[];
-//     if(catValue==="todas"){
-//         newArrayCategory= newoperation;
-//     }else{
-//         newArrayCategory= newoperation.filter(item => catValue == item.category);
-//     } 
-//     return newArrayCategory;
-// }
-// const filterOperations =(newoperation)=>{
-//     return newoperation;
-// };
-// let updateArray=[];
-// const reChargeTable =(event)=>{
-//     filterbyKind(event, operationsFiltered);
-//     //filterbyCategory(event, operationsFiltered);
-//     updateArray = filterbyKind(event, operationsFiltered);
-//     //updateArray= filterbyCategory(event, operationsFiltered);
-//     updateTableOp(updateArray);
-// };
+updateTableOp();

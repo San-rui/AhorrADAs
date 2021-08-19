@@ -42,6 +42,6 @@ var myFilters = {
     kind: ["Todos", "gasto", "ganancia"],
     categories: storage.categories,
     from: functionDate(),
-    orderBy: ["Más reciente", "Menos reciente", "Mayor monto", "Menor monto", "A/Z", "Z/A"]
+    orderBy: ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-z", "z-a"]
 };
 localStorage.setItem('storage-filters', JSON.stringify(myFilters));

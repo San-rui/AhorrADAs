@@ -96,13 +96,13 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Ordenar por</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Más reciente</option>
-                                            <option value="1">Menos reciente</option>
-                                            <option value="2">Mayor monto</option>
-                                            <option value="3">Menor monto</option>
-                                            <option value="4">A/Z</option>
-                                            <option value="5">Z/A</option>
+                                        <select class="form-select" aria-label="Default select example" id="order-filter">
+                                            <option selected value="mas-reciente">Más reciente</option>
+                                            <option value="menos-reciente">Menos reciente</option>
+                                            <option value="mayor-monto">Mayor monto</option>
+                                            <option value="menor-monto">Menor monto</option>
+                                            <option value="a-z">A/Z</option>
+                                            <option value="z-a">Z/A</option>
                                         </select>
                                     </div>
                                 </div>
@@ -141,45 +141,6 @@
                         </table>
                     </div>
                 </div>
-                <form action="" id="form-edit-op" class="hidden">
-                    <div class="container cards-background mt-5 pt-3 rounded-3" style="width: 58rem;height: 42rem;">
-                        <h2>Editar Operación</h2>
-                
-                        <div class="pt-5">
-                                <label for="edited-description" class="form-label">Descripción</label>
-                                <input type="text" class="form-control" id="edited-description">
-                        </div>
-            
-                        <div class="pt-4">
-                                <label for="edited-amount" class="form-label">Monto</label>
-                                <input type="number" class="form-control" id="edited-amount" min=1>
-                        </div>
-            
-                        <div class="pt-4">
-                            <label for="edited-kind" class="form-label">Tipo</label>
-                            <select class="form-select" aria-label="Default select example" id="edited-kind">
-                                <option selected value="gasto">Gasto</option>
-                                <option value="ganancia">Ganancia</option>
-                            </select>
-                        </div>
-            
-                        <div class="pt-4">
-                            <label for="edited-category" class="form-label">Categoría</label>
-                            <select class="form-select" aria-label="Default select example" id="edited-category">
-                            </select>
-                        </div>
-            
-                        <div class="pt-4">
-                            <label for="edited-date" class="form-label">Fecha</label>
-                            <input type="date" class="form-control" id="edited-date">
-                        </div>
-            
-                        <div class="pt-5 d-flex justify-content-end">
-                            <button class="btn btn-primary me-3 btn-light" type="reset" id="btn-cnl-edit-op">Cancelar</button>
-                            <button class="btn dark-pink-color text-white" type="button" id="btn-edited-op">Editar</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </main>
         <footer></footer>
