@@ -1,11 +1,48 @@
+//------------------VARIABLES---------------
+const expense = document.querySelector('#expense');
+const profit = document.querySelector('#profit');
+let totalResult = document.querySelector('#total-result');
+
+const opTable = document.querySelector('#op-table');
+const noResultsCard = document.querySelector('#no-results-card');
+
+const newOperationButton=document.getElementById('new-operation-button');
+
+const table = document.getElementById('op-list');
+const formEditOp = document.getElementById('form-edit-op');
+const balanceFiltersSection = document.getElementById('balance-filters-section');
+const opNewOp = document.getElementById('op-newOp');
+const btnEditedOp= document.getElementById('btn-edited-op');
+const opCard= document.getElementById('op-card');
+const editedDescription= document.getElementById('edited-description');
+const editedAmount= document.getElementById('edited-amount');
+const editedKind= document.getElementById('edited-kind');
+const editedCategory= document.getElementById('edited-category');
+const editedDate= document.getElementById('edited-date');
+
+const kindFilter = document.querySelector('#kind-filter');
+const category =document.querySelector('#category');
+const filterDate=document.querySelector('input[type="date"]');
+filterDate.value= functionDate();
+
+
+
+const storage: LocalStorage = goOnStorage();
+
+
+const operationsFiltered = JSON.parse(localStorage.getItem('filteredOperations'));
+//console.log("Este es mi array seteado en el LS", operationsFiltered);
+
+const filters = JSON.parse(localStorage.getItem('storage-filters'));
+console.log("Estos son mis filtros", filters);
+
+
 //--------- FILTERS: SELECT CATEGORY-------------------
 
 loadFilterCategory();
 
+
 //-----------BALANCE FUNCTION----------
-const expense = document.querySelector('#expense');
-const profit = document.querySelector('#profit');
-let totalResult = document.querySelector('#total-result');
 
 const balanceFunction = () =>{
 
@@ -43,12 +80,7 @@ const balanceFunction = () =>{
 
 balanceFunction ();
 
-
 //---------HIDE NO RESULTS CARD------------
-
-const opTable = document.querySelector('#op-table')
-
-const noResultsCard = document.querySelector('#no-results-card')
 
 const hideCard = () =>{
 
@@ -63,14 +95,11 @@ const hideCard = () =>{
         opTable.classList.remove('hidden');
         noResultsCard.classList.add('hidden');
     }
-
 };
 
 hideCard ();
 
 //--------- NEW OPERATION BUTTON--------------------
-
-const newOperationButton=document.getElementById('new-operation-button');
 
 const goToNewOp=(event)=>{
 
@@ -78,77 +107,72 @@ const goToNewOp=(event)=>{
 };
 newOperationButton.addEventListener('click', goToNewOp);
 
-//------------Complete op table-------------
-const table = document.getElementById('op-list');
-const formEditOp = document.getElementById('form-edit-op');
-const balanceFiltersSection = document.getElementById('balance-filters-section');
-const opNewOp = document.getElementById('op-newOp');
-const btnEditedOp= document.getElementById('btn-edited-op');
-const opCard= document.getElementById('op-card');
-const editedDescription= document.getElementById('edited-description');
-const editedAmount= document.getElementById('edited-amount');
-const editedKind= document.getElementById('edited-kind');
-const editedCategory= document.getElementById('edited-category');
-const editedDate= document.getElementById('edited-date');
-
-
-const filterExpense = document.querySelector('#filter-expense');
-const filterProfit = document.querySelector('#filter-profit');
-const kindFilter = document.querySelector('#kind-filter');
-
-const storage: LocalStorage = goOnStorage();
-const filters = storage.filters;
+//------------FILTER TABLE-------------
 
 
 
 
-const filterOperations =(newoperation, filter)=>{
+let myCategory=[];
 
-    console.log(newoperation);
-    console.log("KINDS", filters.kind);
-    console.log(filters.kind[1]);
-    //console.log(filters.kind[filter]);
+for ( const element of filters.categories){
+    myCategory.push(element.slug);
+};
 
-    const filterbyKind = (event)=>{
-        event.preventDefault();
-        const kindValue= event.target.value;
+console.log(myCategory)
 
-        console.log(kindValue);
+let newArray=[];
 
-        let newArrayKind=[]
+const applyFilters = (event)=>{
+    const newParam = event.target.value;
+    console.log(newParam)
 
-        switch(kindValue){
-            case "1": newArray3= newoperation.filter(item => "gasto" == item.kind);
     
+    if(filters.kind.includes(newParam)){
+        if(newParam == "Todos"){
+            newArray= operationsFiltered;
+        }else{
+            console.log('mi parametro es:', newParam);
+            newArray= operationsFiltered.filter(item => newParam== item.kind);
         }
-        console.log(newArrayKind)
-        return newArrayKind
+    } else if(myCategory.includes(newParam)){
+
+        if(newParam == "todas"){
+            console.log('mi parametro es todas:', newParam);
+            newArray= operationsFiltered;
+        }else{
+            console.log('mi parametro es:', newParam);
+            newArray= operationsFiltered.filter(item => newParam== item.category);
+        }
+        
+    } else{  newArray=operationsFiltered.filter((operacion) => {
+            const dateAdded = new Date(newParam);
+            const dateOperacion = new Date(operacion.dateLine)
+            return dateOperacion.getTime() >= dateAdded.getTime()+1
+            })
     }
+
+    console.log("este es mi nuevo array:", newArray)
+
+    updateTableOp(newArray);
+
+};
+
+//------------COMPLETE OP TABLE-------------
+
+const updateTableOp = (paramm=storage.newoperation) => {
+
+    let operations = paramm;
     
-    kindFilter.addEventListener('change', filterbyKind);
 
-    //const newArrayFilterKind= newoperation.filter(item => filter == item.kind);
+    if(operations == []){
+        localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
 
-    //console.log("hola", newArrayFilterKind);
-
-    
-
-    return newoperation;
-
-    
-}
-
-//kindFilter.addEventListener('change', filterOperations(storage.newoperation, "gasto"));
-//filterProfit.addEventListener('click', filterOperations)
-
-
-
-const updateTableOp = () => {
-
-    const operations = filterOperations(storage.newoperation, filters) 
+    }else{
+        localStorage.setItem('filteredOperations', JSON.stringify(operations));
+    }
+    console.log("este en mi array filtrado", operations)
 
     table.innerHTML="";
-
 
     for(const element of operations){
 
@@ -224,6 +248,68 @@ const updateTableOp = () => {
 updateTableOp()
 
 
+const onloadPage =()=>{
+
+    kindFilter.addEventListener('change', (event) => {
+        applyFilters(event);
+        });
+    category.addEventListener('change', (event) => {
+        applyFilters(event);
+        });
+    filterDate.addEventListener('change', (event) => {
+        applyFilters(event);
+        });
+};
 
 
 
+
+// const filterbyKind = (event, newoperation)=>{
+//     event.preventDefault();
+
+//     const kindValue= event.target.value;
+//     let newArrayKind=[];
+
+//     if(kindValue==="todos"){
+//         newArrayKind= newoperation;
+//     }else{
+//         let newArrayKind=[];
+//     }
+
+//     return newArrayKind
+// };
+
+
+// const filterbyCategory = (event, newoperation)=>{
+//     event.preventDefault();
+
+//     const catValue= event.target.value
+
+
+//     let newArrayCategory=[];
+
+//     if(catValue==="todas"){
+//         newArrayCategory= newoperation;
+//     }else{
+//         newArrayCategory= newoperation.filter(item => catValue == item.category);
+//     } 
+    
+//     return newArrayCategory;
+
+// }
+
+// const filterOperations =(newoperation)=>{
+
+//     return newoperation;
+// };
+
+// let updateArray=[];
+
+// const reChargeTable =(event)=>{
+//     filterbyKind(event, operationsFiltered);
+//     //filterbyCategory(event, operationsFiltered);
+//     updateArray = filterbyKind(event, operationsFiltered);
+//     //updateArray= filterbyCategory(event, operationsFiltered);
+
+//     updateTableOp(updateArray);
+// };

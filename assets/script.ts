@@ -25,7 +25,7 @@ type Filter ={
 type LocalStorage = {
     categories?:NewCategory[],
     newoperation?: NewOp[],
-    filters?: Filter,
+    //filters?: Filter,
 };
 
 
@@ -56,15 +56,6 @@ const goOnStorage = (): LocalStorage =>{
             {id:4, name: "Educación", slug: "educación" }, {id:5, name: "Transporte", slug: "transporte" },
             {id:6, name: "Trabajo", slug: "trabajo" }],
             newoperation:[],
-            filters:{
-                kind: ["Todos", "gasto", "ganancia"],
-                categories: [{ id:1 , name: "Comida", slug: "comida"}, {id:2,  name: "Servicios", slug: "servicios"},
-                {id:3, name: "Salidas", slug: "salidas" },
-                {id:4, name: "Educación", slug: "educación" }, {id:5, name: "Transporte", slug: "transporte" },
-                {id:6, name: "Trabajo", slug: "trabajo" }],
-                from: functionDate(),
-                orderBy: ["Más reciente", "Menos reciente", "Mayor monto", "Menor monto", "A/Z", "Z/A"]
-            } 
         } 
     };
 
@@ -86,3 +77,14 @@ const loadFilterCategory = () => {
         selectCategories.appendChild(elem);
     };
 };
+
+const storage: LocalStorage = goOnStorage();
+
+const myFilters:Filter ={
+    kind: ["Todos", "gasto", "ganancia"],
+    categories: storage.categories,
+    from: functionDate(),
+    orderBy: ["Más reciente", "Menos reciente", "Mayor monto", "Menor monto", "A/Z", "Z/A"]
+} 
+
+localStorage.setItem('storage-filters', JSON.stringify(myFilters));
