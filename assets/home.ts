@@ -27,8 +27,7 @@ filterDate.value= functionDate();
 const orderFilter= document.querySelector('#order-filter');
 
 const storage: LocalStorage = goOnStorage();
-
-const operationsFiltered = JSON.parse(localStorage.getItem('filteredOperations'));
+const myOperations= storage.newoperation
 
 const filters = JSON.parse(localStorage.getItem('storage-filters'));
 
@@ -38,14 +37,14 @@ loadFilterCategory();
 
 //-----------BALANCE FUNCTION----------
 
-const balanceFunction = () =>{
+const balanceFunction = (param = myOperations) =>{
 
     const storage: LocalStorage = goOnStorage();
     let resultProfit = 0;
     let resultExpense =0; 
     let total=0;
 
-    for(const item of storage.newoperation){
+    for(const item of param){
 
         if( item.kind === "ganancia"){
             resultProfit= resultProfit + Number(item.amount); 
@@ -98,97 +97,85 @@ newOperationButton.addEventListener('click', goToNewOp);
 
 let myCategory=[];
 
-for ( const element of filters.categories){
+for ( const element of storage.categories){
     myCategory.push(element.slug);
 };
 
+const order= ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-z", "z-a"];
 
-let newArray=[];
+const filters = getFilterFromStorage();
 
 const applyFilters = (event)=>{
     const newParam = event.target.value;
     console.log(newParam)
-
-    
-    if(filters.kind.includes(newParam)){
-        if(newParam == "Todos"){
-            newArray= operationsFiltered;
-        }else{
-            newArray= operationsFiltered.filter(item => newParam== item.kind);
-        }
-    } else if(myCategory.includes(newParam)){
-
-        if(newParam == "todas"){
-            newArray= operationsFiltered;
-        }else{
-            newArray= operationsFiltered.filter(item => newParam== item.category);
-        }
-        
-    }else if(filters.orderBy.includes(newParam)){
-
-        switch (newParam) {
-            case 'mas-reciente': newArray= operationsFiltered.sort((a, b) => new Date(a.dateLine).getTime() - new Date(b.dateLine).getTime());
-            break
-
-            case 'menos-reciente':newArray= operationsFiltered.sort((a, b) => new Date(b.dateLine).getTime() - new Date(a.dateLine).getTime());
-            break
-            
-            case 'mayor-monto': newArray= operationsFiltered.sort((b, a) => a.amount - b.amount);
-            break
-
-            case 'menor-monto':newArray= operationsFiltered.sort((b, a) => b.amount - a.amount);
-            break
-
-            case 'a-z':newArray= operationsFiltered.sort((a, b) => {if (a.description > b.description) {return 1
-            }if (a.description < b.description) {
-                return -1;
-            }return 0;})
-            
-            break
-
-            case 'z-a':newArray= operationsFiltered.sort((b, a) => {if (a.description > b.description) {return 1
-            }if (a.description < b.description) {
-                return -1;
-            }return 0;})
-            break
-
-            default:
-        }
-        
+    if(newParam == "gasto" || newParam == "ganancia" || newParam == "todos"){
+        filters.kind=newParam;
+    } else if(myCategory.includes(newParam) || newParam == "todas"){
+        filters.categories=newParam;
+    } else if(order.includes(newParam)){
+        filters.orderBy=newParam;
+    }else{
+        filters.from=newParam;
+    };
+    return filters;
+};
 
 
-    } else{  newArray=operationsFiltered.filter((operacion) => {
-            const dateAdded = new Date(newParam);
-            const dateOperacion = new Date(operacion.dateLine)
-            return dateOperacion.getTime() >= dateAdded.getTime()+1
-            })
-    }
+let updateFilters;
 
-    console.log("este es mi nuevo array:", newArray)
-
-    updateTableOp(newArray);
-
+const reChargeTable =(event)=>{
+    updateFilters= applyFilters(event);
+    updateTableOp(updateFilters);
 };
 
 //------------COMPLETE OP TABLE-------------
 
-const updateTableOp = (paramm=storage.newoperation) => {
+const updateTableOp = (filter=filters) => {
 
-    let operations = paramm;
-    console.log("que entra aca", operations)
-    
-    if(operations == []){
-        localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
+    let operations = storage.newoperation
 
-    }else{
-        localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
-        console.log("este en mi array filtrado", operations)
-    }
-    
+    let tempFilter = operations.filter( element =>  element.kind === filters.kind || filters.kind== "todos")
+
+    tempFilter= tempFilter.filter(element => element.category === filters.categories || filters.categories== "todas")
+
+    switch (filters.orderBy) {
+        case 'mas-reciente': tempFilter= tempFilter.sort((a, b) => new Date(a.dateLine).getTime() - new Date(b.dateLine).getTime());
+        break
+
+        case 'menos-reciente':tempFilter= tempFilter.sort((a, b) => new Date(b.dateLine).getTime() - new Date(a.dateLine).getTime());
+        break
+        
+        case 'mayor-monto': tempFilter= tempFilter.sort((b, a) => a.amount - b.amount);
+        break
+
+        case 'menor-monto':tempFilter= tempFilter.sort((b, a) => b.amount - a.amount);
+        break
+
+        case 'a-z':tempFilter= tempFilter.sort((a, b) => {if (a.description > b.description) {return 1
+        }if (a.description < b.description) {
+            return -1;
+        }return 0;})
+        
+        break
+
+        case 'z-a':tempFilter= tempFilter.sort((b, a) => {if (a.description > b.description) {return 1
+        }if (a.description < b.description) {
+            return -1;
+        }return 0;})
+        break
+
+        default:
+    };
+
+    tempFilter=tempFilter.filter((operacion) => {
+        const dateAdded = new Date(filters.from);
+        const dateOperacion = new Date(operacion.dateLine)
+        return dateOperacion.getTime() >= dateAdded.getTime()+1
+        })
 
     table.innerHTML="";
 
-    for(const element of operations){
+    for(const element of tempFilter){
 
 
         const newRow= document.createElement('tr');
@@ -242,8 +229,8 @@ const updateTableOp = (paramm=storage.newoperation) => {
             storage.newoperation=newArrayOp;
             localStorage.setItem('full-storage', JSON.stringify(storage));
 
-            updateTableOp()
             balanceFunction();
+            updateTableOp();
         };
     
         deleteAction.addEventListener('click', deleteOp);
@@ -261,23 +248,23 @@ const updateTableOp = (paramm=storage.newoperation) => {
         editAction.addEventListener('click', goToEditOp);
     };
     hideCard ();
-    balanceFunction();
+    balanceFunction(tempFilter);
 };
 
 
 const onloadPage =()=>{
 
     kindFilter.addEventListener('change', (event) => {
-        applyFilters(event);
+        reChargeTable(event);
         });
     category.addEventListener('change', (event) => {
-        applyFilters(event);
+        reChargeTable(event);
         });
     filterDate.addEventListener('change', (event) => {
-        applyFilters(event);
+        reChargeTable(event);
         });
     orderFilter.addEventListener('change', (event) => {
-        applyFilters(event);
+        reChargeTable(event);
         });
 };
 

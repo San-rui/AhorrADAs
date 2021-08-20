@@ -22,18 +22,19 @@ var filterDate = document.querySelector('input[type="date"]');
 filterDate.value = functionDate();
 var orderFilter = document.querySelector('#order-filter');
 var storage = goOnStorage();
-var operationsFiltered = JSON.parse(localStorage.getItem('filteredOperations'));
+var myOperations = storage.newoperation;
 var filters = JSON.parse(localStorage.getItem('storage-filters'));
 //--------- FILTERS: SELECT CATEGORY-------------------
 loadFilterCategory();
 //-----------BALANCE FUNCTION----------
-var balanceFunction = function () {
+var balanceFunction = function (param) {
+    if (param === void 0) { param = myOperations; }
     var storage = goOnStorage();
     var resultProfit = 0;
     var resultExpense = 0;
     var total = 0;
-    for (var _i = 0, _a = storage.newoperation; _i < _a.length; _i++) {
-        var item = _a[_i];
+    for (var _i = 0, param_1 = param; _i < param_1.length; _i++) {
+        var item = param_1[_i];
         if (item.kind === "ganancia") {
             resultProfit = resultProfit + Number(item.amount);
         }
@@ -73,92 +74,85 @@ var goToNewOp = function (event) {
 newOperationButton.addEventListener('click', goToNewOp);
 //------------FILTERS FUNCTION-------------
 var myCategory = [];
-for (var _i = 0, _a = filters.categories; _i < _a.length; _i++) {
+for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
     var element = _a[_i];
     myCategory.push(element.slug);
 }
 ;
-var newArray = [];
+var order = ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-z", "z-a"];
+var filters = getFilterFromStorage();
 var applyFilters = function (event) {
     var newParam = event.target.value;
     console.log(newParam);
-    if (filters.kind.includes(newParam)) {
-        if (newParam == "Todos") {
-            newArray = operationsFiltered;
-        }
-        else {
-            newArray = operationsFiltered.filter(function (item) { return newParam == item.kind; });
-        }
+    if (newParam == "gasto" || newParam == "ganancia" || newParam == "todos") {
+        filters.kind = newParam;
     }
-    else if (myCategory.includes(newParam)) {
-        if (newParam == "todas") {
-            newArray = operationsFiltered;
-        }
-        else {
-            newArray = operationsFiltered.filter(function (item) { return newParam == item.category; });
-        }
+    else if (myCategory.includes(newParam) || newParam == "todas") {
+        filters.categories = newParam;
     }
-    else if (filters.orderBy.includes(newParam)) {
-        switch (newParam) {
-            case 'mas-reciente':
-                newArray = operationsFiltered.sort(function (a, b) { return new Date(a.dateLine).getTime() - new Date(b.dateLine).getTime(); });
-                break;
-            case 'menos-reciente':
-                newArray = operationsFiltered.sort(function (a, b) { return new Date(b.dateLine).getTime() - new Date(a.dateLine).getTime(); });
-                break;
-            case 'mayor-monto':
-                newArray = operationsFiltered.sort(function (b, a) { return a.amount - b.amount; });
-                break;
-            case 'menor-monto':
-                newArray = operationsFiltered.sort(function (b, a) { return b.amount - a.amount; });
-                break;
-            case 'a-z':
-                newArray = operationsFiltered.sort(function (a, b) {
-                    if (a.description > b.description) {
-                        return 1;
-                    }
-                    if (a.description < b.description) {
-                        return -1;
-                    }
-                    return 0;
-                });
-                break;
-            case 'z-a':
-                newArray = operationsFiltered.sort(function (b, a) {
-                    if (a.description > b.description) {
-                        return 1;
-                    }
-                    if (a.description < b.description) {
-                        return -1;
-                    }
-                    return 0;
-                });
-                break;
-            default:
-        }
+    else if (order.includes(newParam)) {
+        filters.orderBy = newParam;
     }
     else {
-        newArray = operationsFiltered.filter(function (operacion) {
-            var dateAdded = new Date(newParam);
-            var dateOperacion = new Date(operacion.dateLine);
-            return dateOperacion.getTime() >= dateAdded.getTime() + 1;
-        });
+        filters.from = newParam;
     }
-    console.log("este es mi nuevo array:", newArray);
-    updateTableOp(newArray);
+    ;
+    return filters;
+};
+var updateFilters;
+var reChargeTable = function (event) {
+    updateFilters = applyFilters(event);
+    updateTableOp(updateFilters);
 };
 //------------COMPLETE OP TABLE-------------
-var updateTableOp = function (paramm) {
-    if (paramm === void 0) { paramm = storage.newoperation; }
-    var operations = paramm;
-    console.log("que entra aca", operations);
-    if (operations == []) {
-        localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
+var updateTableOp = function (filter) {
+    if (filter === void 0) { filter = filters; }
+    var operations = storage.newoperation;
+    var tempFilter = operations.filter(function (element) { return element.kind === filters.kind || filters.kind == "todos"; });
+    tempFilter = tempFilter.filter(function (element) { return element.category === filters.categories || filters.categories == "todas"; });
+    switch (filters.orderBy) {
+        case 'mas-reciente':
+            tempFilter = tempFilter.sort(function (a, b) { return new Date(a.dateLine).getTime() - new Date(b.dateLine).getTime(); });
+            break;
+        case 'menos-reciente':
+            tempFilter = tempFilter.sort(function (a, b) { return new Date(b.dateLine).getTime() - new Date(a.dateLine).getTime(); });
+            break;
+        case 'mayor-monto':
+            tempFilter = tempFilter.sort(function (b, a) { return a.amount - b.amount; });
+            break;
+        case 'menor-monto':
+            tempFilter = tempFilter.sort(function (b, a) { return b.amount - a.amount; });
+            break;
+        case 'a-z':
+            tempFilter = tempFilter.sort(function (a, b) {
+                if (a.description > b.description) {
+                    return 1;
+                }
+                if (a.description < b.description) {
+                    return -1;
+                }
+                return 0;
+            });
+            break;
+        case 'z-a':
+            tempFilter = tempFilter.sort(function (b, a) {
+                if (a.description > b.description) {
+                    return 1;
+                }
+                if (a.description < b.description) {
+                    return -1;
+                }
+                return 0;
+            });
+            break;
+        default:
     }
-    else {
-        localStorage.setItem('filteredOperations', JSON.stringify(storage.newoperation));
-        console.log("este en mi array filtrado", operations);
-    }
+    ;
+    tempFilter = tempFilter.filter(function (operacion) {
+        var dateAdded = new Date(filters.from);
+        var dateOperacion = new Date(operacion.dateLine);
+        return dateOperacion.getTime() >= dateAdded.getTime() + 1;
+    });
     table.innerHTML = "";
     var _loop_1 = function (element) {
         var newRow = document.createElement('tr');
@@ -200,8 +194,8 @@ var updateTableOp = function (paramm) {
             var newArrayOp = storage.newoperation.filter(function (item) { return element.id !== item.id; });
             storage.newoperation = newArrayOp;
             localStorage.setItem('full-storage', JSON.stringify(storage));
-            updateTableOp();
             balanceFunction();
+            updateTableOp();
         };
         deleteAction.addEventListener('click', deleteOp);
         var goToEditOp = function (e) {
@@ -213,26 +207,26 @@ var updateTableOp = function (paramm) {
         };
         editAction.addEventListener('click', goToEditOp);
     };
-    for (var _i = 0, operations_1 = operations; _i < operations_1.length; _i++) {
-        var element = operations_1[_i];
+    for (var _i = 0, tempFilter_1 = tempFilter; _i < tempFilter_1.length; _i++) {
+        var element = tempFilter_1[_i];
         _loop_1(element);
     }
     ;
     hideCard();
-    balanceFunction();
+    balanceFunction(tempFilter);
 };
 var onloadPage = function () {
     kindFilter.addEventListener('change', function (event) {
-        applyFilters(event);
+        reChargeTable(event);
     });
     category.addEventListener('change', function (event) {
-        applyFilters(event);
+        reChargeTable(event);
     });
     filterDate.addEventListener('change', function (event) {
-        applyFilters(event);
+        reChargeTable(event);
     });
     orderFilter.addEventListener('change', function (event) {
-        applyFilters(event);
+        reChargeTable(event);
     });
 };
 updateTableOp();

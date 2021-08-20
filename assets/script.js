@@ -38,10 +38,17 @@ var loadFilterCategory = function () {
     ;
 };
 var storage = goOnStorage();
-var myFilters = {
-    kind: ["Todos", "gasto", "ganancia"],
-    categories: storage.categories,
-    from: functionDate(),
-    orderBy: ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-z", "z-a"]
+var getFilterFromStorage = function () {
+    var myFilters = JSON.parse(localStorage.getItem('storage-filters'));
+    if (!myFilters) {
+        myFilters = {
+            kind: "todos",
+            categories: "todas",
+            from: functionDate(),
+            orderBy: "mas-reciente"
+        };
+    }
+    return myFilters;
 };
-localStorage.setItem('storage-filters', JSON.stringify(myFilters));
+getFilterFromStorage();
+console.log(getFilterFromStorage());
