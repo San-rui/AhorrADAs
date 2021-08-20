@@ -131,3 +131,12 @@ a i{
     text-align: center; 
 }
 
+
+.width-table-column{
+    width: 15rem;
+}
+
+.chart{
+    width: 25rem;
+    margin: 2rem;
+}

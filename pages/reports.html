@@ -47,28 +47,28 @@
                         <tbody>
                             <tr>
                                 <td>Categoría con mayor ganancia</td>
-                                <td class="style-text-dark-color" id="summary-category-profit">Categoria</td>
-                                <td class="positive-value">$<span id="summary-category-profit-amount"></span></td>
+                                <td class="style-text-dark-color width-table-column" id="summary-category-profit">Categoria</td>
+                                <td class="positive-value text-end width-table-column">$<span id="summary-category-profit-amount"></span></td>
                             </tr>
                             <tr>
                                 <td>Categoría con mayor gasto</td>
-                                <td class="style-text-dark-color" id="summary-category-expense">Categoria</td>
-                                <td class="negative-value">-$<span id="summary-category-expense-amount"></span></td>
+                                <td class="style-text-dark-color width-table-column" id="summary-category-expense">Categoria</td>
+                                <td class="negative-value text-end width-table-column">-$<span id="summary-category-expense-amount"></span></td>
                             </tr>
                             <tr>
                                 <td>Categoría con mayor balance</td>
-                                <td class="style-text-dark-color" id="category-balance">Categoria</td>
-                                <td>$<span id="category-balance-amount">Monto</span></td>
+                                <td class="style-text-dark-color width-table-column" id="category-balance">Categoria</td>
+                                <td class="text-end width-table-column">$<span id="category-balance-amount">Monto</span></td>
                             </tr>
                             <tr>
                                 <td>Mes con mayor ganancia</td>
-                                <td class="style-text-dark-color" id="summary-month-profit">Fecha</td>
-                                <td class="positive-value">$<span id="summary-month-profit-amount"></span></td>
+                                <td class="style-text-dark-color width-table-column" id="summary-month-profit">Fecha</td>
+                                <td class="positive-value text-end width-table-column">$<span id="summary-month-profit-amount"></span></td>
                             </tr>
                             <tr>
                                 <td>Mes con mayor gasto</td>
-                                <td class="style-text-dark-color" id="summary-month-expense">Fecha</td>
-                                <td class="negative-value">-$<span id="summary-month-expense-amount"></span></td>
+                                <td class="style-text-dark-color width-table-column" id="summary-month-expense">Fecha</td>
+                                <td class="negative-value text-end width-table-column">-$<span id="summary-month-expense-amount"></span></td>
                             </tr>
                         
                         </tbody>
@@ -79,35 +79,46 @@
                         <thead>
                             <tr>
                                 <td scope="col">Categoría</td>
-                                <td scope="col">Ganancia</td>
-                                <td scope="col">Gasto</td>
-                                <td scope="col">Balance</td>
+                                <td scope="col" class="text-center">Ganancia</td>
+                                <td scope="col" class="text-center">Gasto</td>
+                                <td scope="col" class="text-end">Balance</td>
                             </tr>
                         </thead>
                         <tbody id="total-by-category-table"></tbody>
                     </table>
-
+                    
                     <table class="table table-borderless" id="total-by-month-table">
                         <h3>Totales por mes</h3>
                         <thead>
                             <tr>
                                 <td scope="col">Mes</td>
-                                <td scope="col">Ganancia</td>
-                                <td scope="col">Gasto</td>
-                                <td scope="col">Balance</td>
+                                <td scope="col" class="text-center">Ganancia</td>
+                                <td scope="col" class="text-center">Gasto</td>
+                                <td scope="col" class="text-end">Balance</td>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                     
                 </div>
+                <h3 class="text-center mt-5">Graficos:</h3>
+                <div class="d-flex justify-content-evenly">
+                    <div class="chart">
+                        <canvas id="my-categories-chart" width="400" height="400"></canvas>
+                    </div>
+                    <div class="chart">
+                        <canvas id="my-month-chart" width="400" height="400"></canvas>
+                    </div>
+                </div>
             </div>
         </main>
 
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js" integrity="sha512-b3xr4frvDIeyC3gqR1/iOi6T+m3pLlQyXNuvn5FiRrrKiMUJK3du2QqZbCywH6JxS5EOfW0DY0M6WwdXFbCBLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="../assets/script.js"></script>
         <script src="../assets/reports.js"></script>
         <script src="../assets/navbar.js"></script>
+        
     </body>
 </html>
