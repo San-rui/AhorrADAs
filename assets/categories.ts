@@ -18,6 +18,13 @@ const getIdCat = () => {
     return 1;
 }
 //------------ ADD CATEGORY-------------
+
+let myCategory=[];
+
+for ( const element of storage.categories){
+    myCategory.push(element.slug);
+};
+
 const addCategory =(e)=>{
     e.preventDefault();
 
@@ -26,13 +33,14 @@ const addCategory =(e)=>{
     const formNewCategory = e.target;
 
     const newCategoryName: string = formNewCategory.name.value;
+    const slugName = slugify(newCategoryName);
 
-    for(const element of storage.categories){
-        if (element.name === newCategoryName){
-            nameCat.value = " ";
+    
+        if (myCategory.includes(slugName)){
+            nameCat.value = "";
             return alert ('Esta categoría ya existe');
             
-        } else if (element.name !== newCategoryName){
+        } else if (!myCategory.includes(newCategoryName)){
             
             const newCategoryAdded: NewCategory = {
                 id: getIdCat(),
@@ -41,14 +49,16 @@ const addCategory =(e)=>{
             }
 
                 storage.categories.push(newCategoryAdded);
-    
                 localStorage.setItem('full-storage', JSON.stringify(storage));
-        
-                nameCat.value = " ";
+                nameCat.value = "";
 
                 return updateTableCategory();
+        }else if(slugName ===""){
+            return alert ('No se puede generar una categoría sin nombre');
         }
-    }
+
+        
+    
 
 };
 formAddCategory.addEventListener('submit', addCategory);

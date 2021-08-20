@@ -14,28 +14,35 @@ var getIdCat = function () {
     return 1;
 };
 //------------ ADD CATEGORY-------------
+var myCategory = [];
+for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
+    var element = _a[_i];
+    myCategory.push(element.slug);
+}
+;
 var addCategory = function (e) {
     e.preventDefault();
     var storage = goOnStorage();
     var formNewCategory = e.target;
     var newCategoryName = formNewCategory.name.value;
-    for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
-        var element = _a[_i];
-        if (element.name === newCategoryName) {
-            nameCat.value = " ";
-            return alert('Esta categoría ya existe');
-        }
-        else if (element.name !== newCategoryName) {
-            var newCategoryAdded = {
-                id: getIdCat(),
-                name: newCategoryName,
-                slug: slugify(newCategoryName)
-            };
-            storage.categories.push(newCategoryAdded);
-            localStorage.setItem('full-storage', JSON.stringify(storage));
-            nameCat.value = " ";
-            return updateTableCategory();
-        }
+    var slugName = slugify(newCategoryName);
+    if (myCategory.includes(slugName)) {
+        nameCat.value = "";
+        return alert('Esta categoría ya existe');
+    }
+    else if (!myCategory.includes(newCategoryName)) {
+        var newCategoryAdded = {
+            id: getIdCat(),
+            name: newCategoryName,
+            slug: slugify(newCategoryName)
+        };
+        storage.categories.push(newCategoryAdded);
+        localStorage.setItem('full-storage', JSON.stringify(storage));
+        nameCat.value = "";
+        return updateTableCategory();
+    }
+    else if (slugName === "") {
+        return alert('No se puede generar una categoría sin nombre');
     }
 };
 formAddCategory.addEventListener('submit', addCategory);

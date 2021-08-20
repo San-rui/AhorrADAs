@@ -16,10 +16,10 @@ type NewCategory={
 }
 
 type Filter ={
-    kind: string[],
-    categories: NewCategory[],
-    from: string | number, 
-    orderBy: string[],
+    kind: string,
+    categories: string,
+    from: string, 
+    orderBy: string,
 }
 
 type LocalStorage = {
@@ -80,11 +80,25 @@ const loadFilterCategory = () => {
 
 const storage: LocalStorage = goOnStorage();
 
-const myFilters:Filter ={
-    kind: ["Todos", "gasto", "ganancia"],
-    categories: storage.categories,
-    from: functionDate(),
-    orderBy: ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-z", "z-a"]
-} 
 
-localStorage.setItem('storage-filters', JSON.stringify(myFilters));
+const getFilterFromStorage =(): Filter=>{
+
+    let myFilters: Filter =JSON.parse(localStorage.getItem('storage-filters'));
+
+    if(!myFilters){
+        myFilters ={
+            kind: "todos",
+            categories: "todas",
+            from: functionDate(),
+            orderBy: "mas-reciente",
+        }
+    }
+
+    
+
+    return myFilters
+}
+
+getFilterFromStorage();
+
+
