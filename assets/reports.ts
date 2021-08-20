@@ -11,6 +11,7 @@ const summaryMonthProfit= document.querySelector('#summary-month-profit');
 const summaryMonthProfitAmount = document.querySelector('#summary-month-profit-amount');
 const summaryMonthExpense= document.querySelector('#summary-month-expense');
 const summaryMonthExpenseAmount = document.querySelector('#summary-month-expense-amount');
+const totalByMonthTable = document.getElementById('total-by-month-table');
 
 
 const HighestProfitOrExpenseCategory = (storage, kind: string, categoryText, amountText) =>{
@@ -119,6 +120,8 @@ const getNewArrayCategories =(storage, kind: string)=>{
     
     let newArray= storage.newoperation.filter(element => element.kind == kind);
 
+    
+
     const elementByCategory={};
     for( const item of newArray){
         if(elementByCategory[item.category]){
@@ -144,9 +147,10 @@ const balanceByCategory= () => {
 
     finalArrayCategories.positives;
     finalArrayCategories.negatives;
+    let dataChart=[];
+    let total=[];
 
     const storage: LocalStorage = goOnStorage();
-
     let newArray= storage.newoperation
 
     const elementByCtegory={};
@@ -161,7 +165,7 @@ const balanceByCategory= () => {
         }else{
             elementByCtegory[item.category]= Number(item.amount);
         }
-    }
+    };
     
     for(const element in elementByCtegory){
 
@@ -172,28 +176,94 @@ const balanceByCategory= () => {
         const newRowProfit= document.createElement('td');
         const newRowExpense= document.createElement('td');
         const newRowBalance= document.createElement('td');
+        
+        newRowProfit.classList.add('text-center', 'width-table-column');
+        newRowExpense.classList.add('text-center', 'width-table-column');
+        newRowBalance.classList.add('text-end', 'width-table-column');
 
         newRowCategory.innerHTML = element;
-        newRowBalance.innerHTML = elementByCtegory[element];
 
         if( finalArrayCategories.positives[element]!== undefined){
             newRowProfit.innerHTML = `+$ ${finalArrayCategories.positives[element]}`;
+            newRowProfit.classList.add('positive-value') ;
+
         }else {
             newRowProfit.innerHTML = "0";
         }
         if(finalArrayCategories.negatives[element]!== undefined){
             newRowExpense.innerHTML = `-$ ${finalArrayCategories.negatives[element]}`;
+            newRowExpense.classList.add('negative-value');
+
         }else {
             newRowExpense.innerHTML = "0";
         }
+
+        if(newRowProfit.innerHTML == "0"){
+            newRowBalance.innerHTML = `-$ ${finalArrayCategories.negatives[element]}`;
+            newRowBalance.classList.add('negative-value');
+            total.push(-Number(finalArrayCategories.negatives[element]));
+
+        } else if(newRowExpense.innerHTML == "0"){
+            newRowBalance.innerHTML = `+$ ${finalArrayCategories.positives[element]}`;
+            newRowBalance.classList.add('positive-value');
+            total.push(Number(finalArrayCategories.positives[element]));
+
+        }else{
+            newRowBalance.innerHTML =  Number(finalArrayCategories.positives[element]) -  Number(finalArrayCategories.negatives[element]);
+            total.push(Number(finalArrayCategories.positives[element]) -  Number(finalArrayCategories.negatives[element]))
+            if(Number(finalArrayCategories.positives[element])>Number(finalArrayCategories.negatives[element])){
+                newRowBalance.classList.add('positive-value');
+            }else if(Number(finalArrayCategories.positives[element])<Number(finalArrayCategories.negatives[element])){
+                newRowBalance.classList.add('negative-value');
+            }
+        };
         
         newRow.appendChild(newRowCategory);
         newRow.appendChild(newRowProfit);
         newRow.appendChild(newRowExpense);
         newRow.appendChild(newRowBalance);
-        
         totalByCategoryTable.appendChild(newRow);
     };
+
+    for(const prop in elementByCtegory){
+        dataChart.push(prop)
+    };
+
+
+    const myCategoriesChart = document.getElementById("my-categories-chart");
+    let chart1= new Chart(myCategoriesChart, {
+    type:'bar',
+    data: {
+        labels: dataChart,
+        datasets: [ { 
+            label: 'Grafico de balance por categorias',
+            data: total,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 105, 86)',
+                'rgb(255, 199, 132)',
+                'rgb(54, 62, 235)',
+                'rgb(255, 5, 86)',
+                'rgb(205, 99, 132)',
+                'rgb(154, 162, 235)',
+                'rgb(25, 105, 86)',
+                'rgb(75, 199, 132)',
+                'rgb(149, 62, 235)',
+                'rgb(105, 5, 86)',
+            ],
+        }]
+    }, options: {
+        scale: {
+            yAxes:[{
+                ticks: { 
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    })
+
 };
 
 balanceByCategory();
@@ -202,12 +272,9 @@ balanceByCategory();
 
 let totalsByMonth = {};
 
-
-
 storage.newoperation.forEach((op) =>{
     const date = new Date(op.dateLine);
     
-
     if(!totalsByMonth[date.getFullYear()]){
         totalsByMonth[date.getFullYear()] ={};
     }
@@ -222,61 +289,66 @@ storage.newoperation.forEach((op) =>{
 
 });
 
-console.log(totalsByMonth)
-
-
-const totalByMonthTable = document.getElementById('total-by-month-table');
-
-
 const balanceByMonth= () => {
 
+    let arrayMonth=[];
+    let arrayBalancebyMonth=[];
 
     for(const prop in totalsByMonth){
-
-        console.log(prop)
 
         const year = totalsByMonth[prop]
         totalsByMonth[year];
 
-        console.log(year)
-
         for ( const month in year){
-            console.log(year[month].gasto);
 
-
-            const newRow= document.createElement('tr');
+        const newRow= document.createElement('tr');
         const newRowMonth= document.createElement('td');
         const newRowProfit= document.createElement('td');
         const newRowExpense= document.createElement('td');
         const newRowBalance= document.createElement('td');
 
-        newRowMonth.innerHTML = ` ${Number(month)+1} /${prop}`;
+        newRowProfit.classList.add('text-center', 'width-table-column');
+        newRowExpense.classList.add('text-center', 'width-table-column');
+        newRowBalance.classList.add('text-end', 'width-table-column');
+
+        newRowMonth.innerHTML = `${Number(month)+1} /${prop}`;
+        arrayMonth.push(`${Number(month)+1} /${prop}`);
 
 
         if( year[month].ganancia!== undefined){
             newRowProfit.innerHTML = `+$ ${year[month].ganancia}`;
+            newRowProfit.classList.add('positive-value');
         }else {
             newRowProfit.innerHTML = "0";
         }
         if(year[month].gasto!== undefined){
             newRowExpense.innerHTML = `-$ ${year[month].gasto}`;
+            newRowExpense.classList.add('negative-value');
         }else {
             newRowExpense.innerHTML = "0";
         }
-        
-        console.log(Number(newRowProfit.innerHTML));
-        console.log(newRowExpense.innerHTML);
-
 
         if(newRowProfit.innerHTML == "0"){
             newRowBalance.innerHTML = `-$ ${Number(year[month].gasto)}`;
+            newRowBalance.classList.add('negative-value');
+            arrayBalancebyMonth.push(-Number(year[month].gasto));
+
         } else if(newRowExpense.innerHTML == "0"){
             newRowBalance.innerHTML = newRowProfit.innerHTML ;
+            newRowBalance.classList.add('positive-value');
+            arrayBalancebyMonth.push(Number(year[month].ganancia));
+
         }else{
-            newRowBalance.innerHTML =  Number(year[month].ganancia) -  Number(year[month].gasto)
+            newRowBalance.innerHTML =  `+$ ${Number(year[month].ganancia) -  Number(year[month].gasto)}`;
+            arrayBalancebyMonth.push(Number(year[month].ganancia) -  Number(year[month].gasto));
+
+            if(Number(year[month].ganancia)>Number(year[month].gasto)){
+                newRowBalance.classList.add('positive-value');
+            }else if(Number(year[month].ganancia)<Number(year[month].gasto)){
+                newRowBalance.classList.add('negative-value');
+            }
         }
     
-
         newRow.appendChild(newRowMonth);
         newRow.appendChild(newRowProfit);
         newRow.appendChild(newRowExpense);
@@ -285,12 +357,41 @@ const balanceByMonth= () => {
         totalByMonthTable.appendChild(newRow);
 
         }
-        
-
-        
-
-        
     };
+
+    const myMonthChart = document.getElementById("my-month-chart");
+    let chart1= new Chart(myMonthChart, {
+    type:'bar',
+    data: {
+        labels: arrayMonth,
+        datasets: [ { 
+            label: 'Grafico de balance por mes',
+            data: arrayBalancebyMonth,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 105, 86)',
+                'rgb(255, 199, 132)',
+                'rgb(54, 62, 235)',
+                'rgb(255, 5, 86)',
+                'rgb(205, 99, 132)',
+                'rgb(154, 162, 235)',
+                'rgb(25, 105, 86)',
+                'rgb(75, 199, 132)',
+                'rgb(149, 62, 235)',
+                'rgb(105, 5, 86)',
+            ],
+        }]
+    }, options: {
+        scale: {
+            yAxes:[{
+                ticks: { 
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    })
 };
 
 balanceByMonth();
@@ -300,66 +401,3 @@ balanceByMonth();
 
 
 
-
-
-
-
-
-// const getNewArrayMonth =(storage, kind: string)=>{
-    
-//     let newArray= storage.newoperation.filter(element => element.kind == kind);
-    
-//     console.log(newArray);
-
-//     for(const i=0; i< newArray.length; i++){
-
-//         let oldFormatDate= newArray[i];
-//         const toNewformatdate= oldFormatDate.dateLine
-
-//         newArray[i].deteLineFinal= new Date(toNewformatdate).getMonth()+1;
-//     }
-
-//     console.log("jj", newArray);
-
-//     for(const i=0; i< newArray.length; i++){
-//         if(newArray[i].deteLineFinal===1 ){
-//             newArray[i].deteLineFinal="Enero";
-//         }else if(newArray[i].deteLineFinal===2 ){
-//             newArray[i].deteLineFinal="Febrero";
-//         }if(newArray[i].deteLineFinal===3 ){
-//             newArray[i].deteLineFinal="Marzo";
-//         }if(newArray[i].deteLineFinal===4 ){
-//             newArray[i].deteLineFinal="Abril";
-//         }if(newArray[i].deteLineFinal===5 ){
-//             newArray[i].deteLineFinal="Mayo";
-//         }if(newArray[i].deteLineFinal===6 ){
-//             newArray[i].deteLineFinal="Junio";
-//         }if(newArray[i].deteLineFinal===7 ){
-//             newArray[i].deteLineFinal="Julio";
-//         }if(newArray[i].deteLineFinal===8 ){
-//             newArray[i].deteLineFinal="Agosto";
-//         }if(newArray[i].deteLineFinal===9 ){
-//             newArray[i].deteLineFinal="Septiembre";
-//         }if(newArray[i].deteLineFinal===10 ){
-//             newArray[i].deteLineFinal="Octubre";
-//         }if(newArray[i].deteLineFinal===11 ){
-//             newArray[i].deteLineFinal="Noviembre";
-//         }else{
-//             newArray[i].deteLineFinal="Diciembre";
-//         }
-//     }
-
-//     const elementByMonth={};
-//     for( const item of newArray){
-
-//         if(elementByMonth[item.deteLineFinal]){
-//             elementByMonth[item.deteLineFinal]+= Number(item.amount);
-
-//         }else{
-//             elementByMonth[item.deteLineFinal]= Number(item.amount);
-//         }
-//     }
-//         console.log(elementByMonth)
-//     return elementByMonth
-    
-// }
