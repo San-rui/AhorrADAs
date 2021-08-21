@@ -21,11 +21,11 @@ var editedCategoryName = function (e) {
     var storage = goOnStorage();
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var element = _a[_i];
-        if (element.name === nameCategory.value) {
+        if (element.id === nameCategory.value) {
             nameCategory.value = catToEdit;
             return alert('Esta categoría ya existe');
         }
-        else if (element.name !== nameCategory.value) {
+        else if (element.id !== nameCategory.value) {
             var newArray = storage.categories.map(function (item) {
                 if (item.name === catToEdit) {
                     return __assign(__assign({}, item), { name: nameCategory.value, slug: slugify(nameCategory.value) });

@@ -36,7 +36,10 @@ const addCategory =(e)=>{
     const slugName = slugify(newCategoryName);
 
     
-        if (myCategory.includes(slugName)){
+    if(slugName ==""){
+        console.log("este es el slug", slugName)
+        return alert ('No se puede generar una categoría sin nombre');
+    } else if (myCategory.includes(slugName)){
             nameCat.value = "";
             return alert ('Esta categoría ya existe');
             
@@ -53,11 +56,7 @@ const addCategory =(e)=>{
                 nameCat.value = "";
 
                 return updateTableCategory();
-        }else if(slugName ===""){
-            return alert ('No se puede generar una categoría sin nombre');
-        }
-
-        
+        } ;
     
 
 };
@@ -75,6 +74,7 @@ const updateTableCategory = ()=> {
         const newRow= document.createElement('tr');
         const newCategoryNameAdded= document.createElement('td');
         const newRowAction= document.createElement('td');
+        newRowAction.classList.add('text-end')
 
         newCategoryNameAdded.setAttribute('id', element.slug);
         const editAction =document.createElement('a');
@@ -82,6 +82,7 @@ const updateTableCategory = ()=> {
         editAction.setAttribute('name', element.slug);
         editAction.setAttribute('class','action-class');
         deleteAction.setAttribute('class','action-class');
+        
 
         editAction.innerHTML="Editar";
         deleteAction.innerHTML="Eliminar";

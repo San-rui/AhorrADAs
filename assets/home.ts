@@ -120,7 +120,6 @@ const applyFilters = (event)=>{
     return filters;
 };
 
-
 let updateFilters;
 
 const reChargeTable =(event)=>{
@@ -132,11 +131,11 @@ const reChargeTable =(event)=>{
 
 const updateTableOp = (filter=filters) => {
 
-    let operations = storage.newoperation
+    let operations = storage.newoperation;
 
-    let tempFilter = operations.filter( element =>  element.kind === filters.kind || filters.kind== "todos")
+    let tempFilter = operations.filter( element =>  element.kind === filters.kind || filters.kind== "todos");
 
-    tempFilter= tempFilter.filter(element => element.category === filters.categories || filters.categories== "todas")
+    tempFilter= tempFilter.filter(element => element.category === filters.categories || filters.categories== "todas");
 
     switch (filters.orderBy) {
         case 'mas-reciente': tempFilter= tempFilter.sort((a, b) => new Date(a.dateLine).getTime() - new Date(b.dateLine).getTime());
@@ -171,12 +170,11 @@ const updateTableOp = (filter=filters) => {
         const dateAdded = new Date(filters.from);
         const dateOperacion = new Date(operacion.dateLine)
         return dateOperacion.getTime() >= dateAdded.getTime()+1
-        })
+    });
 
     table.innerHTML="";
 
     for(const element of tempFilter){
-
 
         const newRow= document.createElement('tr');
         const newRowDescription= document.createElement('td');
@@ -184,7 +182,6 @@ const updateTableOp = (filter=filters) => {
         const newRowDate= document.createElement('td');
         const newRowAmount= document.createElement('td');
         const newRowAction= document.createElement('td');
-
 
         const editAction =document.createElement('a');
         const deleteAction =document.createElement('button');
@@ -198,7 +195,6 @@ const updateTableOp = (filter=filters) => {
 
         editAction.innerHTML="Editar";
         deleteAction.innerHTML="Eliminar";
-
 
         newRowAction.appendChild(editAction);
         newRowAction.appendChild(deleteAction);

@@ -26,7 +26,11 @@ var addCategory = function (e) {
     var formNewCategory = e.target;
     var newCategoryName = formNewCategory.name.value;
     var slugName = slugify(newCategoryName);
-    if (myCategory.includes(slugName)) {
+    if (slugName == "") {
+        console.log("este es el slug", slugName);
+        return alert('No se puede generar una categoría sin nombre');
+    }
+    else if (myCategory.includes(slugName)) {
         nameCat.value = "";
         return alert('Esta categoría ya existe');
     }
@@ -41,9 +45,7 @@ var addCategory = function (e) {
         nameCat.value = "";
         return updateTableCategory();
     }
-    else if (slugName === "") {
-        return alert('No se puede generar una categoría sin nombre');
-    }
+    ;
 };
 formAddCategory.addEventListener('submit', addCategory);
 //------------SHOW CATEGORY ADDED-------------
@@ -54,6 +56,7 @@ var updateTableCategory = function () {
         var newRow = document.createElement('tr');
         var newCategoryNameAdded = document.createElement('td');
         var newRowAction = document.createElement('td');
+        newRowAction.classList.add('text-end');
         newCategoryNameAdded.setAttribute('id', element.slug);
         var editAction = document.createElement('a');
         var deleteAction = document.createElement('button');
