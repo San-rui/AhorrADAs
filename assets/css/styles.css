@@ -38,8 +38,10 @@ a i{
 
 /*-------SECTION--------*/
 
-.width-section{
-    width:25rem;
+.container{
+    width:58rem;
+    padding: 1.5rem;
+    border-radius: 7px;
 }
 
 /*-------OPERATIONS CARD--------*/
@@ -63,9 +65,11 @@ a i{
 }
 
 .op-card-width{
-    width: 58rem;
+    width: 100%;
     height: 100%;
 }
+
+
 
 /*-------ADD BUTTON--------*/
 
