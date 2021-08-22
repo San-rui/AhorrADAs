@@ -56,9 +56,10 @@ var balanceFunction = function (param) {
 };
 balanceFunction();
 //---------HIDE NO RESULTS CARD------------
-var hideCard = function () {
+var hideCard = function (parameter) {
+    if (parameter === void 0) { parameter = myOperations; }
     var storage = goOnStorage();
-    if (storage.newoperation.length == 0) {
+    if (parameter.length == 0) {
         opTable.classList.add('hidden');
         noResultsCard.classList.remove('hidden');
     }
@@ -84,7 +85,6 @@ var order = ["mas-reciente", "menos-reciente", "mayor-monto", "menor-monto", "a-
 var filters = getFilterFromStorage();
 var applyFilters = function (event) {
     var newParam = event.target.value;
-    console.log(newParam);
     if (newParam == "gasto" || newParam == "ganancia" || newParam == "todos") {
         filters.kind = newParam;
     }
@@ -154,6 +154,7 @@ var updateTableOp = function (filter) {
         var dateOperacion = new Date(operacion.dateLine);
         return dateOperacion.getTime() >= dateAdded.getTime() + 1;
     });
+    hideCard(tempFilter);
     table.innerHTML = "";
     var _loop_1 = function (element) {
         var newRow = document.createElement('tr');
@@ -196,6 +197,7 @@ var updateTableOp = function (filter) {
             storage.newoperation = newArrayOp;
             localStorage.setItem('full-storage', JSON.stringify(storage));
             balanceFunction();
+            hideCard();
             updateTableOp();
         };
         deleteAction.addEventListener('click', deleteOp);
