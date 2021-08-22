@@ -203,7 +203,7 @@ var updateTableOp = function (filter) {
             var opToEdit = storage.newoperation.filter(function (item) { return element.id === item.id; });
             localStorage.setItem('editedOp', JSON.stringify(opToEdit));
             var params = new URLSearchParams(window.location.search);
-            editAction.setAttribute('href', "./edit-op.html?opId=" + element.id);
+            editAction.setAttribute('href', "./pages/edit-op.html?opId=" + element.id);
         };
         editAction.addEventListener('click', goToEditOp);
     };

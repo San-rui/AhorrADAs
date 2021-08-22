@@ -1,10 +1,26 @@
 //---------VARIABLES--------------------------------
 let storage: LocalStorage = goOnStorage();
 const newOperationForm = document.getElementById('form-new-op');
+const btnCnlOp = document.getElementById('btn-cnl-op');
 
 //--------- FILTERS: SELECT CATEGORY-------------------
 
 loadFilterCategory();
+
+//--------- CREATE ID OPERATION-------------------
+
+const getIdOp = () => {
+
+    let storage: LocalStorage = goOnStorage();
+
+    if(storage.newoperation.length > 0) {
+    const lastItem = storage.newoperation[storage.newoperation.length -1];
+    return lastItem.id + 1;
+    } 
+
+    return 1;
+}
+
 
 //--------- CREATE NEW OPERATION-------------------
 
@@ -38,19 +54,13 @@ const createNewOp = (e) =>{
 newOperationForm.addEventListener('submit', createNewOp);
 
 
+const goBackToOpTableInfo= () => {
 
-
-const getIdOp = () => {
-
-    let storage: LocalStorage = goOnStorage();
-
-    if(storage.newoperation.length > 0) {
-    const lastItem = storage.newoperation[storage.newoperation.length -1];
-    return lastItem.id + 1;
-    } 
-
-    return 1;
+    window.location.href='../index.html'; 
 }
+
+btnCnlOp.addEventListener('click', goBackToOpTableInfo);
+
 
 
 

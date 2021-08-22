@@ -1,8 +1,18 @@
 //---------VARIABLES--------------------------------
 var storage = goOnStorage();
 var newOperationForm = document.getElementById('form-new-op');
+var btnCnlOp = document.getElementById('btn-cnl-op');
 //--------- FILTERS: SELECT CATEGORY-------------------
 loadFilterCategory();
+//--------- CREATE ID OPERATION-------------------
+var getIdOp = function () {
+    var storage = goOnStorage();
+    if (storage.newoperation.length > 0) {
+        var lastItem = storage.newoperation[storage.newoperation.length - 1];
+        return lastItem.id + 1;
+    }
+    return 1;
+};
 //--------- CREATE NEW OPERATION-------------------
 var createNewOp = function (e) {
     e.preventDefault();
@@ -25,11 +35,7 @@ var createNewOp = function (e) {
     window.location.href = '../index.html';
 };
 newOperationForm.addEventListener('submit', createNewOp);
-var getIdOp = function () {
-    var storage = goOnStorage();
-    if (storage.newoperation.length > 0) {
-        var lastItem = storage.newoperation[storage.newoperation.length - 1];
-        return lastItem.id + 1;
-    }
-    return 1;
+var goBackToOpTableInfo = function () {
+    window.location.href = '../index.html';
 };
+btnCnlOp.addEventListener('click', goBackToOpTableInfo);

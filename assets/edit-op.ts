@@ -61,7 +61,7 @@ const editedOp= () => {
     storage.newoperation =  newOpArray;
     localStorage.setItem('full-storage', JSON.stringify(storage));
 
-    window.location.href="./index.html"; 
+    window.location.href="../index.html"; 
 }
 
 btnEditedOp.addEventListener('click', editedOp);
@@ -71,7 +71,7 @@ btnEditedOp.addEventListener('click', editedOp);
 
 const goBackToOpTable= () => {
 
-    window.location.href="./index.html"; 
+    window.location.href='../index.html'; 
 }
 
 btnCnlEditOp.addEventListener('click', goBackToOpTable);

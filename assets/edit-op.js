@@ -57,11 +57,11 @@ var editedOp = function () {
     });
     storage.newoperation = newOpArray;
     localStorage.setItem('full-storage', JSON.stringify(storage));
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 };
 btnEditedOp.addEventListener('click', editedOp);
 //------------BUTTON CANCEL EDIT OP-------------
 var goBackToOpTable = function () {
-    window.location.href = "./index.html";
+    window.location.href = '../index.html';
 };
 btnCnlEditOp.addEventListener('click', goBackToOpTable);
