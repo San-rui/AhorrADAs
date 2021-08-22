@@ -63,9 +63,9 @@ const balanceFunction = (param = myOperations) =>{
         
     }else{
         totalResult.innerHTML = `$ ${total}`;
+        totalResult.setAttribute('class', 'positive-value')
     }
 };
-
 balanceFunction ();
 
 //---------HIDE NO RESULTS CARD------------
@@ -190,7 +190,7 @@ const updateTableOp = (filter=filters) => {
         editAction.setAttribute('class','action-class');
         deleteAction.setAttribute('class','action-class');
 
-        newRowCategory.setAttribute('class','category-style');
+        // newRowCategory.classList.add('table-danger');
         editAction.dataset.id = element.id;
 
         editAction.innerHTML="Editar";
@@ -228,8 +228,10 @@ const updateTableOp = (filter=filters) => {
             balanceFunction();
             updateTableOp();
         };
-    
+
         deleteAction.addEventListener('click', deleteOp);
+
+        
         
         const goToEditOp = (e) => {
 
@@ -243,7 +245,7 @@ const updateTableOp = (filter=filters) => {
         };
         editAction.addEventListener('click', goToEditOp);
     };
-    hideCard ();
+
     balanceFunction(tempFilter);
 };
 

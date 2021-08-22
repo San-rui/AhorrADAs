@@ -2,6 +2,8 @@
 let storage: LocalStorage = goOnStorage();
 const newOperationForm = document.getElementById('form-new-op');
 const btnCnlOp = document.getElementById('btn-cnl-op');
+const OpDate=document.querySelector('input[type="date"]');
+OpDate.value= functionDate();
 
 //--------- FILTERS: SELECT CATEGORY-------------------
 

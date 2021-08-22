@@ -74,7 +74,7 @@ const updateTableCategory = ()=> {
         const newRow= document.createElement('tr');
         const newCategoryNameAdded= document.createElement('td');
         const newRowAction= document.createElement('td');
-        newRowAction.classList.add('text-end')
+        newRowAction.classList.add('text-end');
 
         newCategoryNameAdded.setAttribute('id', element.slug);
         const editAction =document.createElement('a');

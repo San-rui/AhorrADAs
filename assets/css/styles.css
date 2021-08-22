@@ -36,12 +36,16 @@ a i{
     margin-right: 7px;
 }
 
-/*-------SECTION--------*/
+/*-------ASIDE--------*/
 
 .container{
     width:58rem;
     padding: 1.5rem;
     border-radius: 7px;
+}
+
+.btn-hide-filters{
+    width:15rem;
 }
 
 /*-------OPERATIONS CARD--------*/
@@ -65,7 +69,7 @@ a i{
 }
 
 .op-card-width{
-    width: 100%;
+    width: 48rem;
     height: 100%;
 }
 
@@ -99,9 +103,8 @@ a i{
     color: #008000;
 }
 
-.category-style{
-    color: var(--background-color-dark-pink);
-    background: yellow;
+.table-danger{
+    background-color: chartreuse;
 }
 
 /*-------ANIMATION-------*/
