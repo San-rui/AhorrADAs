@@ -15,11 +15,11 @@ const editedCategoryName = (e) => {
     let storage: LocalStorage = goOnStorage(); 
 
     for(const element of storage.categories){
-        if (element.name === nameCategory.value){
+        if (element.id === nameCategory.value){
             nameCategory.value = catToEdit;
             return alert ('Esta categoría ya existe');
             
-        } else if (element.name !== nameCategory.value){
+        } else if (element.id !== nameCategory.value){
             const newArray = storage.categories.map (item =>{
                 
                 if(item.name === catToEdit){
