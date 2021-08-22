@@ -2,6 +2,8 @@
 var storage = goOnStorage();
 var newOperationForm = document.getElementById('form-new-op');
 var btnCnlOp = document.getElementById('btn-cnl-op');
+var OpDate = document.querySelector('input[type="date"]');
+OpDate.value = functionDate();
 //--------- FILTERS: SELECT CATEGORY-------------------
 loadFilterCategory();
 //--------- CREATE ID OPERATION-------------------

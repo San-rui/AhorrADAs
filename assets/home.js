@@ -51,6 +51,7 @@ var balanceFunction = function (param) {
     }
     else {
         totalResult.innerHTML = "$ " + total;
+        totalResult.setAttribute('class', 'positive-value');
     }
 };
 balanceFunction();
@@ -166,7 +167,7 @@ var updateTableOp = function (filter) {
         editAction.setAttribute('value', element.description);
         editAction.setAttribute('class', 'action-class');
         deleteAction.setAttribute('class', 'action-class');
-        newRowCategory.setAttribute('class', 'category-style');
+        // newRowCategory.classList.add('table-danger');
         editAction.dataset.id = element.id;
         editAction.innerHTML = "Editar";
         deleteAction.innerHTML = "Eliminar";
@@ -212,7 +213,6 @@ var updateTableOp = function (filter) {
         _loop_1(element);
     }
     ;
-    hideCard();
     balanceFunction(tempFilter);
 };
 var onloadPage = function () {

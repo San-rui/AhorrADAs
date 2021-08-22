@@ -27,7 +27,6 @@ var addCategory = function (e) {
     var newCategoryName = formNewCategory.name.value;
     var slugName = slugify(newCategoryName);
     if (slugName == "") {
-        console.log("este es el slug", slugName);
         return alert('No se puede generar una categoría sin nombre');
     }
     else if (myCategory.includes(slugName)) {
