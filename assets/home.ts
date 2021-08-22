@@ -70,10 +70,10 @@ balanceFunction ();
 
 //---------HIDE NO RESULTS CARD------------
 
-const hideCard = () =>{
+const hideCard = (parameter=myOperations) =>{
     const storage: LocalStorage = goOnStorage();
 
-    if(storage.newoperation.length == 0){
+    if(parameter.length == 0){
 
         opTable.classList.add('hidden');
         noResultsCard.classList.remove('hidden');
@@ -84,7 +84,7 @@ const hideCard = () =>{
     }
 };
 
-hideCard ();
+hideCard();
 
 //--------- NEW OPERATION BUTTON--------------------
 
@@ -107,7 +107,6 @@ const filters = getFilterFromStorage();
 
 const applyFilters = (event)=>{
     const newParam = event.target.value;
-    console.log(newParam)
     if(newParam == "gasto" || newParam == "ganancia" || newParam == "todos"){
         filters.kind=newParam;
     } else if(myCategory.includes(newParam) || newParam == "todas"){
@@ -172,6 +171,8 @@ const updateTableOp = (filter=filters) => {
         return dateOperacion.getTime() >= dateAdded.getTime()+1
     });
 
+    hideCard(tempFilter);
+
     table.innerHTML="";
 
     for(const element of tempFilter){
@@ -224,8 +225,9 @@ const updateTableOp = (filter=filters) => {
             const newArrayOp= storage.newoperation.filter(item => element.id !== item.id);
             storage.newoperation=newArrayOp;
             localStorage.setItem('full-storage', JSON.stringify(storage));
-
+        
             balanceFunction();
+            hideCard();
             updateTableOp();
         };
 
@@ -256,7 +258,7 @@ const onloadPage =()=>{
         reChargeTable(event);
         });
     category.addEventListener('change', (event) => {
-        reChargeTable(event);
+        reChargeTable(event); 
         });
     filterDate.addEventListener('change', (event) => {
         reChargeTable(event);
