@@ -239,7 +239,7 @@ const updateTableOp = (filter=filters) => {
             localStorage.setItem('editedOp', JSON.stringify(opToEdit));
 
             const params= new URLSearchParams(window.location.search);
-            editAction.setAttribute('href',`./edit-op.html?opId=${element.id}`)
+            editAction.setAttribute('href',`./pages/edit-op.html?opId=${element.id}`)
         };
         editAction.addEventListener('click', goToEditOp);
     };
