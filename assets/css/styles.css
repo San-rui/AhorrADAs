@@ -1,11 +1,13 @@
 body.format {
-    --background-color-dark-pink:#e94974ff;
-    --font-color-dark-pink:#e94974ff;
+    --background-color-dark:#13A19C;
+    --font-color-dark:#13A19C;
     --font-background-color:#f7cbd7;
-    --background-color: #fae9ed;
+    --background-color: #bed8d7;
     --background-color-cards: #FAFAFA;
-    --background-color-hover-button: #f86089;
-    --font-color-hover: rgb(182, 19, 62);
+    --background-color-hover-button: #24bab5;
+    --font-color-hover: #13726f;
+    --backgorund-color-cnl: #c4cbcb;
+    --font-color-cnl:#343737;
 }
 
 body{
@@ -19,7 +21,7 @@ body{
 }
 
 .navbar-background{
-    background-color: var(--background-color-dark-pink);
+    background-color: var(--background-color-dark);
 }
 
 .nav-link{
@@ -32,10 +34,14 @@ body{
     background-color:var(--background-color-hover-button);
     transition-duration: 0.3s;
 }
+
 a i{
     margin-right: 7px;
 }
 
+.navbar-toggler{
+    background-color: var(--background-color);
+}
 /*-------ASIDE--------*/
 
 .container{
@@ -60,7 +66,7 @@ a i{
 }
 
 .new-op-button{
-    background-color: var(--background-color-dark-pink);
+    background-color: var(--background-color-dark);
 }
 
 .new-op-button:hover{
@@ -68,23 +74,33 @@ a i{
     transition-duration: 0.2s;
 }
 
-.op-card-width{
+.op-card-style{
     width: 48rem;
     height: 100%;
+    border: none;
 }
 
-
-
+/*-------CANCEL BUTTON--------*/
+.cnl-btn-color{
+    background-color: var(--background-color);
+    color: var(--font-color-cnl);
+}
+.cnl-btn-color:hover{
+    background-color: var(--backgorund-color-cnl);
+}
 /*-------ADD BUTTON--------*/
 
-.dark-pink-color{
-    background-color: var(--background-color-dark-pink);
+.dark-color{
+    background-color: var(--background-color-dark)
 }
 
+.dark-color:hover{
+    background-color:var(--background-color-hover-button)
+}
 /*-------TABLE--------*/
 
 .action-class{
-    color:var(--background-color-dark-pink);
+    color:var(--background-color-dark);
     font-size: 14px;
     text-decoration: none;
     margin: 0px 0px 10px 10px;
@@ -101,10 +117,6 @@ a i{
 
 .positive-number{
     color: #008000;
-}
-
-.table-danger{
-    background-color: chartreuse;
 }
 
 /*-------ANIMATION-------*/
@@ -131,19 +143,19 @@ a i{
 }
 
 .style-text-dark-color{
-    color: var(--font-color-dark-pink);
+    color: var(--font-color-dark);
     background-color: var(--font-background-color);
     border-radius: 5px;
     padding: 2px;
     text-align: center; 
 }
 
-
-.width-table-column{
-    width: 15rem;
-}
-
+/*------ REPORTS-----*/
 .chart{
     width: 25rem;
     margin: 2rem;
+}
+
+.width-table-column{
+    width: 15rem;
 }
