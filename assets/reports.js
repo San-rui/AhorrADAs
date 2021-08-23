@@ -1,3 +1,19 @@
+//---------HIDE NOT ENOUGH CARD------------
+var notEnoughOpCard = document.getElementById('not-enough-op-card');
+var addCategoryContainer = document.getElementById('add-category-container');
+var storage = goOnStorage();
+var hideCardInsuficientOp = function () {
+    var storage = goOnStorage();
+    if (storage.newoperation.length >= 4) {
+        notEnoughOpCard.classList.add('hidden');
+        addCategoryContainer.classList.remove('hidden');
+    }
+    else {
+        notEnoughOpCard.classList.remove('hidden');
+        addCategoryContainer.classList.add('hidden');
+    }
+};
+hideCardInsuficientOp();
 //------------- SUMMARY----------------
 var storage = goOnStorage();
 var summaryCategoryProfit = document.querySelector('#summary-category-profit');

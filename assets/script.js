@@ -14,10 +14,10 @@ var goOnStorage = function () {
     var fullLocalStorage = JSON.parse(localStorage.getItem('full-storage'));
     if (!fullLocalStorage) {
         fullLocalStorage = {
-            categories: [{ id: 1, name: "Comida", slug: "comida" }, { id: 2, name: "Servicios", slug: "servicios" },
-                { id: 3, name: "Salidas", slug: "salidas" },
-                { id: 4, name: "Educación", slug: "educación" }, { id: 5, name: "Transporte", slug: "transporte" },
-                { id: 6, name: "Trabajo", slug: "trabajo" }],
+            categories: [{ id: "comida", name: "Comida", slug: "comida" }, { id: "servicios", name: "Servicios", slug: "servicios" },
+                { id: "salidas", name: "Salidas", slug: "salidas" },
+                { id: "educación", name: "Educación", slug: "educación" }, { id: "transporte", name: "Transporte", slug: "transporte" },
+                { id: "trabajo", name: "Trabajo", slug: "trabajo" }],
             newoperation: []
         };
     }
@@ -51,4 +51,3 @@ var getFilterFromStorage = function () {
     return myFilters;
 };
 getFilterFromStorage();
-console.log(getFilterFromStorage());
