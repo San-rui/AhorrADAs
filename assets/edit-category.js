@@ -19,26 +19,34 @@ nameCategory.value = catToEdit;
 var editedCategoryName = function (e) {
     e.preventDefault();
     var storage = goOnStorage();
+    var myCategoryList = [];
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var element = _a[_i];
-        if (element.id === nameCategory.value) {
-            nameCategory.value = catToEdit;
-            return alert('Esta categoría ya existe');
-        }
-        else if (element.id !== nameCategory.value) {
-            var newArray = storage.categories.map(function (item) {
-                if (item.name === catToEdit) {
-                    return __assign(__assign({}, item), { name: nameCategory.value, slug: slugify(nameCategory.value) });
-                }
-                else {
-                    return item;
-                }
-            });
-            storage.categories = newArray;
-            localStorage.setItem('full-storage', JSON.stringify(storage));
-            window.location.href = "./categories.html";
-        }
+        myCategoryList.push(element.slug);
     }
+    ;
+    console.log(myCategoryList);
+    console.log("", nameCategory.value);
+    var slugNameCategory = slugify(nameCategory.value);
+    if (myCategoryList.includes(slugNameCategory)) {
+        nameCategory.value = catToEdit;
+        console.log("soy true");
+        return alert('Esta categoría ya existe');
+    }
+    else if (!myCategoryList.includes(slugNameCategory)) {
+        var newArray = storage.categories.map(function (item) {
+            if (item.name === catToEdit) {
+                return __assign(__assign({}, item), { name: nameCategory.value, slug: slugify(nameCategory.value) });
+            }
+            else {
+                return item;
+            }
+        });
+        storage.categories = newArray;
+        localStorage.setItem('full-storage', JSON.stringify(storage));
+        window.location.href = "./categories.html";
+    }
+    ;
 };
 btnEditCat.addEventListener('click', editedCategoryName);
 //------------BUTTON CANCEL EDIT CATEGORY-------------
