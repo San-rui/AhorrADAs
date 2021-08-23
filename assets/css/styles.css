@@ -159,3 +159,8 @@ a i{
 .width-table-column{
     width: 15rem;
 }
+
+.img-reports{
+    width: 350px;
+    height: 350px;
+}

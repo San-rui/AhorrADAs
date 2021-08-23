@@ -1,3 +1,25 @@
+
+//---------HIDE NOT ENOUGH CARD------------
+const notEnoughOpCard = document.getElementById('not-enough-op-card');
+const addCategoryContainer =document.getElementById('add-category-container');
+let storage: LocalStorage = goOnStorage();
+
+const hideCardInsuficientOp = () =>{
+
+    const storage: LocalStorage = goOnStorage();
+
+    if(storage.newoperation.length >= 4){
+
+        notEnoughOpCard.classList.add('hidden');
+        addCategoryContainer.classList.remove('hidden');
+
+    }else{
+        notEnoughOpCard.classList.remove('hidden');
+        addCategoryContainer.classList.add('hidden');
+    }
+};
+hideCardInsuficientOp();
+
 //------------- SUMMARY----------------
 let storage: LocalStorage = goOnStorage();
 
@@ -15,7 +37,7 @@ const totalByMonthTable = document.getElementById('total-by-month-table');
 
 
 const HighestProfitOrExpenseCategory = (storage, kind: string, categoryText, amountText) =>{
-
+    
     let newArray= storage.newoperation.filter(element => element.kind == kind);
 
     const elementByCategory={};
@@ -395,7 +417,6 @@ const balanceByMonth= () => {
 };
 
 balanceByMonth();
-
 
 
 
