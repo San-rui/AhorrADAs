@@ -191,7 +191,7 @@ const updateTableOp = (filter=filters) => {
         editAction.setAttribute('class','action-class');
         deleteAction.setAttribute('class','action-class');
 
-        // newRowCategory.classList.add('table-danger');
+    
         editAction.dataset.id = element.id;
 
         editAction.innerHTML="Editar";

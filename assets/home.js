@@ -168,7 +168,6 @@ var updateTableOp = function (filter) {
         editAction.setAttribute('value', element.description);
         editAction.setAttribute('class', 'action-class');
         deleteAction.setAttribute('class', 'action-class');
-        // newRowCategory.classList.add('table-danger');
         editAction.dataset.id = element.id;
         editAction.innerHTML = "Editar";
         deleteAction.innerHTML = "Eliminar";
