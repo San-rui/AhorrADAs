@@ -168,7 +168,7 @@ const updateTableOp = (filter=filters) => {
     tempFilter=tempFilter.filter((operacion) => {
         const dateAdded = new Date(filters.from);
         const dateOperacion = new Date(operacion.dateLine)
-        return dateOperacion.getTime() >= dateAdded.getTime()+1
+        return dateOperacion.getTime() >= dateAdded.getTime()
     });
 
     hideCard(tempFilter);
@@ -188,8 +188,16 @@ const updateTableOp = (filter=filters) => {
         const deleteAction =document.createElement('button');
         
         editAction.setAttribute('value', element.description);
-        editAction.setAttribute('class','action-class');
-        deleteAction.setAttribute('class','action-class');
+        editAction.classList.add('action-class');
+        deleteAction.classList.add('action-class','rounded-3');
+
+        newRowDescription.classList.add('width-table-column-responsive');
+        newRowCategory.classList.add('width-table-column-responsive');
+        newRowDate.classList.add('width-table-column-responsive','hide');
+        newRowAmount.classList.add('width-table-column-responsive', 'font-size-responsive');
+        newRowAction.classList.add('width-table-column-responsive');
+
+        newRow.classList.add('row-table-op-responsive');
 
     
         editAction.dataset.id = element.id;
@@ -205,10 +213,10 @@ const updateTableOp = (filter=filters) => {
         newRowDate.innerHTML = element.dateLine;
         
         if(element.kind === "gasto"){
-            newRowAmount.setAttribute('class','negative-number');
+            newRowAmount.classList.add('negative-number');
             newRowAmount.innerHTML = "-" + element.amount;
         } else if(element.kind === "ganancia"){
-            newRowAmount.setAttribute('class','positive-number');
+            newRowAmount.classList.add('positive-number');
             newRowAmount.innerHTML = "+" + element.amount;
         };
 

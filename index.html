@@ -116,7 +116,7 @@
                             <div class="card-body" id="op-newOp">
                                 <div class="d-flex justify-content-between flex-column flex-sm-row">
                                     <h3 class="card-title">Operaciones</h3>
-                                    <button type="button" class="btn text-white new-op-button" id="new-operation-button">+ Nueva Operación</button> 
+                                    <button type="button" class="btn text-white new-op-button btn-new-op" id="new-operation-button">+ Nueva Operación</button> 
                                 </div>
                                 <div id="no-results-card">
                                     <div id="anim"></div>
@@ -127,14 +127,14 @@
                             
                             <!-- OPERATIONS LIST  -->
                             <div id="op-table" class="hidden">
-                                <table class="table table-borderless table-responsive-md cards-background">
+                                <table class="table table-borderless cards-background">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Descripción</th>
-                                            <th scope="col">Categoría</th>
-                                            <th scope="col">Fecha</th>
-                                            <th scope="col">Monto</th>
-                                            <th scope="col">Acciones</th>
+                                            <th scope="col" class="hide">Descripción</th>
+                                            <th scope="col" class="hide">Categoría</th>
+                                            <th scope="col" class="hide">Fecha</th>
+                                            <th scope="col" class="hide">Monto</th>
+                                            <th scope="col" class="hide">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody id="op-list">

@@ -145,13 +145,32 @@ a i{
 }
 
 .width-table-column{
-    width: 10rem;
+    width: 15rem;
 }
 
 .img-reports{
     width: 80%;
 }
 
+@media screen and (max-width:500px){ 
+    .hide{
+        display: none;
+    }
+    .width-table-column-responsive{
+        width: 150px;
+        text-align: center;
+    }
+
+    .row-table-op-responsive{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .font-size-responsive{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+}
 @media screen and (max-width:768px){ 
     .btn-edit-cnl-cat{
         width: 8rem;
@@ -160,7 +179,11 @@ a i{
     .chart{
         width: 80%;
     }
-    
+
+    .btn-new-op{
+        width: 11rem;
+        font-size: 1rem;
+    }
 
 }
 

@@ -152,7 +152,7 @@ var updateTableOp = function (filter) {
     tempFilter = tempFilter.filter(function (operacion) {
         var dateAdded = new Date(filters.from);
         var dateOperacion = new Date(operacion.dateLine);
-        return dateOperacion.getTime() >= dateAdded.getTime() + 1;
+        return dateOperacion.getTime() >= dateAdded.getTime();
     });
     hideCard(tempFilter);
     table.innerHTML = "";
@@ -166,8 +166,14 @@ var updateTableOp = function (filter) {
         var editAction = document.createElement('a');
         var deleteAction = document.createElement('button');
         editAction.setAttribute('value', element.description);
-        editAction.setAttribute('class', 'action-class');
-        deleteAction.setAttribute('class', 'action-class');
+        editAction.classList.add('action-class');
+        deleteAction.classList.add('action-class', 'rounded-3');
+        newRowDescription.classList.add('width-table-column-responsive');
+        newRowCategory.classList.add('width-table-column-responsive');
+        newRowDate.classList.add('width-table-column-responsive', 'hide');
+        newRowAmount.classList.add('width-table-column-responsive', 'font-size-responsive');
+        newRowAction.classList.add('width-table-column-responsive');
+        newRow.classList.add('row-table-op-responsive');
         editAction.dataset.id = element.id;
         editAction.innerHTML = "Editar";
         deleteAction.innerHTML = "Eliminar";
@@ -177,11 +183,11 @@ var updateTableOp = function (filter) {
         newRowCategory.innerHTML = element.category;
         newRowDate.innerHTML = element.dateLine;
         if (element.kind === "gasto") {
-            newRowAmount.setAttribute('class', 'negative-number');
+            newRowAmount.classList.add('negative-number');
             newRowAmount.innerHTML = "-" + element.amount;
         }
         else if (element.kind === "ganancia") {
-            newRowAmount.setAttribute('class', 'positive-number');
+            newRowAmount.classList.add('positive-number');
             newRowAmount.innerHTML = "+" + element.amount;
         }
         ;
