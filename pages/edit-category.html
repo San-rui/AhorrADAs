@@ -11,7 +11,7 @@
         <title>AhorrADAs</title>
     </head>
     <body class="format">
-        <nav class="navbar navbar-light navbar-expand-lg navbar-background sticky-top text-white">
+       <nav class="navbar navbar-light navbar-expand-lg navbar-background sticky-top text-white navbar-style">
             <div class="container-fluid">
                 
                 <a class="navbar-brand d-flex" href="#">
@@ -36,18 +36,20 @@
                 </div>
             </div>
         </nav>
-        <main class="mt-5 mb-5">
+        <main class="px-3 pt-5">
             <!-- EDIT CATEGORY FORM -->
-            <div class="container cards-background pb-5" id="edit-form-container">
+            <div class="container-fluid container-lg cards-background" id="edit-form-container">
                 <form action="" id="form-edit-category">
                     <div>
                         <h2>Editar categoría</h2>
                             <div class="mt-5">
                                 <label for="formGroupExampleInput" class="form-label fw-bold">Nombre</label>
-                                <div class="d-flex justify-content-between">
-                                    <input type="text" id="name-category" class="form-control me-3">
-                                    <button class="btn me-3 cnl-btn-color" type="reset" id="btn-cnl-edit-cat">Cancelar</button>
-                                    <button class="btn dark-color text-white" type="submit" id="btn-edit-cat">Editar</button>
+                                <div class="d-flex justify-content-between flex-column flex-md-row">
+                                    <input type="text" id="name-category" class="form-control me-3 mb-3 mb-md-0">
+                                    <div class="d-md-flex text-end">
+                                        <button class="btn me-3 cnl-btn-color mb-3 mb-md-0 btn-edit-cnl-cat" type="reset" id="btn-cnl-edit-cat">Cancelar</button>
+                                        <button class="btn dark-color text-white mb-3 mb-md-0 btn-edit-cnl-cat" type="submit" id="btn-edit-cat">Editar</button>
+                                    </div>
                                 </div>
                             </div>
                     </div>
