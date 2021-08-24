@@ -38,8 +38,8 @@
                 </div>
             </div>
         </nav>
-        <div class="column d-flex mt-5 mb-5 justify-content-center flex-column flex-lg-row">
-                <aside class="me-3" id="balance-filters-section">
+        <div class=" column d-flex px-3 py-5 justify-content-center flex-column flex-lg-row">
+                <aside class="me-lg-3" id="balance-filters-section">
                     <!-- BALANCE -->
                     <table class="table table-borderless cards-background rounded-3">
                         <thead>
@@ -109,42 +109,42 @@
                         </fieldset>
                     </form>
                 </aside>
-            <main>
-                <div class="d-flex justify-content-center mt-3 mt-lg-0">
-                    <!-- OPERATIONS CARD-->
-                    <div class="card cards-background op-card-style" id="op-card">
-                        <div class="card-body" id="op-newOp">
-                            <div class="d-flex justify-content-between flex-column flex-sm-row">
-                                <h3 class="card-title">Operaciones</h3>
-                                <button type="button" class="btn text-white new-op-button" id="new-operation-button">+ Nueva Operación</button> 
+                <main> 
+                    <div class="d-lg-flex justify-content-center mt-3 mt-lg-0">
+                        <!-- OPERATIONS CARD-->
+                        <div class="card cards-background op-card-style" id="op-card">
+                            <div class="card-body" id="op-newOp">
+                                <div class="d-flex justify-content-between flex-column flex-sm-row">
+                                    <h3 class="card-title">Operaciones</h3>
+                                    <button type="button" class="btn text-white new-op-button" id="new-operation-button">+ Nueva Operación</button> 
+                                </div>
+                                <div id="no-results-card">
+                                    <div id="anim"></div>
+                                    <h5 class="card-text text-center mt-3">Sin resultados</h5>
+                                    <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
+                                </div>
                             </div>
-                            <div id="no-results-card">
-                                <div id="anim"></div>
-                                <h5 class="card-text text-center mt-3">Sin resultados</h5>
-                                <p class="card-text text-center mt-2">Cambia los filtros o agrega operaciones</p>
+                            
+                            <!-- OPERATIONS LIST  -->
+                            <div id="op-table" class="hidden">
+                                <table class="table table-borderless table-responsive-md cards-background">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Categoría</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Monto</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="op-list">
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-    
-                        <!-- OPERATIONS LIST  -->
-                        <div id="op-table" class="hidden">
-                            <table class="table table-borderless cards-background">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Descripción</th>
-                                        <th scope="col">Categoría</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Monto</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="op-list">
-                                </tbody>
-                            </table>
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
+                </main>
+            </div>
         
         <footer></footer>
 
