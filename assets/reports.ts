@@ -1,8 +1,21 @@
-
-//---------HIDE NOT ENOUGH CARD------------
+//----------VARIABLES-----------------
 const notEnoughOpCard = document.getElementById('not-enough-op-card');
 const addCategoryContainer =document.getElementById('add-category-container');
+
 let storage: LocalStorage = goOnStorage();
+
+const summaryCategoryProfit = document.querySelector('#summary-category-profit');
+const summaryCategoryProfitAmount = document.querySelector('#summary-category-profit-amount');
+const summaryCategoryExpense = document.querySelector('#summary-category-expense');
+const summaryCategoryExpenseAmount = document.querySelector('#summary-category-expense-amount');
+const categoryBalance = document.querySelector('#category-balance');
+const categoryBalanceAmount = document.querySelector('#category-balance-amount');
+const summaryMonthProfit= document.querySelector('#summary-month-profit');
+const summaryMonthProfitAmount = document.querySelector('#summary-month-profit-amount');
+const summaryMonthExpense= document.querySelector('#summary-month-expense');
+const summaryMonthExpenseAmount = document.querySelector('#summary-month-expense-amount');
+const totalByMonthTable = document.getElementById('total-by-month-table');
+//---------HIDE NOT ENOUGH CARD------------
 
 const hideCardInsuficientOp = () =>{
 
@@ -21,20 +34,6 @@ const hideCardInsuficientOp = () =>{
 hideCardInsuficientOp();
 
 //------------- SUMMARY----------------
-let storage: LocalStorage = goOnStorage();
-
-const summaryCategoryProfit = document.querySelector('#summary-category-profit');
-const summaryCategoryProfitAmount = document.querySelector('#summary-category-profit-amount');
-const summaryCategoryExpense = document.querySelector('#summary-category-expense');
-const summaryCategoryExpenseAmount = document.querySelector('#summary-category-expense-amount');
-const categoryBalance = document.querySelector('#category-balance');
-const categoryBalanceAmount = document.querySelector('#category-balance-amount');
-const summaryMonthProfit= document.querySelector('#summary-month-profit');
-const summaryMonthProfitAmount = document.querySelector('#summary-month-profit-amount');
-const summaryMonthExpense= document.querySelector('#summary-month-expense');
-const summaryMonthExpenseAmount = document.querySelector('#summary-month-expense-amount');
-const totalByMonthTable = document.getElementById('total-by-month-table');
-
 
 const HighestProfitOrExpenseCategory = (storage, kind: string, categoryText, amountText) =>{
     
@@ -207,14 +206,14 @@ const balanceByCategory= () => {
 
         if( finalArrayCategories.positives[element]!== undefined){
             newRowProfit.innerHTML = `+$ ${finalArrayCategories.positives[element]}`;
-            newRowProfit.classList.add('positive-value') ;
+            newRowProfit.classList.add('positive-number') ;
 
         }else {
             newRowProfit.innerHTML = "0";
         }
         if(finalArrayCategories.negatives[element]!== undefined){
             newRowExpense.innerHTML = `-$ ${finalArrayCategories.negatives[element]}`;
-            newRowExpense.classList.add('negative-value');
+            newRowExpense.classList.add('negative-number');
 
         }else {
             newRowExpense.innerHTML = "0";
@@ -222,21 +221,21 @@ const balanceByCategory= () => {
 
         if(newRowProfit.innerHTML == "0"){
             newRowBalance.innerHTML = `-$ ${finalArrayCategories.negatives[element]}`;
-            newRowBalance.classList.add('negative-value');
+            newRowBalance.classList.add('negative-number');
             total.push(-Number(finalArrayCategories.negatives[element]));
 
         } else if(newRowExpense.innerHTML == "0"){
             newRowBalance.innerHTML = `+$ ${finalArrayCategories.positives[element]}`;
-            newRowBalance.classList.add('positive-value');
+            newRowBalance.classList.add('positive-number');
             total.push(Number(finalArrayCategories.positives[element]));
 
         }else{
             newRowBalance.innerHTML =  Number(finalArrayCategories.positives[element]) -  Number(finalArrayCategories.negatives[element]);
             total.push(Number(finalArrayCategories.positives[element]) -  Number(finalArrayCategories.negatives[element]))
             if(Number(finalArrayCategories.positives[element])>Number(finalArrayCategories.negatives[element])){
-                newRowBalance.classList.add('positive-value');
+                newRowBalance.classList.add('positive-number');
             }else if(Number(finalArrayCategories.positives[element])<Number(finalArrayCategories.negatives[element])){
-                newRowBalance.classList.add('negative-value');
+                newRowBalance.classList.add('negative-number');
             }
         };
         
@@ -339,25 +338,25 @@ const balanceByMonth= () => {
 
         if( year[month].ganancia!== undefined){
             newRowProfit.innerHTML = `+$ ${year[month].ganancia}`;
-            newRowProfit.classList.add('positive-value');
+            newRowProfit.classList.add('positive-number');
         }else {
             newRowProfit.innerHTML = "0";
         }
         if(year[month].gasto!== undefined){
             newRowExpense.innerHTML = `-$ ${year[month].gasto}`;
-            newRowExpense.classList.add('negative-value');
+            newRowExpense.classList.add('negative-number');
         }else {
             newRowExpense.innerHTML = "0";
         }
 
         if(newRowProfit.innerHTML == "0"){
             newRowBalance.innerHTML = `-$ ${Number(year[month].gasto)}`;
-            newRowBalance.classList.add('negative-value');
+            newRowBalance.classList.add('negative-number');
             arrayBalancebyMonth.push(-Number(year[month].gasto));
 
         } else if(newRowExpense.innerHTML == "0"){
             newRowBalance.innerHTML = newRowProfit.innerHTML ;
-            newRowBalance.classList.add('positive-value');
+            newRowBalance.classList.add('positive-number');
             arrayBalancebyMonth.push(Number(year[month].ganancia));
 
         }else{
@@ -365,9 +364,9 @@ const balanceByMonth= () => {
             arrayBalancebyMonth.push(Number(year[month].ganancia) -  Number(year[month].gasto));
 
             if(Number(year[month].ganancia)>Number(year[month].gasto)){
-                newRowBalance.classList.add('positive-value');
+                newRowBalance.classList.add('positive-number');
             }else if(Number(year[month].ganancia)<Number(year[month].gasto)){
-                newRowBalance.classList.add('negative-value');
+                newRowBalance.classList.add('negative-number');
             }
         }
     
@@ -375,7 +374,6 @@ const balanceByMonth= () => {
         newRow.appendChild(newRowProfit);
         newRow.appendChild(newRowExpense);
         newRow.appendChild(newRowBalance);
-        
         totalByMonthTable.appendChild(newRow);
 
         }

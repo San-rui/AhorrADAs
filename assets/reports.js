@@ -1,7 +1,19 @@
-//---------HIDE NOT ENOUGH CARD------------
+//----------VARIABLES-----------------
 var notEnoughOpCard = document.getElementById('not-enough-op-card');
 var addCategoryContainer = document.getElementById('add-category-container');
 var storage = goOnStorage();
+var summaryCategoryProfit = document.querySelector('#summary-category-profit');
+var summaryCategoryProfitAmount = document.querySelector('#summary-category-profit-amount');
+var summaryCategoryExpense = document.querySelector('#summary-category-expense');
+var summaryCategoryExpenseAmount = document.querySelector('#summary-category-expense-amount');
+var categoryBalance = document.querySelector('#category-balance');
+var categoryBalanceAmount = document.querySelector('#category-balance-amount');
+var summaryMonthProfit = document.querySelector('#summary-month-profit');
+var summaryMonthProfitAmount = document.querySelector('#summary-month-profit-amount');
+var summaryMonthExpense = document.querySelector('#summary-month-expense');
+var summaryMonthExpenseAmount = document.querySelector('#summary-month-expense-amount');
+var totalByMonthTable = document.getElementById('total-by-month-table');
+//---------HIDE NOT ENOUGH CARD------------
 var hideCardInsuficientOp = function () {
     var storage = goOnStorage();
     if (storage.newoperation.length >= 4) {
@@ -15,18 +27,6 @@ var hideCardInsuficientOp = function () {
 };
 hideCardInsuficientOp();
 //------------- SUMMARY----------------
-var storage = goOnStorage();
-var summaryCategoryProfit = document.querySelector('#summary-category-profit');
-var summaryCategoryProfitAmount = document.querySelector('#summary-category-profit-amount');
-var summaryCategoryExpense = document.querySelector('#summary-category-expense');
-var summaryCategoryExpenseAmount = document.querySelector('#summary-category-expense-amount');
-var categoryBalance = document.querySelector('#category-balance');
-var categoryBalanceAmount = document.querySelector('#category-balance-amount');
-var summaryMonthProfit = document.querySelector('#summary-month-profit');
-var summaryMonthProfitAmount = document.querySelector('#summary-month-profit-amount');
-var summaryMonthExpense = document.querySelector('#summary-month-expense');
-var summaryMonthExpenseAmount = document.querySelector('#summary-month-expense-amount');
-var totalByMonthTable = document.getElementById('total-by-month-table');
 var HighestProfitOrExpenseCategory = function (storage, kind, categoryText, amountText) {
     var newArray = storage.newoperation.filter(function (element) { return element.kind == kind; });
     var elementByCategory = {};
@@ -167,36 +167,36 @@ var balanceByCategory = function () {
         newRowCategory.innerHTML = element;
         if (finalArrayCategories.positives[element] !== undefined) {
             newRowProfit.innerHTML = "+$ " + finalArrayCategories.positives[element];
-            newRowProfit.classList.add('positive-value');
+            newRowProfit.classList.add('positive-number');
         }
         else {
             newRowProfit.innerHTML = "0";
         }
         if (finalArrayCategories.negatives[element] !== undefined) {
             newRowExpense.innerHTML = "-$ " + finalArrayCategories.negatives[element];
-            newRowExpense.classList.add('negative-value');
+            newRowExpense.classList.add('negative-number');
         }
         else {
             newRowExpense.innerHTML = "0";
         }
         if (newRowProfit.innerHTML == "0") {
             newRowBalance.innerHTML = "-$ " + finalArrayCategories.negatives[element];
-            newRowBalance.classList.add('negative-value');
+            newRowBalance.classList.add('negative-number');
             total.push(-Number(finalArrayCategories.negatives[element]));
         }
         else if (newRowExpense.innerHTML == "0") {
             newRowBalance.innerHTML = "+$ " + finalArrayCategories.positives[element];
-            newRowBalance.classList.add('positive-value');
+            newRowBalance.classList.add('positive-number');
             total.push(Number(finalArrayCategories.positives[element]));
         }
         else {
             newRowBalance.innerHTML = Number(finalArrayCategories.positives[element]) - Number(finalArrayCategories.negatives[element]);
             total.push(Number(finalArrayCategories.positives[element]) - Number(finalArrayCategories.negatives[element]));
             if (Number(finalArrayCategories.positives[element]) > Number(finalArrayCategories.negatives[element])) {
-                newRowBalance.classList.add('positive-value');
+                newRowBalance.classList.add('positive-number');
             }
             else if (Number(finalArrayCategories.positives[element]) < Number(finalArrayCategories.negatives[element])) {
-                newRowBalance.classList.add('negative-value');
+                newRowBalance.classList.add('negative-number');
             }
         }
         ;
@@ -280,36 +280,36 @@ var balanceByMonth = function () {
             arrayMonth.push(Number(month) + 1 + " /" + prop);
             if (year[month].ganancia !== undefined) {
                 newRowProfit.innerHTML = "+$ " + year[month].ganancia;
-                newRowProfit.classList.add('positive-value');
+                newRowProfit.classList.add('positive-number');
             }
             else {
                 newRowProfit.innerHTML = "0";
             }
             if (year[month].gasto !== undefined) {
                 newRowExpense.innerHTML = "-$ " + year[month].gasto;
-                newRowExpense.classList.add('negative-value');
+                newRowExpense.classList.add('negative-number');
             }
             else {
                 newRowExpense.innerHTML = "0";
             }
             if (newRowProfit.innerHTML == "0") {
                 newRowBalance.innerHTML = "-$ " + Number(year[month].gasto);
-                newRowBalance.classList.add('negative-value');
+                newRowBalance.classList.add('negative-number');
                 arrayBalancebyMonth.push(-Number(year[month].gasto));
             }
             else if (newRowExpense.innerHTML == "0") {
                 newRowBalance.innerHTML = newRowProfit.innerHTML;
-                newRowBalance.classList.add('positive-value');
+                newRowBalance.classList.add('positive-number');
                 arrayBalancebyMonth.push(Number(year[month].ganancia));
             }
             else {
                 newRowBalance.innerHTML = "+$ " + (Number(year[month].ganancia) - Number(year[month].gasto));
                 arrayBalancebyMonth.push(Number(year[month].ganancia) - Number(year[month].gasto));
                 if (Number(year[month].ganancia) > Number(year[month].gasto)) {
-                    newRowBalance.classList.add('positive-value');
+                    newRowBalance.classList.add('positive-number');
                 }
                 else if (Number(year[month].ganancia) < Number(year[month].gasto)) {
-                    newRowBalance.classList.add('negative-value');
+                    newRowBalance.classList.add('negative-number');
                 }
             }
             newRow.appendChild(newRowMonth);

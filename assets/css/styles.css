@@ -19,10 +19,13 @@ body{
 .container-lg{
     max-width:58rem;
     padding: 1.5rem;
-    border-radius: 7px; 
+    border-radius: 5px; 
 }
 
 /*-------NAV BAR--------*/
+a i{
+    margin-right: 7px;
+}
 
 .img-logo{
     width: 40px;
@@ -44,28 +47,20 @@ body{
     transition-duration: 0.3s;
 }
 
-a i{
-    margin-right: 7px;
-}
-
 .navbar-toggler{
     background-color: var(--background-color);
 }
+
 /*-------ASIDE--------*/
 
 .btn-hide-filters{
     width:15rem;
 }
 
+
 /*-------OPERATIONS CARD--------*/
 .cards-background{
     background-color: var(--background-color-cards);
-}
-
-.operations-img-format{
-    width: 25rem;
-    display: flex;
-    justify-content: center;
 }
 
 .new-op-button{
@@ -81,6 +76,12 @@ a i{
     width: 48rem;
     height: 100%;
     border: none;
+}
+
+#anim{
+    width: 100%;
+    display:flex;
+    justify-self: center;
 }
 
 /*-------CANCEL BUTTON--------*/
@@ -122,28 +123,13 @@ a i{
     color: #008000;
 }
 
-/*-------ANIMATION-------*/
-#anim{
-    width: 100%;
-    display:flex;
-    justify-self: center;
-}
-
 /*-------HIDDEN-------*/
 
 .hidden{
     display: none; 
 }
 
-/*------ COLORS VALUE-----*/
-
-.negative-value{
-    color:#ff0000;
-}
-
-.positive-value{
-    color:#10923b;
-}
+/*------ COLORS FONT-----*/
 
 .style-text-dark-color{
     color: var(--font-color-dark);
@@ -155,21 +141,33 @@ a i{
 
 /*------ REPORTS-----*/
 .chart{
-    width: 25rem;
-    margin: 2rem;
+    width: 100%;
 }
 
 .width-table-column{
-    width: 15rem;
+    width: 10rem;
 }
 
 .img-reports{
-    width: 100%;
+    width: 80%;
 }
 
 @media screen and (max-width:768px){ 
     .btn-edit-cnl-cat{
         width: 8rem;
     }
+
+    .chart{
+        width: 80%;
+    }
+    
+
+}
+
+@media screen and (max-width:992px){ 
+    .op-card-style{
+        width: 100%;
+    }
+    
 
 }
