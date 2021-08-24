@@ -51,11 +51,6 @@ a i{
     background-color: var(--background-color);
 }
 
-.navbar{
-    height: 6rem;
-}
-
-
 /*-------ASIDE--------*/
 
 .btn-hide-filters{
