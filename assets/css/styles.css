@@ -1,7 +1,7 @@
 body.format {
     --background-color-dark:#13A19C;
     --font-color-dark:#13A19C;
-    --font-background-color:#f7cbd7;
+    --font-background-color:#bed8d7;
     --background-color: #bed8d7;
     --background-color-cards: #FAFAFA;
     --background-color-hover-button: #24bab5;
@@ -14,7 +14,16 @@ body{
     background-color: var( --background-color);
 }
 
+/*-------CONTAINER--------*/
+
+.container-lg{
+    max-width:58rem;
+    padding: 1.5rem;
+    border-radius: 7px; 
+}
+
 /*-------NAV BAR--------*/
+
 .img-logo{
     width: 40px;
     margin: 0px 15px 0px 15px;
@@ -43,12 +52,6 @@ a i{
     background-color: var(--background-color);
 }
 /*-------ASIDE--------*/
-
-.container{
-    width:58rem;
-    padding: 1.5rem;
-    border-radius: 7px;
-}
 
 .btn-hide-filters{
     width:15rem;
@@ -161,6 +164,12 @@ a i{
 }
 
 .img-reports{
-    width: 350px;
-    height: 350px;
+    width: 100%;
+}
+
+@media screen and (max-width:768px){ 
+    .btn-edit-cnl-cat{
+        width: 8rem;
+    }
+
 }
